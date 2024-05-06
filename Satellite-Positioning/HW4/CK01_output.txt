@@ -1,0 +1,7 @@
+%% ----- Differential Positioning of Carrier Phase Summary ----- %%
+
+meanE = -0.212829(cm), standardE =  0.251627(cm), rmse =  0.329519(cm)
+meanN =  0.044947(cm), standardN =  0.311385(cm), rmsn =  0.314541(cm)
+meanH = -0.804922(cm), standardH =  0.657796(cm), rmsu =  1.039420(cm)
+
+2D error = 0.455542(cm), 3D error = 1.134863(cm)

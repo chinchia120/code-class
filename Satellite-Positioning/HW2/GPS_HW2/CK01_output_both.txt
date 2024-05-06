@@ -1,0 +1,12 @@
+meanE = -0.072319, standardE = 0.654699, rmse =  0.658530
+meanN = -0.246110, standardN = 0.945338, rmsn =  0.976636
+meanH = -0.705193, standardH = 1.718976, rmsu =  1.857633
+
+GDOP_avg = 2.5103
+PDOP_avg = 2.1628
+TDOP_avg = 1.2740
+HDOP_avg = 1.1558
+VDOP_avg = 1.8281
+
+2D error =  1.177913, 3D error =  2.199609
+UERE_H =  1.016178, UERE_EN =  1.019155, UERE_ENH =  0.876227

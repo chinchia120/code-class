@@ -1,0 +1,7 @@
+%% ----- Differential Positioning Summary ----- %%
+
+meanE = -0.002173, standardE = 0.294328, rmse = 0.294268
+meanN = -0.249759, standardN = 0.310903, rmsn = 0.398742
+meanH = -0.105304, standardH = 0.598010, rmsu = 0.607074
+
+2D error = 0.495569(m), 3D error = 0.783663(m)

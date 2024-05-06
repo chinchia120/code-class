@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+class Solution
+{
+public:
+    int minNumber(vector<int>& nums1, vector<int>& nums2)
+    {
+        sort(nums1.begin(), nums1.end());
+        sort(nums2.begin(), nums2.end());
+
+        int index = 0;
+        for(int i = 0; i < nums1.size(); i++)
+        {
+            for(int j = index; j < nums2.size(); j++)
+            {
+                if(nums1[i] == nums2[j]) return nums1[i];
+                if(nums1[i] < nums2[j])
+                {
+                    index = j;
+                    break;
+                }
+            }
+        }
+        return (nums1[0] < nums2[0])? nums1[0]*10+nums2[0]: nums2[0]*10+nums1[0];
+    }
+};
