@@ -43,8 +43,8 @@ Allen = load([PathAllen, FileAllen]);
 %% ========== Make Allan Plot ========== %%
 [avar,tau] = allanvar(Allen(:, 2), 'octave', 50);
 
-loglog(tau,avar);
-xlabel('\tau');
-ylabel('\sigma^2(\tau)');
-title('Allan Variance');
-grid on;
+loglog(tau,avar)
+xlabel('\tau')
+ylabel('\sigma^2(\tau)')
+title('Allan Variance')
+grid on
