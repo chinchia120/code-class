@@ -1,6 +1,6 @@
-function [] = helperScatterPlotAcce(IMUData, OutputDir)
+function [] = helperScatterPlotAcce(IMUData, type, OutputDir)
     scatter(IMUData(:, 1), IMUData(:, 2: end), 'filled');
-    title('Accelerometer and Time', 'FontSize', 32);
+    title(['Accelerometer and Time ', type], 'FontSize', 32);
     xlabel("time (s)", 'FontSize', 24);
     ylabel("Acce value (m/s^2)", 'FontSize', 24);
 

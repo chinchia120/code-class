@@ -1,6 +1,6 @@
-function [] = helperScatterPlotGyro(IMUData, OutputDir)
+function [] = helperScatterPlotGyro(IMUData, type, OutputDir)
     scatter(IMUData(:, 1), IMUData(:, 2: end), 'filled');
-    title('Gyroscope and Time', 'FontSize', 32);
+    title(['Gyroscope and Time ', type], 'FontSize', 32);
     xlabel("time (s)", 'FontSize', 24);
     ylabel("Gyro value (rad/s)", 'FontSize', 24);
 
