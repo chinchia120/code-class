@@ -69,7 +69,7 @@ AcceScale = (AccePosZ-AcceNegZ-2*AcceTrueZ)/(2*AcceTrueZ);
 % Gyroscope
 GyroNegZ = mean(Z1(:, 4));
 GyroPosZ = mean(Z2(:, 4));
-GyroTrueZ = 15*sind(23)/60/60; % rad/s
+GyroTrueZ = 15; % rad/s
 
 GyroBias = (GyroNegZ+GyroPosZ)/2;
-GyroScale = (GyroPosZ-GyroNegZ-2*GyroTrueZ)/(2*GyroTrueZ);
+GyroScale = (GyroPosZ=)
