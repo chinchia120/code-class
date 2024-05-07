@@ -3,6 +3,7 @@ function [] = helperScatterPlotGyro(IMUData, type, OutputDir)
     title(['Gyroscope and Time ', type], 'FontSize', 32);
     xlabel("time (s)", 'FontSize', 24);
     ylabel("Gyro value (rad/s)", 'FontSize', 24);
+    grid on;
 
     if size(IMUData, 2) == 2
         legend('Gyro-Z', 'FontSize', 24);

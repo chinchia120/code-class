@@ -3,6 +3,7 @@ function [] = helperScatterPlotAcce(IMUData, type, OutputDir)
     title(['Accelerometer and Time ', type], 'FontSize', 32);
     xlabel("time (s)", 'FontSize', 24);
     ylabel("Acce value (m/s^2)", 'FontSize', 24);
+    grid on;
 
     if size(IMUData, 2) == 2
         legend('Acce-Z', 'FontSize', 24);
