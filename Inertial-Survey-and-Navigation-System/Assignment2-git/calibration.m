@@ -1,8 +1,10 @@
 %% ========== Setup ========== %%
+% Setup
 clc;
 clear;
 close all;
 
+% Creat output folder
 OutputFolder = sprintf('OutputFigure');
 if ~exist([pwd, '\', OutputFolder], 'dir')
     mkdir(OutputFolder);
@@ -17,21 +19,21 @@ end
 PathZ1 = 'C:\Users\P66134111\Documents\code-class\Inertial-Survey-and-Navigation-System\Assignment2-git\data-sample\';
 FileZ1 = 'imu_pointer_z1.txt';
 % [FileZ1, PathZ1, ~] = uigetfile('*.txt', 'Please select Z1 file (.txt)');
-Z1 = load([PathZ1, FileZ1]);
+Z1 = readmatrix([PathZ1, FileZ1]);
 
 % Select Z2 file
 PathZ2 = 'C:\Users\P66134111\Documents\code-class\Inertial-Survey-and-Navigation-System\Assignment2-git\data-sample\';
 FileZ2 = 'imu_pointer_z2.txt';
 % [FileZ2, PathZ2, ~] = uigetfile('*.txt', 'Please select Z2 file (.txt)');
-Z2 = load([PathZ2, FileZ2]);
+Z2 = readmatrix([PathZ2, FileZ2]);
 
-% Select Allen file
-PathAllen = 'C:\Users\P66134111\Documents\NCKU-Data\112-2\Inertial-Survey-and-Navigation-System\assignment\Assignment2-class\Sample\Assignment2\';
-FileAllen = 'imu_pointer_Allan.txt';
-% [FileAllen, PathAllen, ~] = uigetfile('*.txt', 'Please select Allen file (.txt)');
-Allen = load([PathAllen, FileAllen]);
+% Select Allan file
+PathAllan = 'C:\Users\P66134111\Documents\NCKU-Data\112-2\Inertial-Survey-and-Navigation-System\assignment\Assignment2-class\Sample\Assignment2\';
+FileAllan = 'imu_pointer_Allan.txt';
+% [FileAllan, PathAllan, ~] = uigetfile('*.txt', 'Please select Allan file (.txt)');
+Allan = readmatrix([PathAllan, FileAllan]);
 
-%% ========== Make Scatter Plot ========== %%
+%% ========== Make Obervation Plot ========== %%
 % Z1 scatter
 helperScatterPlotGyro(Z1(:, [1 2 3 4]), 'negative', [OutputFolder, '\','Z1-Gyro']);
 helperScatterPlotAcce(Z1(:, [1 5 6 7]), 'negative', [OutputFolder, '\','Z1-Acce']);
@@ -41,21 +43,23 @@ helperScatterPlotGyro(Z2(:, [1 2 3 4]), 'positive', [OutputFolder, '\','Z2-Gyro'
 helperScatterPlotAcce(Z2(:, [1 5 6 7]), 'positive', [OutputFolder, '\','Z2-Acce']);
 
 % Z1 scatter of Z-Axis
-helperScatterPlotGyro(Z1(:, [1 4]), 'negative', [OutputFolder, '\','Z1-Gyro-z-axis']);
-helperScatterPlotAcce(Z1(:, [1 7]), 'negative', [OutputFolder, '\','Z1-Acce-z-axis']);
+helperScatterPlotGyro(Z1(:, [1 4]), 'negative', [OutputFolder, '\','Z1-Gyro-z']);
+helperScatterPlotAcce(Z1(:, [1 7]), 'negative', [OutputFolder, '\','Z1-Acce-z']);
 
 % Z2 scatter of Z-Axis
-helperScatterPlotGyro(Z2(:, [1 4]), 'positive', [OutputFolder, '\','Z2-Gyro-z-axis']);
-helperScatterPlotAcce(Z2(:, [1 7]), 'positive', [OutputFolder, '\','Z2-Acce-z-axis']);
+helperScatterPlotGyro(Z2(:, [1 4]), 'positive', [OutputFolder, '\','Z2-Gyro-z']);
+helperScatterPlotAcce(Z2(:, [1 7]), 'positive', [OutputFolder, '\','Z2-Acce-z']);
 
 %% ========== Make Allan Plot ========== %%
-% [avar,tau] = allanvar(Allen(:, 2), 'octave', 50);
-% 
-% loglog(tau,avar);
-% xlabel('\tau');
-% ylabel('\sigma^2(\tau)');
-% title('Allan Variance');
-% grid on;
+% Accelerometer
+helperAllanVarPlot(Allan(:, 2), 'Gyro-x', [OutputFolder, '\','AllanVar-Gyro-x']);
+helperAllanVarPlot(Allan(:, 3), 'Gyro-y', [OutputFolder, '\','AllanVar-Gyro-y']);
+helperAllanVarPlot(Allan(:, 4), 'Gyro-z', [OutputFolder, '\','AllanVar-Gyro-z']);
+
+% Gyroscope
+helperAllanVarPlot(Allan(:, 5), 'Acce-x', [OutputFolder, '\','AllanVar-Acce-x']);
+helperAllanVarPlot(Allan(:, 6), 'Acce-y', [OutputFolder, '\','AllanVar-Acce-y']);
+helperAllanVarPlot(Allan(:, 7), 'Acce-z', [OutputFolder, '\','AllanVar-Acce-z']);
 
 %% ========== Calibration ========== %%
 % Accelerometer
@@ -69,7 +73,7 @@ AcceScale = (AccePosZ-AcceNegZ-2*AcceTrueZ)/(2*AcceTrueZ);
 % Gyroscope
 GyroNegZ = mean(Z1(:, 4));
 GyroPosZ = mean(Z2(:, 4));
-GyroTrueZ = 15*sind(23)/60/60; % rad/s
+GyroTrueZ = 15*sind(23)/60/60; % deg/s
 
 GyroBias = (GyroNegZ+GyroPosZ)/2;
 GyroScale = (GyroPosZ-GyroNegZ-2*GyroTrueZ)/(2*GyroTrueZ);
