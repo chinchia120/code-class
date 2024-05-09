@@ -14,19 +14,19 @@ if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 
 %% ========== Read File ========== %%
 % Select GNSS file
-PathGNSS = 'C:\Users\P66134111\Documents\code-class\Inertial-Survey-and-Navigation-System\Assignment2-git\data-sample\COM3_2024-05-09_15.12.53-up\';
+PathGNSS = 'C:\Users\P66134111\Documents\code-class\Inertial-Survey-and-Navigation-System\Assignment2-git\Data\COM3_2024-05-09_15.12.53-up\';
 FileGNSS = 'gnss_data_pointer.txt';
 % [FileGNSS, PathGNSS, ~] = uigetfile('*.txt', 'Please select GNSS file (.txt)');
 GNSS = readmatrix([PathGNSS, FileGNSS]);
 
 % Select upside file
-PathZUp = 'C:\Users\P66134111\Documents\code-class\Inertial-Survey-and-Navigation-System\Assignment2-git\data-sample\COM3_2024-05-09_15.12.53-up\';
+PathZUp = 'C:\Users\P66134111\Documents\code-class\Inertial-Survey-and-Navigation-System\Assignment2-git\Data\COM3_2024-05-09_15.12.53-up\';
 FileZUp = 'imu_pointer.txt';
 % [FileZUp, PathZUp, ~] = uigetfile('*.txt', 'Please select upside file (.txt)');
 ZUp = readmatrix([PathZUp, FileZUp]);
 
 % Select downside file
-PathZDown = 'C:\Users\P66134111\Documents\code-class\Inertial-Survey-and-Navigation-System\Assignment2-git\data-sample\COM3_2024-05-09_15.00.31-down\';
+PathZDown = 'C:\Users\P66134111\Documents\code-class\Inertial-Survey-and-Navigation-System\Assignment2-git\Data\COM3_2024-05-09_15.00.31-down\';
 FileZDown = 'imu_pointer.txt';
 % [FileZDown, PathZDown, ~] = uigetfile('*.txt', 'Please select downside file (.txt)');
 ZDown = readmatrix([PathZDown, FileZDown]);
