@@ -15,22 +15,28 @@ end
 % openExample('shared_positioning/DetermineAllanVarianceOfSingleAxisGyroscopeExample');
 
 %% ========== Read File ========== %%
+% Select GNSS file
+PathGNSS = 'C:\Users\P66134111\Documents\code-class\Inertial-Survey-and-Navigation-System\Assignment2-git\data-sample\COM3_2024-05-09_14.20.08\';
+FileGNSS = 'gnss_data_pointer.txt';
+[FileGNSS, PathGNSS, ~] = uigetfile('*.txt', 'Please select GNSS file (.txt)');
+GNSS = readmatrix([PathGNSS, FileGNSS]);
+
 % Select Z1 file
 PathZ1 = 'C:\Users\P66134111\Documents\code-class\Inertial-Survey-and-Navigation-System\Assignment2-git\data-sample\';
 FileZ1 = 'imu_pointer_z1.txt';
-% [FileZ1, PathZ1, ~] = uigetfile('*.txt', 'Please select Z1 file (.txt)');
+[FileZ1, PathZ1, ~] = uigetfile('*.txt', 'Please select Z1 file (.txt)');
 Z1 = readmatrix([PathZ1, FileZ1]);
 
 % Select Z2 file
 PathZ2 = 'C:\Users\P66134111\Documents\code-class\Inertial-Survey-and-Navigation-System\Assignment2-git\data-sample\';
 FileZ2 = 'imu_pointer_z2.txt';
-% [FileZ2, PathZ2, ~] = uigetfile('*.txt', 'Please select Z2 file (.txt)');
+[FileZ2, PathZ2, ~] = uigetfile('*.txt', 'Please select Z2 file (.txt)');
 Z2 = readmatrix([PathZ2, FileZ2]);
 
 % Select Allan file
 PathAllan = 'C:\Users\P66134111\Documents\NCKU-Data\112-2\Inertial-Survey-and-Navigation-System\assignment\Assignment2-class\Sample\Assignment2\';
 FileAllan = 'imu_pointer_Allan.txt';
-% [FileAllan, PathAllan, ~] = uigetfile('*.txt', 'Please select Allan file (.txt)');
+[FileAllan, PathAllan, ~] = uigetfile('*.txt', 'Please select Allan file (.txt)');
 Allan = readmatrix([PathAllan, FileAllan]);
 
 %% ========== Make Obervation Plot ========== %%
@@ -51,21 +57,25 @@ helperScatterPlotGyro(Z2(:, [1 4]), 'positive', [OutputFolder, '\','Z2-Gyro-z'])
 helperScatterPlotAcce(Z2(:, [1 7]), 'positive', [OutputFolder, '\','Z2-Acce-z']);
 
 %% ========== Make Allan Plot ========== %%
-% Accelerometer
-helperAllanVarPlot(Allan(:, 2), 'Gyro-x', [OutputFolder, '\','AllanVar-Gyro-x']);
-helperAllanVarPlot(Allan(:, 3), 'Gyro-y', [OutputFolder, '\','AllanVar-Gyro-y']);
-helperAllanVarPlot(Allan(:, 4), 'Gyro-z', [OutputFolder, '\','AllanVar-Gyro-z']);
-
-% Gyroscope
-helperAllanVarPlot(Allan(:, 5), 'Acce-x', [OutputFolder, '\','AllanVar-Acce-x']);
-helperAllanVarPlot(Allan(:, 6), 'Acce-y', [OutputFolder, '\','AllanVar-Acce-y']);
-helperAllanVarPlot(Allan(:, 7), 'Acce-z', [OutputFolder, '\','AllanVar-Acce-z']);
+% % Accelerometer
+% helperAllanVarPlot(Allan(:, 2), 'Gyro-x', [OutputFolder, '\','AllanVar-Gyro-x']);
+% helperAllanVarPlot(Allan(:, 3), 'Gyro-y', [OutputFolder, '\','AllanVar-Gyro-y']);
+% helperAllanVarPlot(Allan(:, 4), 'Gyro-z', [OutputFolder, '\','AllanVar-Gyro-z']);
+% 
+% % Gyroscope
+% helperAllanVarPlot(Allan(:, 5), 'Acce-x', [OutputFolder, '\','AllanVar-Acce-x']);
+% helperAllanVarPlot(Allan(:, 6), 'Acce-y', [OutputFolder, '\','AllanVar-Acce-y']);
+% helperAllanVarPlot(Allan(:, 7), 'Acce-z', [OutputFolder, '\','AllanVar-Acce-z']);
 
 %% ========== Calibration ========== %%
+% Initial value
+lat = mean(GNSS(:, 2)); % deg
+AcceTrueZ = 9.8; % m/s^2
+GyroTrueZ = 15*sind(lat)/60/60; % deg/s
+
 % Accelerometer
 AcceNegZ = mean(Z1(:, 7));
 AccePosZ = mean(Z2(:, 7));
-AcceTrueZ = 9.8; % m/s^2
 
 AcceBias = (AcceNegZ+AccePosZ)/2;
 AcceScale = (AccePosZ-AcceNegZ-2*AcceTrueZ)/(2*AcceTrueZ);
@@ -73,7 +83,6 @@ AcceScale = (AccePosZ-AcceNegZ-2*AcceTrueZ)/(2*AcceTrueZ);
 % Gyroscope
 GyroNegZ = mean(Z1(:, 4));
 GyroPosZ = mean(Z2(:, 4));
-GyroTrueZ = 15*sind(23)/60/60; % deg/s
 
-GyroBias = (GyroNegZ+GyroPosZ)/2;
-GyroScale = (GyroPosZ-GyroNegZ-2*GyroTrueZ)/(2*GyroTrueZ);
+GyroBias = (GyroNegZ-GyroPosZ)/2;
+GyroScale = (GyroPosZ+GyroNegZ-2*GyroTrueZ)/(2*GyroTrueZ);

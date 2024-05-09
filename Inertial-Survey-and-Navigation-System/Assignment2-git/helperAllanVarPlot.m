@@ -12,4 +12,3 @@ function [] = helperAllanVarPlot(AllanData, type, OutputDir)
     % saveas(gcf, [OutputDir, '.fig']);
     saveas(gcf, [OutputDir, '.png']);
 end
-
