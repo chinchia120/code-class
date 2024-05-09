@@ -26,7 +26,7 @@ Coupon_Payment = Face_Value * (Coupon_Rate*0.01) * 1/2; % dolar / half of year
 
 PVAF = (1-(1/(1+Yield_to_Maturity/2*0.01)^(n*2))) / (Yield_to_Maturity/2*0.01);
 VB = Coupon_Payment*PVAF + Face_Value/(1+Yield_to_Maturity/2*0.01)^(n*2);
-disp([, sprintf('VB = %.4f\n', VB)]);
+disp([sprintf('VB = %.4f\n', VB)]);
 
 %% --------------- Holding Period Return --------------- %%
 Coupon_Rate = 8; % percent of year

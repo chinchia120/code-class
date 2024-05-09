@@ -1,0 +1,8 @@
+%% ========== Calibration Parameter ========== %%
+% Accelerometer
+Acce Bias  = -0.133246 (m/s^2)
+Acce Scale = -1.996788 (m/s^2)
+
+% Gyroscope
+Gyro Bias  = +0.002977 (deg/s)
+Gyro Scale = -0.903298 (deg/s)
