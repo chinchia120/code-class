@@ -1,0 +1,3 @@
+function [] = helperAllanVarianceCalculation(AllanData, type, OutputDir)
+    
+end
