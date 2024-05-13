@@ -1,4 +1,4 @@
-function [tau,adev,N,B] = AllanVar(t0,data,maxNumM)
+function [tau, adev, N, B] = AllanVar(t0, data, maxNumM)
     theta = cumsum(data, 1)*t0;
     L = size(theta, 1);
     maxM = 2.^floor(log2(L/2));
