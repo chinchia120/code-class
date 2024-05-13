@@ -4,7 +4,7 @@ clc;
 clear;
 close all;
 
-% Creat output folder and file
+% Creat output folder
 OutputFolder = sprintf('OutputFigure');
 if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 
@@ -14,85 +14,91 @@ if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 
 %% ========== Read File ========== %%
 % Select GNSS file
-PathGNSS = 'C:\Users\P66134111\Documents\code-class\Inertial-Survey-and-Navigation-System\Assignment2-git\Data\COM3_2024-05-09_15.12.53-up\';
+PathGNSS = 'C:\Users\P66134111\Documents\DATA\Class\Inertial-Survey-and-Navigation-System\Assignment2-data\COM3_2024-05-09_15.12.53-up\';
 FileGNSS = 'gnss_data_pointer.txt';
 % [FileGNSS, PathGNSS, ~] = uigetfile('*.txt', 'Please select GNSS file (.txt)');
 GNSS = readmatrix([PathGNSS, FileGNSS]);
 
-% Select upside file
-PathZUp = 'C:\Users\P66134111\Documents\code-class\Inertial-Survey-and-Navigation-System\Assignment2-git\Data\COM3_2024-05-09_15.12.53-up\';
+% Select IMU upward file
+PathZUp = 'C:\Users\P66134111\Documents\DATA\Class\Inertial-Survey-and-Navigation-System\Assignment2-data\COM3_2024-05-09_15.12.53-up\';
 FileZUp = 'imu_pointer.txt';
-% [FileZUp, PathZUp, ~] = uigetfile('*.txt', 'Please select upside file (.txt)');
+% [FileZUp, PathZUp, ~] = uigetfile('*.txt', 'Please select IMU upward file (.txt)');
 ZUp = readmatrix([PathZUp, FileZUp]);
 
-% Select downside file
-PathZDown = 'C:\Users\P66134111\Documents\code-class\Inertial-Survey-and-Navigation-System\Assignment2-git\Data\COM3_2024-05-09_15.00.31-down\';
+% Select IMU downward file
+PathZDown = 'C:\Users\P66134111\Documents\DATA\Class\Inertial-Survey-and-Navigation-System\Assignment2-data\COM3_2024-05-09_15.00.31-down\';
 FileZDown = 'imu_pointer.txt';
-% [FileZDown, PathZDown, ~] = uigetfile('*.txt', 'Please select downside file (.txt)');
+% [FileZDown, PathZDown, ~] = uigetfile('*.txt', 'Please select IMU downward file (.txt)');
 ZDown = readmatrix([PathZDown, FileZDown]);
 
-% Select Allan file
-PathAllan = 'C:\Users\P66134111\Documents\NCKU-Data\112-2\Inertial-Survey-and-Navigation-System\assignment\Assignment2-class\Sample\Assignment2\';
+% Select Allan Variance file
+PathAllan = 'C:\Users\P66134111\Documents\DATA\Class\Inertial-Survey-and-Navigation-System\Assignment2-data\Sample-Allan\';
 FileAllan = 'imu_pointer_Allan.txt';
 % [FileAllan, PathAllan, ~] = uigetfile('*.txt', 'Please select Allan file (.txt)');
 Allan = readmatrix([PathAllan, FileAllan]);
 
 %% ========== Make Obervation Plot ========== %%
-% Upside scatter
-helperScatterPlotGyro(ZUp(:, [1 2 3 4]), 'negative', [OutputFolder, '\','Z1-Gyro']);
-helperScatterPlotAcce(ZUp(:, [1 5 6 7]), 'negative', [OutputFolder, '\','Z1-Acce']);
+% Upward scatter
+helperScatterPlotGyro(ZUp(:, [1 2 3 4]), 'Upward', [OutputFolder, '\','Z1-Gyro']);
+helperScatterPlotAcce(ZUp(:, [1 5 6 7]), 'Upward', [OutputFolder, '\','Z1-Acce']);
 
-% Downside scatter
-helperScatterPlotGyro(ZDown(:, [1 2 3 4]), 'positive', [OutputFolder, '\','Z2-Gyro']);
-helperScatterPlotAcce(ZDown(:, [1 5 6 7]), 'positive', [OutputFolder, '\','Z2-Acce']);
+% Downward scatter
+helperScatterPlotGyro(ZDown(:, [1 2 3 4]), 'Downward', [OutputFolder, '\','Z2-Gyro']);
+helperScatterPlotAcce(ZDown(:, [1 5 6 7]), 'Downward', [OutputFolder, '\','Z2-Acce']);
 
-% Upside scatter of Z-Axis
-helperScatterPlotGyro(ZUp(:, [1 4]), 'negative', [OutputFolder, '\','Z1-Gyro-z']);
-helperScatterPlotAcce(ZUp(:, [1 7]), 'negative', [OutputFolder, '\','Z1-Acce-z']);
+% Upward scatter of Z-Axis
+helperScatterPlotGyro(ZUp(:, [1 4]), 'Upward', [OutputFolder, '\','Z1-Gyro-z']);
+helperScatterPlotAcce(ZUp(:, [1 7]), 'Upward', [OutputFolder, '\','Z1-Acce-z']);
 
-% Downside scatter of Z-Axis
-helperScatterPlotGyro(ZDown(:, [1 4]), 'positive', [OutputFolder, '\','Z2-Gyro-z']);
-helperScatterPlotAcce(ZDown(:, [1 7]), 'positive', [OutputFolder, '\','Z2-Acce-z']);
-
-%% ========== Make Allan Plot ========== %%
-% Accelerometer
-helperAllanVarPlot(Allan(:, 2), 'Gyro-x', [OutputFolder, '\','AllanVar-Gyro-x']);
-helperAllanVarPlot(Allan(:, 3), 'Gyro-y', [OutputFolder, '\','AllanVar-Gyro-y']);
-helperAllanVarPlot(Allan(:, 4), 'Gyro-z', [OutputFolder, '\','AllanVar-Gyro-z']);
-
-% Gyroscope
-helperAllanVarPlot(Allan(:, 5), 'Acce-x', [OutputFolder, '\','AllanVar-Acce-x']);
-helperAllanVarPlot(Allan(:, 6), 'Acce-y', [OutputFolder, '\','AllanVar-Acce-y']);
-helperAllanVarPlot(Allan(:, 7), 'Acce-z', [OutputFolder, '\','AllanVar-Acce-z']);
+% Downward scatter of Z-Axis
+helperScatterPlotGyro(ZDown(:, [1 4]), 'Downward', [OutputFolder, '\','Z2-Gyro-z']);
+helperScatterPlotAcce(ZDown(:, [1 7]), 'Downward', [OutputFolder, '\','Z2-Acce-z']);
 
 %% ========== Calibration ========== %%
 % Initial value
 lat = mean(GNSS(:, 2)); % deg
-AcceTrueZ = -9.8; % m/s^2
 GyroTrueZ = 15*sind(lat)/60/60; % deg/s
-
-% Accelerometer
-AcceNegZ = mean(ZUp(:, 7));
-AccePosZ = mean(ZDown(:, 7));
-
-AcceBias = (AcceNegZ+AccePosZ)/2;
-AcceScale = (AccePosZ-AcceNegZ-2*AcceTrueZ)/(2*AcceTrueZ);
+AcceTrueZ = -9.7890; % m/s^2
 
 % Gyroscope
-GyroNegZ = -mean(ZUp(:, 4));
-GyroPosZ = mean(ZDown(:, 4));
+GyroUpZ = mean(ZUp(:, 4));
+GyroDownZ = mean(ZDown(:, 4));
 
-GyroBias = (GyroNegZ-GyroPosZ)/2;
-GyroScale = (GyroPosZ+GyroNegZ-2*GyroTrueZ)/(2*GyroTrueZ);
+[GyroScale, GyroBias] = helperCalirate(GyroUpZ, GyroDownZ, GyroTrueZ);
 
-% Output parameter
+% Accelerometer
+AcceUpZ = mean(ZUp(:, 7));
+AcceDownZ = mean(ZDown(:, 7));
+
+[AcceScale, AcceBias] = helperCalirate(AcceUpZ, AcceDownZ, AcceTrueZ);
+
+%% ========== Make Allan Plot ========== %%
+% Gyroscope
+[GyroRandomWalk, GyroBiasInstability] = helperAllanVarModel(Allan(:, 4), 'Gyroscope', [OutputFolder, '\','Gyro-']);
+
+% Accelerometer
+[AcceRandomWalk, AcceBiasInstability] = helperAllanVarModel(Allan(:, 7), 'Accelerometer', [OutputFolder, '\','Acce-']);
+
+%% ========== Output parameter ========== %%
 FilePara = fopen([OutputFolder, '\', 'Calibration-Parameter.txt'], 'w');
-fprintf(FilePara,'%%%% ========== Calibration Parameter ========== %%%%\n');
-fprintf(FilePara,'%% Accelerometer\n');
-fprintf(FilePara,'Acce Bias  = %+.6f (m/s^2)\n', AcceBias);
-fprintf(FilePara,'Acce Scale = %+.6f (m/s^2)\n\n', AcceScale);
-fprintf(FilePara,'%% Gyroscope\n');
-fprintf(FilePara,'Gyro Bias  = %+.6f (deg/s)\n', GyroBias);
-fprintf(FilePara,'Gyro Scale = %+.6f (deg/s)\n', GyroScale);
-fclose(FilePara);
 
+fprintf(FilePara,'%%%% ========== Calibration Parameter ========== %%%%\n');
+fprintf(FilePara,'%% Gyroscope\n');
+fprintf(FilePara,'Gyro Scale = %.6f (deg/s)\n', GyroScale);
+fprintf(FilePara,'Gyro Bias  = %.6f (deg/s)\n', GyroBias);
+fprintf(FilePara,'Gyro Z Upward   = %.6f (deg/s)\n', GyroUpZ);
+fprintf(FilePara,'Gyro Z Downward = %.6f (deg/s)\n\n', GyroDownZ);
+
+fprintf(FilePara,'%% Accelerometer\n');
+fprintf(FilePara,'Acce Scale = %.6f (m/s^2)\n', AcceScale);
+fprintf(FilePara,'Acce Bias  = %.6f (m/s^2)\n', AcceBias);
+fprintf(FilePara,'Acce Z Upward   = %.6f (m/s^2)\n', AcceUpZ);
+fprintf(FilePara,'Acce Z Downward = %.6f (m/s^2)\n\n', AcceDownZ);
+
+fprintf(FilePara,'%% Allan Variance\n');
+fprintf(FilePara,'Angle Random Walk     = %.6f (deg/sqrt(h))\n', GyroRandomWalk*60);
+fprintf(FilePara,'Gyro Bias Instability = %.6f (deg/h)\n', GyroBiasInstability*3600);
+fprintf(FilePara,'Velocity Random Walk  = %.6f (m/s/sqrt(h))\n', AcceRandomWalk*60);
+fprintf(FilePara,'Acce Bias Instability = %.6f (uG)', AcceBiasInstability/9.8*10^6);
+
+fclose(FilePara);

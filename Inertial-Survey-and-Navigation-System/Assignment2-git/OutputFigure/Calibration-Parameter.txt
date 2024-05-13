@@ -1,8 +1,18 @@
 %% ========== Calibration Parameter ========== %%
-% Accelerometer
-Acce Bias  = -0.133246 (m/s^2)
-Acce Scale = -1.996788 (m/s^2)
-
 % Gyroscope
-Gyro Bias  = +0.002977 (deg/s)
-Gyro Scale = -0.903298 (deg/s)
+Gyro Scale = -0.096702 (deg/s)
+Gyro Bias  = -0.002977 (deg/s)
+Gyro Z Upward   = -0.003134 (deg/s)
+Gyro Z Downward = -0.002819 (deg/s)
+
+% Accelerometer
+Acce Scale = 0.997908 (m/s^2)
+Acce Bias  = -0.133246 (m/s^2)
+Acce Z Upward   = -9.901770 (m/s^2)
+Acce Z Downward = 9.635279 (m/s^2)
+
+% Allan Variance
+Angle Random Walk     = 0.003847 (deg/sqrt(h))
+Gyro Bias Instability = 0.040790 (deg/h)
+Velocity Random Walk  = 4.398958 (m/s/sqrt(h))
+Acce Bias Instability = 61.207890 (uG)

@@ -1,37 +1,11 @@
 %% Inertial Sensor Noise Analysis Using Allan Variance
-% reference: https://www.mathworks.com/help/fusion/ug/inertial-sensor-noise-analysis-using-allan-variance.html
-% modification: Wistron, Peggy Hsu, 2021,09
-
-% disp(string(filepath));
-% data=[];
-% for i = 1:1clear; clc; close all
-
-% filepath=uigetdir('*.*','Choose the folder');
-% filelist=dir(fullfile(filepath,'*.csv'));   %IMU data input format: .csv
-% filenum=length(filelist);
-% filelist=string({filelist.name});
-
-% [file,path] = uigetfile('*.csv','Select IMU data');
-% disp(string([path,file]));
-% data = readmatrix(strcat(path, file));
-% data = data(360000:end-900000,2:end);
-% data = [data(:,1) data(:,5:7) data(:,2:4)];
+clc; clear; close all;
 
 [file,path] = uigetfile('*.txt','Select IMU data');
 disp(string([path,file]));
 data = readmatrix(strcat(path, file));
-data = data(1800:end,1:end);
-% data = [data(:,1) data(:,5:7) data(:,2:4)*9.8];
-% data = [data(:,1) (data(:,5:7)+data(:,14:16)+data(:,23:25)+data(:,32:34))./4 (data(:,2:4)+data(:,11:13)+data(:,20:22)+data(:,29:31))./4];
 
-
-%     data = [data; readmatrix(strcat(filepath,"\", filelist(i)))];
-%     % Epson data format:  Sample No.,time[sec],Gx[rad/s],Gy[rad/s],Gz[rad/s],Ax[m/s2],Ay[m/s2],Az[m/s2],ATotal[m/s2],Ts[deg.C],Ts[deg.F],SamplingCount
-% end
-
-% data=[data(:,1) data(:,6:8) data(:,3:5)];
-% input data format:  time[sec],Gx[rad/s],Gy[rad/s],Gz[rad/s],Ax[m/s2],Ay[m/s2],Az[m/s2]
-fs = 125;       % IMU frequency 
+fs = 50;       % IMU frequency 
 maxNumM = 1000;  % sampling density
 t0 = 1/fs;
 scfB = sqrt(2*log(2)/pi);
