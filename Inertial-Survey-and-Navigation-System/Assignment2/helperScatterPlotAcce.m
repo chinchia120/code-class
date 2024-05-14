@@ -2,7 +2,7 @@ function [] = helperScatterPlotAcce(IMUData, type, OutputDir)
     scatter(IMUData(:, 1), IMUData(:, 2: end), 'filled');
     title(['Accelerometer and Time ', type]);
     xlabel("time (s)");
-    ylabel("Acce value (m/s^2)");
+    ylabel("acce value (m/s^2)");
     grid on;
 
     if size(IMUData, 2) == 2

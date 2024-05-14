@@ -14,25 +14,25 @@ if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 
 %% ========== Read File ========== %%
 % Select GNSS file
-PathGNSS = 'C:\Users\P66134111\Documents\DATA\Class\Inertial-Survey-and-Navigation-System\Assignment2-data\COM3_2024-05-09_15.12.53-up\';
+PathGNSS = 'C:\Users\P66134111\Documents\DATA\Class\Inertial-Survey-and-Navigation-System\Assignment2\COM3_2024-05-09_15.12.53-up\';
 FileGNSS = 'gnss_data_pointer.txt';
 % [FileGNSS, PathGNSS, ~] = uigetfile('*.txt', 'Please select GNSS file (.txt)');
 GNSS = readmatrix([PathGNSS, FileGNSS]);
 
 % Select IMU upward file
-PathZUp = 'C:\Users\P66134111\Documents\DATA\Class\Inertial-Survey-and-Navigation-System\Assignment2-data\COM3_2024-05-09_15.12.53-up\';
+PathZUp = 'C:\Users\P66134111\Documents\DATA\Class\Inertial-Survey-and-Navigation-System\Assignment2\COM3_2024-05-09_15.12.53-up\';
 FileZUp = 'imu_pointer.txt';
 % [FileZUp, PathZUp, ~] = uigetfile('*.txt', 'Please select IMU upward file (.txt)');
 ZUp = readmatrix([PathZUp, FileZUp]);
 
 % Select IMU downward file
-PathZDown = 'C:\Users\P66134111\Documents\DATA\Class\Inertial-Survey-and-Navigation-System\Assignment2-data\COM3_2024-05-09_15.00.31-down\';
+PathZDown = 'C:\Users\P66134111\Documents\DATA\Class\Inertial-Survey-and-Navigation-System\Assignment2\COM3_2024-05-09_15.00.31-down\';
 FileZDown = 'imu_pointer.txt';
 % [FileZDown, PathZDown, ~] = uigetfile('*.txt', 'Please select IMU downward file (.txt)');
 ZDown = readmatrix([PathZDown, FileZDown]);
 
 % Select Allan Variance file
-PathAllan = 'C:\Users\P66134111\Documents\DATA\Class\Inertial-Survey-and-Navigation-System\Assignment2-data\Sample-Allan\';
+PathAllan = 'C:\Users\P66134111\Documents\DATA\Class\Inertial-Survey-and-Navigation-System\Assignment2\Sample-Allan\';
 FileAllan = 'imu_pointer_Allan.txt';
 % [FileAllan, PathAllan, ~] = uigetfile('*.txt', 'Please select Allan file (.txt)');
 Allan = readmatrix([PathAllan, FileAllan]);
