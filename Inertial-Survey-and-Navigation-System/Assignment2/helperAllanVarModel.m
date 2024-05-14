@@ -23,12 +23,13 @@ function [N, B] = helperAllanVarModel(IMUData, type, OutputDir)
     
     % Show Figure
     loglog(tau, adev);
-    title(['Allan Deviations ', type]);
+    title(['Allan Deviations of ', type]);
     xlabel('\tau');
     ylabel('\sigma(\tau)');
     grid on;
 
     % Save figure
+    % saveas(gcf, [OutputDir, 'Allan-Deviations.fig']);
     saveas(gcf, [OutputDir, 'Allan-Deviations.png']);
 
     %% Random Walk
@@ -45,20 +46,8 @@ function [N, B] = helperAllanVarModel(IMUData, type, OutputDir)
     % Determine the angle random walk coefficient from the line
     logN = slope*log(1) + b;
     N = 10^logN;
-
-    % Plot the results
     tauN = 1;
     lineN = N ./ sqrt(tau);
-    loglog(tau, adev, tau, lineN, '--', tauN, N, 'o');
-    title(['Allan Deviation with Random Walk ', type]);
-    xlabel('\tau');
-    ylabel('\sigma(\tau)');
-    legend('\sigma', '\sigma_N');
-    text(tauN, N, 'N');
-    grid on;
-
-    % Save figure
-    saveas(gcf, [OutputDir, 'Random-Walk.png']);
 
     %% Bias Instability
     % Find the index where the slope of the log-scaled Allan deviation is equal to the slope specified
@@ -75,18 +64,28 @@ function [N, B] = helperAllanVarModel(IMUData, type, OutputDir)
     scfB = sqrt(2*log(2)/pi);
     logB = b - log10(scfB);
     B = 10^logB;
-
-    % Plot the results
     tauB = tau(i);
     lineB = B * scfB * ones(size(tau));
-    loglog(tau, adev, tau, lineB, '--', tauB, scfB*B, 'o');
-    title(['Allan Deviation with Bias Instability ', type]);
+
+    %% Plot the Result
+    % Show figure
+    tauParams = [tauN, tauB];
+    params = [N, scfB*B];
+    loglog(tau, adev, tau, [lineN, lineB], '--', tauParams, params, 'o');
+    title(['Allan Deviation with Noise Parameters of ', type]);
     xlabel('\tau');
     ylabel('\sigma(\tau)');
-    legend('\sigma', '\sigma_B');
-    text(tauB, scfB*B, '0.664B');
+
+    if type == "Gyroscope"
+        legend('$\sigma (rad/s)$', '$\sigma_N ((rad/s)/\sqrt{Hz})$', '$\sigma_B (rad/s)$', 'Interpreter', 'latex');
+    else
+        legend('$\sigma (m/s^2)$', '$\sigma_N ((m/s)/\sqrt{Hz})$', '$\sigma_B (m/s^2)$', 'Interpreter', 'latex');
+    end
+    
+    text(tauParams, params, {'N', '0.664B'})
     grid on;
 
     % Save figure
-    saveas(gcf, [OutputDir, 'Bias-Instability.png']);
+    % saveas(gcf, [OutputDir, 'Noise-Parameters.fig']);
+    saveas(gcf, [OutputDir, 'Noise-Parameters.png']);
 end
