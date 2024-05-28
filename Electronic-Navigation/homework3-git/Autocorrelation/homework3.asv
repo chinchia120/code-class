@@ -18,20 +18,22 @@ PRN2 = mod(str2num(extractBefore(reverse(student_id), 9)), 32)+1;
 % openExample('satcom/GPSL1CWaveformGenerationExample');
 
 %% ========== GPS Waveform Generation of L1 C/A ========== %%
-% % L1 C/A PRN1
+% L1 C/A PRN1
 [IBranchContent_L1CA_PRN1, QBranchContent_L1CA_PRN1, gpsBBWaveform_L1CA_PRN1] = HelperGPSL1CAGeneration(PRN1);
-HelperGPSL1CAVisulize(IBranchContent_L1CA_PRN1, QBranchContent_L1CA_PRN1, gpsBBWaveform_L1CA_PRN1, 'L1CA-PRN1', [OutputFolder, '\']);
+HelperGPSL1CAVisulize(IBranchContent_L1CA_PRN1, QBranchContent_L1CA_PRN1, gpsBBWaveform_L1CA_PRN1, 'PRN1', [OutputFolder, '\']);
 
 % L1 C/A PRN2
 [IBranchContent_L1CA_PRN2, QBranchContent_L1CA_PRN2, gpsBBWaveform_L1CA_PRN2] = HelperGPSL1CAGeneration(PRN2);
-HelperGPSL1CAVisulize(IBranchContent_L1CA_PRN2, QBranchContent_L1CA_PRN2, gpsBBWaveform_L1CA_PRN2, 'L1CA-PRN2', [OutputFolder, '\']);
+HelperGPSL1CAVisulize(IBranchContent_L1CA_PRN2, QBranchContent_L1CA_PRN2, gpsBBWaveform_L1CA_PRN2, 'PRN2', [OutputFolder, '\']);
 
 %% ========== GPS Waveform Generation of L1C ========== %%
 % L1C PRN1
 [fs_L1C_PRN1, gpsL1CWaveform_L1C_PRN1] = HelperGPSL1CGeneration(PRN1);
-HelperGPSL1CVisulize(fs_L1C_PRN1, gpsL1CWaveform_L1C_PRN1, 'L1C-PRN1', [OutputFolder, '\']);
-
-% L1C PRN2
-[fs_L1C_PRN2, gpsL1CWaveform_L1C_PRN2] = HelperGPSL1CGeneration(PRN2);
-HelperGPSL1CVisulize(fs_L1C_PRN2, gpsL1CWaveform_L1C_PRN2, 'L1C-PRN2', [OutputFolder, '\']);
-
+HelperGPSL1CVisulize(fs_L1C_PRN1, gpsL1CWaveform_L1C_PRN1, 'PRN1', [OutputFolder, '\']);
+saveas(gcf, [OutputFolder, '\PSD-PRN1', '.png']);
+% % Visualize the spectrum of the generated waveform
+% gpsScope = spectrumAnalyzer(SampleRate = fs_L1C_PRN1, ...
+%     Title = ['Spectrum of GPS L1C Signal of ', 'PRN1'], ...
+%     SpectrumType = "power-density", ...
+%     SpectrumUnits = "dBW/Hz");
+% gpsScope(gpsL1CWaveform_L1C_PRN1/rms(gpsL1CWaveform_L1C_PRN1));
