@@ -3,6 +3,11 @@ clc;
 clear;
 close all;
 
+%% ========== Initial Value ========== %%
+student_id = 'P66134111';
+PRN1 = mod(str2num(extractAfter(student_id, 1)), 32)+1;
+PRN2 = mod(str2num(extractBefore(reverse(student_id), 9)), 32)+1;
+
 %% ========== Open Example ========== %%
 % openExample('satcom/GPSWaveformGenerationExample');
 % openExample('satcom/GPSL1CWaveformGenerationExample');
@@ -18,13 +23,13 @@ ShowVisualizations = true;
 WriteWaveformToFile = false;
 
 % Specify the satellite PRN index as an integer in the range [1,63]
-PRNID = 1;
+PRNID = PRN1;
 
 % Set this value to 1 to generate the waveform from the first bit of the navigation data
 NavDataBitStartIndex = 1321;
 
 % Set this value to control the number of navigation data bits in the generated waveform
-NumNavDataBits = 1000;
+NumNavDataBits = 100;
 
 % ===== GPS Data Initialization ===== %
 % Initialize the data configuration object to generate the CNAV data
