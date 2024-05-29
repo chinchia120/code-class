@@ -26,8 +26,17 @@ HelperGPSL1CAVisulize(IBranchContent_L1CA_PRN1, QBranchContent_L1CA_PRN1, gpsBBW
 [IBranchContent_L1CA_PRN2, QBranchContent_L1CA_PRN2, gpsBBWaveform_L1CA_PRN2] = HelperGPSL1CAGeneration(PRN2);
 HelperGPSL1CAVisulize(IBranchContent_L1CA_PRN2, QBranchContent_L1CA_PRN2, gpsBBWaveform_L1CA_PRN2, 'L1CA-PRN2', [OutputFolder, '\']);
 
-% L1 C/A Cross-Correlation
-HelperCrossCorrelation(gpsBBWaveform_L1CA_PRN1, gpsBBWaveform_L1CA_PRN2, 'L1CA',[OutputFolder, '\'])
+%% == TMP == %%
+% Cross-Correlation
+downsampleFactor = 10;
+QBranchData1 = imag(gpsBBWaveform_L1CA_PRN1(1:downsampleFactor:end));
+QBranchData2 = imag(gpsBBWaveform_L1CA_PRN2(1:downsampleFactor:end));
+[c,lags] = xcorr(real(QBranchData1(1:1023)), real(QBranchData2(1:1023)));
+plot(lags,c);
+grid on;
+xlabel("Number of Samples Delayed");
+ylabel("Autocorrelation");
+title("Autocorrelation of GPS Spreading Code");
 
 %% ========== GPS Waveform Generation of L1C ========== %%
 % L1C PRN1
