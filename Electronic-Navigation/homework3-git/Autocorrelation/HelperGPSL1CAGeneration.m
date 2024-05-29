@@ -1,5 +1,5 @@
 function [IBranchContent, QBranchContent, gpsBBWaveform] = HelperGPSL1CAGeneration(PRN)
-    % ===== GPS Signal Structure ===== %
+    %% ===== GPS Signal Structure ===== %%
     % To select the content for transmitting over the in-phase and quadrature-phase branches
     IBranchContent = "P(Y) + D";
     QBranchContent = "C/A + D";
@@ -16,14 +16,14 @@ function [IBranchContent, QBranchContent, gpsBBWaveform] = HelperGPSL1CAGenerati
     % Set this value to control the number of navigation data bits in the generated waveform
     NumNavDataBits = 1;
 
-    % ===== GPS Data Initialization ===== %
+    %% ===== GPS Data Initialization ===== %%
     % Initialize the data configuration object to generate the CNAV data
     cnavConfig = HelperGPSNavigationConfig(SignalType = "CNAV", PRNID = PRNID);
     
     % Initialize the data configuration object to generate the LNAV data
     lnavConfig = HelperGPSNavigationConfig(SignalType = "LNAV", PRNID = PRNID);
 
-    % ===== GPS Signal Generation ===== %
+    %% ===== GPS Signal Generation ===== %%
     % Based on the configuration, generate the CNAV data
     cnavData = HelperGPSNAVDataEncode(cnavConfig);
     

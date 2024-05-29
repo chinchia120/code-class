@@ -9,8 +9,8 @@ function [] = HelperGPSL1CVisulize(fs, gpsL1CWaveform, type, OutputDir)
     plot(lags,xcorr(real(QBranchData(1:1023)),1023));
     grid on;
     xlabel("Number of Samples Delayed");
-    ylabel("Autocorrelation");
-    title(['Autocorrelation of GPS Spreading Code of ' , type]);
+    ylabel("Auto-Correlation");
+    title(['Auto-Correlation of GPS Spreading Code of ' , type]);
 
     % Save figure
     saveas(gcf, [OutputDir, 'Auto-Correlation-', type, '.png']);
