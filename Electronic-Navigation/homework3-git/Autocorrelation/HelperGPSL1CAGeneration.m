@@ -1,11 +1,8 @@
-function [IBranchContent, QBranchContent, gpsBBWaveform] = HelperGPSL1CAGeneration(PRN)
+function [gpsBBWaveform] = HelperGPSL1CAGeneration(PRN)
     %% ===== GPS Signal Structure ===== %%
     % To select the content for transmitting over the in-phase and quadrature-phase branches
     IBranchContent = "P(Y) + D";
     QBranchContent = "C/A + D";
-    
-    % Disables writing the waveform to a file
-    WriteWaveformToFile = false;
     
     % Specify the satellite PRN index as an integer in the range [1,63]
     PRNID = PRN;
@@ -45,24 +42,11 @@ function [IBranchContent, QBranchContent, gpsBBWaveform] = HelperGPSL1CAGenerati
     % Pre-initialize the baseband waveform for speed
     gpsBBWaveform = zeros(numBBSamplesPerDataBit*NumNavDataBits,1);
     
-    % Create a file into which the waveform is written
-    if WriteWaveformToFile == 1
-        bbWriter = comm.BasebandFileWriter("Waveform.bb",10.23e6,0);
-    end
-    
     % Independently process each navigation data bit in a loop
     for iDataBit = 1:NumNavDataBits
         dataBitIdx = iDataBit+NavDataBitStartIndex-1;
         bbSamplesIndices = ((iDataBit-1)*numBBSamplesPerDataBit+1):(iDataBit*numBBSamplesPerDataBit);
         gpsBBWaveform(bbSamplesIndices) = HelperGPSBasebandWaveform(IQContent,pgen,PRNID,CLCodeIdx,lnavData(dataBitIdx),encodedCNAVData(dataBitIdx));
         CLCodeIdx = mod(CLCodeIdx+1,CLCodeResetIdx);
-        if WriteWaveformToFile == 1
-            bbWriter(gpsBBWaveform(bbSamplesIndices));
-        end
     end
-    
-    % Close the file if it is opened
-    if WriteWaveformToFile == 1
-        release(bbWriter);
-    end 
 end
