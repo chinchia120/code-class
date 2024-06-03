@@ -1,12 +1,8 @@
-function [fs, gpsL1CWaveform] = HelperGPSL1CGeneration(PRN)
+function [gpsL1CWaveform] = HelperGPSL1CGeneration(PRN)
     % ===== GPS CNAV-2 Data Initialization and Waveform Generation ===== %
     % Generate data for one satellite
     PRNID = PRN;
     numBits = 10;       % Generate waveform for 10 data bits
-    chipRate = 1.023e6; % Chip rate of the ranging code. This is a constant value
-
-    % Set the WriteWaveformToFile property to write the baseband waveform to a file if needed
-    writeWaveformToFile = false;
 
     % Initialize the CNAV-2 data by using the HelperGPSNavigationConfig helper object
     cfgCNAV2 = HelperGPSNavigationConfig(SignalType = "CNAV2", PRNID = PRNID);
@@ -16,9 +12,6 @@ function [fs, gpsL1CWaveform] = HelperGPSL1CGeneration(PRN)
 
     % Generate the ranging codes and overlay codes by using the gpsL1CCodes function
     [l1cd,l1cp,l1co] = gpsL1CCodes(PRNID); % Generate the codes for the specified PRNID
-
-    % Generate a TMBOC-modulated pilot code. This example makes these assumptions
-    numChipsPerCode = round(10e-3*chipRate);
 
     % Initialize overlay code. Initialize indices to circularly start from 1 after reading 1800 bits.
     overlayCodeIndices = mod((1:numBits)-1,size(l1co,1))+1;
@@ -57,10 +50,4 @@ function [fs, gpsL1CWaveform] = HelperGPSL1CGeneration(PRN)
     llcdSigScaled = l1cdSig/sqrt(scaleFactor);
     gpsL1CWaveform = tmbocSig(:) + llcdSigScaled;
 
-    % Write waveform to file
-    fs = sps*chipRate;
-    if writeWaveformToFile == 1
-        bbWriter = comm.BasebandFileWriter("Waveform.bb",fs,0);
-        bbWriter(gpsL1CWaveform);
-    end
 end
