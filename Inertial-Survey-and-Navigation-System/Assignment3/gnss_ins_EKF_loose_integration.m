@@ -31,7 +31,11 @@ else
 end
 
 %   Output file
-pname = 'C:\Users\P66134111\Documents\code-class\Inertial-Survey-and-Navigation-System\Assignment3\INS_source_code_final\';
+
+OutputFolder = sprintf('OutputFigure');
+if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
+
+pname = [pwd, '\', OutputFolder, '\'];
 fname = 'INS_GNSS_Solution.txt';
 % [fname, pname] = uiputfile('*.txt', 'Save navigation solution');
 if fname == 0
