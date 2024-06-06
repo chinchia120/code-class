@@ -14,9 +14,6 @@
 %===========================================================%
 close all;
 
-OutputFolder = sprintf('OutputFigure');
-if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
-
 %   Plot Trajectory lat lon
 figure
 subplot(3,3,[1 6])
