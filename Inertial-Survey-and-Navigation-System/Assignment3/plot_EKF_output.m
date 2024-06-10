@@ -44,7 +44,9 @@ for k=1:size(eul_ins,1)
     end
 end
 
+saveas(gcf, [OutputFolder, '\Trajectory.fig']);
 saveas(gcf, [OutputFolder, '\Trajectory.png']);
+
 
 figure
 subplot(311)
@@ -72,4 +74,5 @@ ylabel('\phi (deg)');
 grid on;
 sgtitle('Attitude')
 
+saveas(gcf, [OutputFolder, '\Attitude.fig']);
 saveas(gcf, [OutputFolder, '\Attitude.png']);
