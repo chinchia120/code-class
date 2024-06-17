@@ -37,7 +37,7 @@ for iBuffer = 1:nFrames
                 msg = "Correlation Plot for PRN ID: " + PRNIDsToSearch(i);
                 title(msg)
                 
-                saveas(gcf, [OutputFolder, '\', 'Cross-Correlation-', num2str(PRNIDsToSearch(1)), '.png']);
+                saveas(gcf, [OutputFolder, '\', 'Cross-Correlation-', num2str(PRNIDsToSearch(i)), '.png']);
             end   
         end
 
