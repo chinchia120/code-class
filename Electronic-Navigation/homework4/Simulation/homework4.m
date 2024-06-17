@@ -19,21 +19,24 @@ PRN2 = mod(str2num(extractBefore(reverse(student_id), 9)), 32) + 1;
 % openExample('shared_nav_satcom/EndtoEndGPSLNAVReceiverExample');
 
 %% ========== GPS Waveform Generate ========== %%
-% PRN1
-[waveform_PRN1] = HelperGenerateGPSWaveform(PRN1);
-
-% PRN2
-[waveform_PRN2] = HelperGenerateGPSWaveform(PRN2);
+% % PRN1
+% [waveform_PRN1] = HelperGenerateGPSWaveform(PRN1);
+% 
+% % PRN2
+% [waveform_PRN2] = HelperGenerateGPSWaveform(PRN2);
 
 %% ========== Auto-Correlation ========== %%
-% I Sample - PRN1
-HelperGPSAutoCorrelation(waveform_PRN1, 1, 'PRN1', [OutputFolder, '\']);
+% % PRN1
+% HelperGPSAutoCorrelation(waveform_PRN1, 'PRN1', [OutputFolder, '\']);
+% 
+% % PRN2
+% HelperGPSAutoCorrelation(waveform_PRN2, 'PRN2', [OutputFolder, '\']);
 
-% Q Sample - PRN1
-HelperGPSAutoCorrelation(waveform_PRN1, 2, 'PRN1', [OutputFolder, '\']);
+%% ========== Configure ========== %%
+ConfigureSimulationParameters;
 
-% I Sample - PRN2
-HelperGPSAutoCorrelation(waveform_PRN1, 1, 'PRN2', [OutputFolder, '\']);
+%% ========== Generate ========== %%
+GenerateGPSIFWaveform;
 
-% Q Sample - PRN2
-HelperGPSAutoCorrelation(waveform_PRN1, 2, 'PRN2', [OutputFolder, '\']);
+%% ========== Tracking ========== %%
+InitialSynchronizationandTracking;
