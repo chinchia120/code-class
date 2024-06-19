@@ -44,8 +44,8 @@ for k=1:size(eul_ins,1)
     end
 end
 
-saveas(gcf, [OutputFolder, '\Trajectory.fig']);
-saveas(gcf, [OutputFolder, '\Trajectory.png']);
+saveas(gcf, [OutputFolder, '\Trajectory_001.fig']);
+saveas(gcf, [OutputFolder, '\Trajectory_001.png']);
 
 
 figure
@@ -74,5 +74,5 @@ ylabel('\phi (deg)');
 grid on;
 sgtitle('Attitude')
 
-saveas(gcf, [OutputFolder, '\Attitude.fig']);
-saveas(gcf, [OutputFolder, '\Attitude.png']);
+saveas(gcf, [OutputFolder, '\Attitude_001.fig']);
+saveas(gcf, [OutputFolder, '\Attitude_001.png']);

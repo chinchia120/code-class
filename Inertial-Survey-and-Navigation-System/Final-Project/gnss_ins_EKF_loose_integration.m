@@ -36,7 +36,7 @@ OutputFolder = sprintf('OutputFigure');
 if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 
 pname = [pwd, '\', OutputFolder, '\'];
-fname = 'INS_GNSS_Solution.txt';
+fname = 'INS_GNSS_Solution_001.txt';
 % [fname, pname] = uiputfile('*.txt', 'Save navigation solution');
 if fname == 0
     return;
