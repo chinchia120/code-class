@@ -53,6 +53,34 @@ rwy30End = [-2694892.460;
 
 % ===== Q3-(a)
 rwy30Start_llh_rad = xyz2llh(rwy30Start);
-rwy30Start_llh_deg = [rad2deg(rwy30Start_llh_rad(1: 2)) rwy30Start_llh_rad(3)]
+rwy30Start_ll_deg = [rad2deg(rwy30Start_llh_rad(1: 2))];
+rwy30Start_h_m = rwy30Start_llh_rad(3);
 
+% ===== Q3-(b)
+rwy30Start_ll_dms = [degrees2dms(rwy30Start_ll_deg)];
 
+% ===== Q3-(c)
+N = -33;
+h = rwy30Start_h_m;
+H = h - N; % meter
+
+FAA_ft = 3; % feet
+FAA_m = convlength(FAA_ft, 'ft', 'm');
+
+diff_H_FAA = H - FAA_m;
+
+% ===== Q3-(d)
+enu = xyz2enu(rwy30End, rwy30Start);
+
+% ===== Q3-(e)
+l_m = sqrt(enu(1)^2 + enu(2)^2 + enu(3)^2);
+l_ft = convlength(l_m, 'm', 'ft');
+
+% ===== Q3-(f)
+heading = atan2d(enu(1), enu(2)) + 360;
+heading_true = 315;
+diff_heading = heading_true - heading;
+
+% ===== Q3-(g)
+gradiant_rad = atan(enu(3) / sqrt(enu(1)^2+enu(2)^2));
+gradiant_deg = rad2deg(gradiant_rad);
