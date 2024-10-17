@@ -1,11 +1,12 @@
 %% ========== Setup ========== %%
-% Setup
+% ===== Setup
 clc;
 clear;
 close all;
 
-% Create file
+% ===== Create file
 file = fopen('exercise01_output.txt', 'w');
+fprintf(file, '%%%% ========== Exercise 1 ========== %%%%\n');
 
 %% ========== Initial Value ========== %%
 syms x y dx dy;
@@ -45,7 +46,7 @@ while 1
     x_ = x_ + d(1);
     y_ = y_ + d(2);
 
-    fprintf(file, '%%%% ========== iteration%2d ========== %%%%\n', it);
+    fprintf(file, '%% ===== iteration%2d ===== %%\n', it);
     fprintf(file, 'x = %.10f\n', x_);
     fprintf(file, 'y = %.10f\n\n', y_);
     it = it + 1;
