@@ -1,73 +1,814 @@
 %% ========== Homework2 - (a) ========== %%
 % ===== iteration 01 ===== %
-x = -5.7083811719
-y = -2.6382578709
+x = -6.2531338598
+y = -5.7615066145
 
 % ===== iteration 02 ===== %
-x = -4.9053953872
-y = -7.0123595207
+x = -4.3286568213
+y = -6.8401303947
 
 % ===== iteration 03 ===== %
-x = -4.0324081094
-y = -7.3331148252
+x = -4.2649147569
+y = -6.7636599521
 
 % ===== iteration 04 ===== %
-x = -4.3909248797
-y = -6.5229967830
+x = -4.2648116127
+y = -6.7637080253
 
 % ===== iteration 05 ===== %
-x = -4.2264961213
-y = -6.8700746887
+x = -4.2648116125
+y = -6.7637080252
+
+%% ========== Homework2 - (b) ========== %%
+% ===== iteration 01 ===== %
+x = -2752.4251182457
+y = 2014.0219392289
+
+% ===== iteration 02 ===== %
+x = -20162357.1386169977
+y = 15450950.2358337250
+
+% ===== iteration 03 ===== %
+x = -1163899665098301.7500000000
+y = 891932498259394.7500000000
+
+% ===== iteration 04 ===== %
+x = -3878539956374397464286561566720.0000000000
+y = 2972245749891229628930084306944.0000000000
+
+% ===== iteration 05 ===== %
+x = -43069886089642291761866732133873145242851221109652360137801728.0000000000
+y = 33005792725648387696612182754484095090617220709870944384974848.0000000000
 
 % ===== iteration 06 ===== %
-x = -4.2800718153
-y = -6.7284463409
+x = -5311101848010875249688380027733067690578654318920114486528889000330558743316806529614054136790972535130066570273551063973888.0000000000
+y = 4070062464883360327990391025074820446056121236348116130386784770152231224452125935443700610764705611556647304031626395123712.0000000000
 
 % ===== iteration 07 ===== %
-x = -4.2593858809
-y = -6.7772152125
+x = -80761884244979479510939149557011966567507348185413220109535754631540591246846704687020028038150044461440797533543472886201360169724048754687046329905901069433061595227361825072554930074996757783876171824106379586738661809771264157167192650660446208.0000000000
+y = 61890342732149519600242978397242010998484881535021398094681191076173069863168536090332041605263364832493894611942250416623257920286881243370546137398883281326524902366576040515776109876058444703545076099345366145809381965439970346920459532245139456.0000000000
 
 % ===== iteration 08 ===== %
-x = -4.2668158727
-y = -6.7588441684
+x = -Inf
+y = Inf
 
 % ===== iteration 09 ===== %
-x = -4.2640819316
-y = -6.7654959669
+x = -Inf
+y = Inf
 
 % ===== iteration 10 ===== %
-x = -4.2650786619
-y = -6.7630559535
+x = -Inf
+y = Inf
 
 % ===== iteration 11 ===== %
-x = -4.2647140658
-y = -6.7639465169
+x = -Inf
+y = Inf
 
 % ===== iteration 12 ===== %
-x = -4.2648472691
-y = -6.7636208893
+x = -Inf
+y = Inf
 
 % ===== iteration 13 ===== %
-x = -4.2647985822
-y = -6.7637398735
+x = -Inf
+y = Inf
 
 % ===== iteration 14 ===== %
-x = -4.2648163748
-y = -6.7636963862
+x = -Inf
+y = Inf
 
 % ===== iteration 15 ===== %
-x = -4.2648098721
-y = -6.7637122788
+x = -Inf
+y = Inf
 
 % ===== iteration 16 ===== %
-x = -4.2648122486
-y = -6.7637064706
+x = -Inf
+y = Inf
 
 % ===== iteration 17 ===== %
-x = -4.2648113801
-y = -6.7637085933
+x = -Inf
+y = Inf
 
 % ===== iteration 18 ===== %
-x = -4.2648116975
-y = -6.7637078175
+x = -Inf
+y = Inf
+
+% ===== iteration 19 ===== %
+x = -Inf
+y = Inf
+
+% ===== iteration 20 ===== %
+x = -Inf
+y = Inf
+
+% ===== iteration 21 ===== %
+x = -Inf
+y = Inf
+
+% ===== iteration 22 ===== %
+x = -Inf
+y = Inf
+
+% ===== iteration 23 ===== %
+x = -Inf
+y = Inf
+
+% ===== iteration 24 ===== %
+x = -Inf
+y = Inf
+
+% ===== iteration 25 ===== %
+x = -Inf
+y = Inf
+
+% ===== iteration 26 ===== %
+x = -Inf
+y = Inf
+
+% ===== iteration 27 ===== %
+x = -Inf
+y = NaN
+
+% ===== iteration 28 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 29 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 30 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 31 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 32 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 33 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 34 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 35 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 36 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 37 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 38 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 39 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 40 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 41 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 42 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 43 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 44 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 45 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 46 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 47 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 48 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 49 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 50 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 51 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 52 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 53 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 54 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 55 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 56 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 57 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 58 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 59 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 60 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 61 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 62 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 63 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 64 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 65 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 66 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 67 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 68 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 69 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 70 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 71 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 72 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 73 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 74 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 75 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 76 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 77 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 78 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 79 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 80 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 81 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 82 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 83 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 84 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 85 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 86 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 87 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 88 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 89 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 90 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 91 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 92 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 93 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 94 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 95 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 96 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 97 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 98 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 99 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 100 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 101 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 102 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 103 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 104 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 105 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 106 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 107 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 108 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 109 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 110 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 111 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 112 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 113 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 114 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 115 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 116 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 117 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 118 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 119 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 120 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 121 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 122 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 123 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 124 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 125 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 126 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 127 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 128 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 129 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 130 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 131 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 132 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 133 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 134 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 135 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 136 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 137 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 138 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 139 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 140 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 141 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 142 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 143 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 144 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 145 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 146 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 147 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 148 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 149 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 150 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 151 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 152 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 153 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 154 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 155 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 156 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 157 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 158 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 159 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 160 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 161 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 162 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 163 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 164 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 165 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 166 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 167 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 168 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 169 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 170 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 171 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 172 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 173 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 174 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 175 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 176 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 177 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 178 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 179 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 180 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 181 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 182 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 183 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 184 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 185 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 186 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 187 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 188 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 189 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 190 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 191 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 192 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 193 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 194 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 195 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 196 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 197 ===== %
+x = NaN
+y = NaN
+
+% ===== iteration 198 ===== %
+x = NaN
+y = NaN
 

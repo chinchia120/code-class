@@ -58,7 +58,7 @@ fprintf(file, '%%%% ========== Homework2 - (b) ========== %%%%\n');
 F1_b = atan((y-loc_A(2)) / (x-loc_A(1)));
 F2_b = atan((y-loc_B(2)) / (x-loc_B(1)));
 
-A = Setup_A([F1_b; F2_b], [x; y]);
+A = Setup_A([F1_b; F2_b], [x, y]);
 
 L = [rho_A; rho_B];
 
