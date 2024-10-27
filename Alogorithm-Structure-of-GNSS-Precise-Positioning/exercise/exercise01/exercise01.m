@@ -1,8 +1,6 @@
 %% ========== Setup ========== %%
 % ===== Setup
-clc;
-clear;
-close all;
+clc; clear; close all;
 
 % ===== Create file
 file = fopen('exercise01_output.txt', 'w');
