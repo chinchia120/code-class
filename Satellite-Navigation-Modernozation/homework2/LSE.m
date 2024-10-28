@@ -1,4 +1,4 @@
-function [] = LSE(A, W, var, init, file)
+function [x_ y_] = LSE(A, W, var, init, file)
 x = var(1);
 y = var(2);
 
@@ -19,7 +19,10 @@ while 1
     it = it + 1;
 
     if abs(d(1)) < 10^-6 && abs(d(2)) < 10^-6; break; end
+    if it > 50; break; end
 end
 
+x_ = double(x_);
+y_ = double(y_);
 end
 
