@@ -37,6 +37,7 @@ title('Geometry');
 xlabel("x (m)");
 ylabel("y (m)");
 legend('Beacon A', 'Beacon B', 'Range A', 'Range B', 'Solution');
+grid minor;
 axis('equal');
 
 % ===== Save Figure

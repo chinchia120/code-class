@@ -29,7 +29,7 @@ fprintf(file, '%%%% ========== Homework2 - (a) ========== %%%%\n');
 F1_a = sqrt((x-loc_A(1))^2 + (y-loc_A(2))^2);
 F2_a = sqrt((x-loc_B(1))^2 + (y-loc_B(2))^2);
 
-A = Setup_A([F1_a; F2_a], [x; y]);
+A = jacobian([F1_a; F2_a],[x; y]);
 L = [rho_A; rho_B];
 X = [F1_a; F2_a];
 W = L - X;
@@ -63,24 +63,91 @@ Error_Ellipse_Plot(majoraxis, minoraxis, [x_hat y_hat], error_ellipse_theta(2), 
 %% ========== (b) ========== %%
 fprintf(file, '%%%% ========== Homework2 - (b) ========== %%%%\n');
 
-F1_b = atan((y-loc_A(2)) / (x-loc_A(1)));
-F2_b = atan((y-loc_B(2)) / (x-loc_B(1)));
+F1_b = atan2((y-loc_A(2)), (x-loc_A(1)));
+F2_b = atan2((y-loc_B(2)), (x-loc_B(1)));
 
 A = jacobian([F1_b; F2_b],[x; y]);
 L = [deg2rad(theta_A); deg2rad(theta_B)];
 X = [F1_b; F2_b];
-Srr = diag([deg2rad(std_theta)^2 deg2rad(std_theta)^2]);
+Saa = diag([deg2rad(std_theta)^2 deg2rad(std_theta)^2]);
 
-% ===== Initial 1
-init1 = [-4; 10];
-LSE_aa(A, X, L, [x y], init1, file);
+% ===== Initial
+init = [0; 0];
+[x_hat, y_hat] = LSE_aa(A, X, L, [x y], init, file);
 
+[majoraxis, minoraxis, error_ellipse_theta] = Error_Ellipse_Params([x y], A, x_hat, y_hat, Saa);
+Error_Ellipse_Plot(majoraxis, minoraxis, [x_hat y_hat], error_ellipse_theta(1), [OutputFolder '/error_ellipse_b_1']);
+Error_Ellipse_Plot(majoraxis, minoraxis, [x_hat y_hat], error_ellipse_theta(2), [OutputFolder '/error_ellipse_b_2']);
 
+% ===== Geometry
+Geometry_aa(loc_A, loc_B, [x_hat, y_hat], [OutputFolder '/geometry_b']);
 
+%% ========== (c) ========== %%
+fprintf(file, '%%%% ========== Homework2 - (c) ========== %%%%\n');
 
+F1_c = sqrt((x-loc_A(1))^2 + (y-loc_A(2))^2);
+F2_c = atan2((y-loc_A(2)), (x-loc_A(1)));
 
+A = jacobian([F1_c; F2_c],[x; y]);
+L = [rho_A; deg2rad(theta_A)];
+X = [F1_c; F2_c];
+Sra = diag([std_rho^2 deg2rad(std_theta)^2]);
 
+% ===== Initial
+init = [0; 0];
+[x_hat, y_hat] = LSE_ra(A, X, L, [x y], init, file);
 
+[majoraxis, minoraxis, error_ellipse_theta] = Error_Ellipse_Params([x y], A, x_hat, y_hat, Sra);
+Error_Ellipse_Plot(majoraxis, minoraxis, [x_hat y_hat], error_ellipse_theta(1), [OutputFolder '/error_ellipse_c_1']);
+Error_Ellipse_Plot(majoraxis, minoraxis, [x_hat y_hat], error_ellipse_theta(2), [OutputFolder '/error_ellipse_c_2']);
+
+% ===== Geometry
+Geometry_ra(loc_A, [x_hat, y_hat], rho_A, [OutputFolder '/geometry_c']);
+
+%% ========== (d) ========== %%
+fprintf(file, '%%%% ========== Homework2 - (d) ========== %%%%\n');
+
+F1_d = sqrt((x-loc_B(1))^2 + (y-loc_B(2))^2);
+F2_d = atan2((y-loc_B(2)), (x-loc_B(1)));
+
+A = jacobian([F1_d; F2_d],[x; y]);
+L = [rho_B; deg2rad(theta_B)];
+X = [F1_d; F2_d];
+Sra = diag([std_rho^2 deg2rad(std_theta)^2]);
+
+% ===== Initial
+init = [0; 0];
+[x_hat, y_hat] = LSE_ra(A, X, L, [x y], init, file);
+
+[majoraxis, minoraxis, error_ellipse_theta] = Error_Ellipse_Params([x y], A, x_hat, y_hat, Sra);
+Error_Ellipse_Plot(majoraxis, minoraxis, [x_hat y_hat], error_ellipse_theta(1), [OutputFolder '/error_ellipse_d_1']);
+Error_Ellipse_Plot(majoraxis, minoraxis, [x_hat y_hat], error_ellipse_theta(2), [OutputFolder '/error_ellipse_d_2']);
+
+% ===== Geometry
+Geometry_ra(loc_B, [x_hat, y_hat], rho_B, [OutputFolder '/geometry_d']);
+
+%% ========== (e) ========== %%
+fprintf(file, '%%%% ========== Homework2 - (e) ========== %%%%\n');
+
+F1_e = sqrt((x-loc_A(1))^2 + (y-loc_A(2))^2);
+F2_e = sqrt((x-loc_B(1))^2 + (y-loc_B(2))^2);
+F3_e = atan2((y-loc_A(2)), (x-loc_A(1)));
+F4_e = atan2((y-loc_B(2)), (x-loc_B(1)));
+
+%% 
+A = jacobian([F1_e; F2_e; F3_e; F4_e],[x; y]);
+L = [rho_A; rho_B; deg2rad(theta_A); deg2rad(theta_B)];
+X = [F1_e; F2_e; F3_e; F4_e];
+Srraa = diag([std_rho^2 std_rho^2 deg2rad(std_theta)^2 deg2rad(std_theta)^2]);
+P = diag([std_rho^-2 std_rho^-2 deg2rad(std_theta)^-2 deg2rad(std_theta)^-2]);
+
+% ===== Initial
+init = [0; 0];
+[x_hat, y_hat] = LSE_rraa(A, X, L, P, [x y], init, file);
+
+[majoraxis, minoraxis, error_ellipse_theta] = Error_Ellipse_Params([x y], A, x_hat, y_hat, Srraa);
+Error_Ellipse_Plot(majoraxis, minoraxis, [x_hat y_hat], error_ellipse_theta(1), [OutputFolder '/error_ellipse_e_1']);
+Error_Ellipse_Plot(majoraxis, minoraxis, [x_hat y_hat], error_ellipse_theta(2), [OutputFolder '/error_ellipse_e_2']);
 
 %% ===== Close file
 fclose(file);

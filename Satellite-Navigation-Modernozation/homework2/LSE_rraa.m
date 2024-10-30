@@ -1,4 +1,4 @@
-function [x_, y_] = LSE_aa(A, X, L, var, init, file)
+function [x_, y_] = LSE_rraa(A, X, L, P, var, init, file)
 
 % ===== Innitial Value
 x = var(1);
@@ -11,14 +11,14 @@ while 1
         x_ = init(1);
         y_ = init(2);
     end
-
+    
     X_ = double(subs(X, [x y], [x_ y_]));
-    if X_(1) < 0; X_(1) = X_(1) + 2*pi; end
-    if X_(2) < 0; X_(2) = X_(2) + 2*pi; end
+    if X_(3) < 0; X_(3) = X_(3) + 2*pi; end
+    if X_(4) < 0; X_(4) = X_(4) + 2*pi; end
     
     W = L - X_;
     A_ = double(subs(A, [x y], [x_ y_]));
-    d = (A_'*A_)\A_'*W;
+    d = (A_'*P*A_)\A_'*P*W;
     x_ = x_ + d(1);
     y_ = y_ + d(2);
 
@@ -34,3 +34,4 @@ x_ = double(x_);
 y_ = double(y_);
 
 end
+
