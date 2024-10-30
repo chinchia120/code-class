@@ -27,7 +27,7 @@ while 1
     fprintf(file, 'y = %.10f\n\n', y_);
     it = it + 1;
 
-    if abs(d(1)) < 10^-6 && abs(d(2)) < 10^-6; break; end
+    if max(abs(d)) < 10^-6; break; end
     if it > 30; break; end
 end
 
