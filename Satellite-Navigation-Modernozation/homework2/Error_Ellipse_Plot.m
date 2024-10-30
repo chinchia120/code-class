@@ -34,6 +34,7 @@ xlabel("x (m)");
 ylabel("y (m)");
 legend('Solution', 'Error Ellipse', 'x-axis', 'y-axis');
 text(x-majoraxis, y+minoraxis*2, sprintf(' majoraxis = %.4f (m)\n minoraxis = %.4f (m)\n theta = %.2d (deg)', majoraxis, minoraxis, error_theta));
+grid minor;
 axis('equal');
 hold off;
 
