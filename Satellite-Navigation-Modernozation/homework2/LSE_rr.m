@@ -1,7 +1,10 @@
-function [x_ y_] = LSE(A, W, var, init, file)
+function [x_, y_] = LSE_rr(A, W, var, init, file)
+
+% ===== Innitial Value
 x = var(1);
 y = var(2);
 
+% ===== LSE Iteration
 it = 1;
 while 1
     if it == 1
@@ -9,7 +12,7 @@ while 1
         y_ = init(2);
     end
     
-    d = vpa(subs((A'*A)\A'*W, [x y], [x_ y_]));
+    d = double(subs((A'*A)\A'*W, [x y], [x_ y_]));
     x_ = x_ + d(1);
     y_ = y_ + d(2);
 
@@ -24,5 +27,6 @@ end
 
 x_ = double(x_);
 y_ = double(y_);
+
 end
 
