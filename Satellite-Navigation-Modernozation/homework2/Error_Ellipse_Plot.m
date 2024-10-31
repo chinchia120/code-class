@@ -33,7 +33,7 @@ title('Error Ellipse');
 xlabel("x (m)");
 ylabel("y (m)");
 legend('Solution', 'Error Ellipse', 'x-axis', 'y-axis');
-text(x-majoraxis, y+minoraxis, sprintf(' majoraxis = %.4f (m)\n minoraxis = %.4f (m)\n theta = %.4f (deg)', majoraxis, minoraxis, error_theta));
+text(x-majoraxis*1.2*cosd(error_theta), y+minoraxis*1.7*sind(error_theta), sprintf(' majoraxis = %.4f (m)\n minoraxis = %.4f (m)\n theta = %.4f (deg)', majoraxis, minoraxis, error_theta));
 grid minor;
 axis('equal');
 hold off;
