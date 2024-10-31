@@ -12,7 +12,7 @@ hold on;
 
 % ===== Error Ellipse
 xyRotated = [majoraxis*sin(theta); minoraxis*cos(theta)]'*RotationMatrix_2D(error_theta);
-plot(xyRotated(:, 1)+x, xyRotated(:, 2)+y, 'Blue');
+plot(xyRotated(:, 1)+x, xyRotated(:, 2)+y, 'Blue', LineWidth=2);
 
 % ===== x-axis
 x_axis = linspace(-majoraxis*1.2, majoraxis*1.2, 200);
@@ -33,7 +33,7 @@ title('Error Ellipse');
 xlabel("x (m)");
 ylabel("y (m)");
 legend('Solution', 'Error Ellipse', 'x-axis', 'y-axis');
-text(x-majoraxis, y+minoraxis*2, sprintf(' majoraxis = %.4f (m)\n minoraxis = %.4f (m)\n theta = %.2d (deg)', majoraxis, minoraxis, error_theta));
+text(x-majoraxis, y+minoraxis, sprintf(' majoraxis = %.4f (m)\n minoraxis = %.4f (m)\n theta = %.4f (deg)', majoraxis, minoraxis, error_theta));
 grid minor;
 axis('equal');
 hold off;

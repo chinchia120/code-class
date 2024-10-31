@@ -1,4 +1,4 @@
-function [x_, y_] = LSE_rraa(A, X, L, P, var, init, file)
+function [x_, y_, std] = LSE_rraa(A, X, L, P, var, init, file)
 
 % ===== Innitial Value
 x = var(1);
@@ -32,6 +32,11 @@ end
 
 x_ = double(x_);
 y_ = double(y_);
+
+% ===== Estimated Standard Deviation
+V = double(subs(A*d-W, [x, y], [x_ y_]));
+
+std = sqrt((V'*P*V) / 2);
 
 end
 
