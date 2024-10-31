@@ -1,4 +1,4 @@
-function [] = Geometry_rr(c1, c2, r1, r2, outName)
+function [] = Geometry_rraa(c1, c2, r1, r2, a1, a2, s, outName)
 
 % ===== Initial Value
 theta = linspace(0, 2*pi, 200);
@@ -13,6 +13,11 @@ plot(c2(1), c2(2), 'o', Color='red');
 text(c2(1)*1.1, c2(2)*1.1, sprintf('[%.1f, %.1f]', c2(1), c2(2)), 'fontweight', 'bold');
 hold on;
 
+% ===== Central Solution
+plot(s(1), s(2), '*', Color='green', LineWidth=2);
+text(s(1)*0.75, s(2)*0.9, sprintf('[%.4f, %.4f]', s(1), s(2)), 'fontweight', 'bold');
+hold on;
+
 % ===== Circle A
 x1 = r1*cos(theta) + c1(1);
 y1 = r1*sin(theta) + c1(2);
@@ -25,18 +30,16 @@ y2 = r2*sin(theta) + c2(2);
 plot(x2, y2, 'red', 'LineWidth', 2);
 hold on;
 
-% ===== Intersection
-[xout, yout] = circcirc(c1(1), c1(2), r1, c2(1), c2(2), r2);
-text(xout(1)*0.9, yout(1)*0.9, sprintf('[%.4f, %.4f]', xout(1), yout(1)), 'fontweight', 'bold');
-text(xout(2)*1.1, yout(2)*1.1, sprintf('[%.4f, %.4f]', xout(2), yout(2)), 'fontweight', 'bold');
-plot(xout, yout, '*', Color='black', LineWidth=2);
+% ===== Bearing
+plot([c1(1) c1(1)+30*cosd(a1)], [c1(2) c1(2)+30*sind(a1)], '-', 'Color', 'black', 'LineWidth', 1);
+plot([c2(1) c2(1)+30*cosd(a2)], [c2(2) c2(2)+30*sind(a2)], '-', 'Color', 'black', 'LineWidth', 1);
 hold off;
 
 % ===== Plot Config
 title('Geometry');
 xlabel("x (m)");
 ylabel("y (m)");
-legend('Beacon A', 'Beacon B', 'Range A', 'Range B', 'Solution');
+legend('Beacon A', 'Beacon B', 'Solution', 'Range A', 'Range B', 'Bearing');
 grid minor;
 axis('equal');
 
