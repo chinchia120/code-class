@@ -31,7 +31,7 @@ fprintf(file, '%%%% ========== Homework2 - (a) ========== %%%%\n');
 F1_a = sqrt((x-loc_A(1))^2 + (y-loc_A(2))^2);
 F2_a = sqrt((x-loc_B(1))^2 + (y-loc_B(2))^2);
 
-% ===== LSE param
+% ===== LSE Param
 A = jacobian([F1_a; F2_a],[x; y]);
 L = [rho_A; rho_B];
 X = [F1_a; F2_a];
@@ -67,7 +67,7 @@ fprintf(file, '%%%% ========== Homework2 - (b) ========== %%%%\n');
 F1_b = atan2((y-loc_A(2)), (x-loc_A(1)));
 F2_b = atan2((y-loc_B(2)), (x-loc_B(1)));
 
-% ===== LSE param
+% ===== LSE Param
 A = jacobian([F1_b; F2_b],[x; y]);
 L = [deg2rad(theta_A); deg2rad(theta_B)];
 X = [F1_b; F2_b];
@@ -92,7 +92,7 @@ fprintf(file, '%%%% ========== Homework2 - (c) ========== %%%%\n');
 F1_c = sqrt((x-loc_A(1))^2 + (y-loc_A(2))^2);
 F2_c = atan2((y-loc_A(2)), (x-loc_A(1)));
 
-% ===== LSE param
+% ===== LSE Param
 A = jacobian([F1_c; F2_c],[x; y]);
 L = [rho_A; deg2rad(theta_A)];
 X = [F1_c; F2_c];
@@ -117,7 +117,7 @@ fprintf(file, '%%%% ========== Homework2 - (d) ========== %%%%\n');
 F1_d = sqrt((x-loc_B(1))^2 + (y-loc_B(2))^2);
 F2_d = atan2((y-loc_B(2)), (x-loc_B(1)));
 
-% ===== LSE param
+% ===== LSE Param
 A = jacobian([F1_d; F2_d],[x; y]);
 L = [rho_B; deg2rad(theta_B)];
 X = [F1_d; F2_d];
@@ -144,7 +144,7 @@ F2_e = sqrt((x-loc_B(1))^2 + (y-loc_B(2))^2);
 F3_e = atan2((y-loc_A(2)), (x-loc_A(1)));
 F4_e = atan2((y-loc_B(2)), (x-loc_B(1)));
 
-% ===== LSE param
+% ===== LSE Param
 A = jacobian([F1_e; F2_e; F3_e; F4_e],[x; y]);
 L = [rho_A; rho_B; deg2rad(theta_A); deg2rad(theta_B)];
 X = [F1_e; F2_e; F3_e; F4_e];
