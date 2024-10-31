@@ -54,7 +54,7 @@ init2 = [loc_A(1)-1; loc_A(2)];   % m
 fprintf(file, '%% ===== Initial Value 2 ===== %%\n');
 fprintf(file, 'x = %.1f\n', init2(1));
 fprintf(file, 'y = %.1f\n\n',init2(2)); 
-[x_hat, y_hat] = LSE_rr(A, W, [x y], init1, file);
+[x_hat, y_hat] = LSE_rr(A, W, [x y], init2, file);
 
 [majoraxis, minoraxis, error_ellipse_theta] = Error_Ellipse_Params([x y], A, x_hat, y_hat, Srr);
 Error_Ellipse_Plot(majoraxis, minoraxis, [x_hat y_hat], error_ellipse_theta(1), [OutputFolder '/error_ellipse_a_2_1']);
