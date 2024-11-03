@@ -1,7 +1,7 @@
 function [] = scatter_plot(x, y, outName)
 
 % ===== Scatter Plot
-scatter(x, y, 'filled');
+scatter(x, y, '.');
 
 % ===== Scatter Config
 title('estimation of x in each epoch');
