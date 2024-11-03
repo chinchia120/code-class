@@ -22,5 +22,7 @@ ae = 6378137;               % m
 
 %% ========== Q1 ========== %% 
 
+a = helperAcceleration(x, y, z)
+
 %% ===== Close file
 fclose(file);
