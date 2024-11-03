@@ -7,12 +7,12 @@ OutputFolder = sprintf('OutputFigure');
 if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 
 % ===== Initial Value
-R = 0.1;                                %觀測量精度 (sigma)
+R = 0.1;
 rng(0);
-r = random('normal', 0, R, 1000, 1);    %第一時刻至最後一時刻資料產生 
-A = 1;                                  %設計矩陣
-Phi = 1;                                %轉移矩陣 (transition matrix)
-Qw = 0^2;                               %推估雜訊 (sigma of the system process noise)
+r = random('normal', 0, R, 1000, 1);
+A = 1;
+Phi = 1;
+Qw = 0^2;
 
 %% ========== Question 1 ========== %%
 % ===== Case 1
