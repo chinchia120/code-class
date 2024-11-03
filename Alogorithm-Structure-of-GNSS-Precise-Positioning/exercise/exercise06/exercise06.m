@@ -2,6 +2,10 @@
 % ===== Setup
 clc; clear; close all;
 
+% ===== Creat Output Folder
+OutputFolder = sprintf('OutputFigure');
+if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
+
 % ===== Initial Value
 R = 0.1;                               %觀測量精度(sigma)
 r = random('normal', 0, R, 1000, 1);    %第一時刻至最後一時刻資料產生 
@@ -28,6 +32,6 @@ for i = 1: size(r, 1)
     end
     [estimated_X(i, 1) estimated_Qx(i, 1)] = updation(predict_X(i, 1), predict_Qx(i, 1), A, L, R);
 end
-scatter_plot(1: size(r, 1), estimated_X(:, 1));
+scatter_plot(1: size(r, 1), estimated_X(:, 1), [OutputFolder '/exercise06_Q1_Case1']);
 
 
