@@ -1,4 +1,4 @@
-function [pos2] = helperRK4(pos, h, type)
+function [pos] = helperRK4(pos, h, type)
 
 % ===== Type 1: RK4 with Keplerian Motion
 if type == 1
@@ -17,7 +17,7 @@ if type == 2
 end
 
 % ===== Result of RK4 Approximation
-pos2 = pos + h/6*(k1 + 2*k2 + 2*k3 + k4);
+pos = pos + h/6*(k1 + 2*k2 + 2*k3 + k4);
 
 end
 
