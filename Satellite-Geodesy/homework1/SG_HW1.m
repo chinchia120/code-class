@@ -36,7 +36,7 @@ end
 % ===== Close Output file
 fclose(file);
 
-%% ========== Keplerian with J2 ========== %%
+%% ========== Keplerian Motion with J2 Effect ========== %%
 % ===== Create Output File
 file = fopen([OutputFolder '/SG_HW1_J2.txt'], 'w');
 
