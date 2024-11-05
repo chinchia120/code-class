@@ -6,9 +6,6 @@ clc; clear; close all;
 OutputFolder = sprintf('OutputFigure');
 if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 
-% ===== Create Output File
-file = fopen([OutputFolder '/SG_HW1_output.txt'], 'w');
-
 % ===== Initial Value
 x = 20952940.878790;        % m
 y = 11599221.8785432;       % m
@@ -17,12 +14,43 @@ vx = -2338.53157760597;     % m/s
 vy = 1501.60308576919;      % m/s
 vz = 2669.76244747639;      % m/s
 
-GM = 3.986005 * 10^14;      % m^3/s^2
-ae = 6378137;               % m
+X = zeros(60*60*24+1, 6);
+X(1, :) = [x y z vx vy vz];
 
-%% ========== Q1 ========== %% 
+%% ========== Keplerian Motion ========== %%
+% ===== Create Output File
+file = fopen([OutputFolder '/SG_HW1_Keplerian.txt'], 'w');
 
-a = helperAcceleration(x, y, z)
+% ===== Calculate State of Satellite
+fprintf(file, '%%%% =============================== Satellite''s State Using Keplerian Motion =============================== %%%%\n');
+fprintf(file, 'Hour\t     X\t                 Y\t                 Z\t             X_dot\t         Y_dot\t        Z_dot\n');
+fprintf(file, ' %2d\t %16.6f\t %16.6f\t %16.6f\t %12.6f\t %12.6f\t %12.6f\n', 0, X(1, :));
 
-%% ===== Close file
+for i = 2: 60*60*24+1
+    X(i, :) = helperRK4(X(i-1, :), 1, 1);
+    if mod(i, 60*60) == 1
+        fprintf(file, ' %2d\t %16.6f\t %16.6f\t %16.6f\t %12.6f\t %12.6f\t %12.6f\n', int32(i/3600), X(i, :));
+    end
+end
+
+% ===== Close Output file
+fclose(file);
+
+%% ========== Keplerian with J2 ========== %%
+% ===== Create Output File
+file = fopen([OutputFolder '/SG_HW1_J2.txt'], 'w');
+
+% ===== Calculate State of Satellite
+fprintf(file, '%%%% ======================== Satellite''s State Using Keplerian Motion and J2 Effect ======================== %%%%\n');
+fprintf(file, 'Hour\t     X\t                 Y\t                 Z\t             X_dot\t         Y_dot\t        Z_dot\n');
+fprintf(file, ' %2d\t %16.6f\t %16.6f\t %16.6f\t %12.6f\t %12.6f\t %12.6f\n', 0, X(1, :));
+
+for i = 2: 60*60*24+1
+    X(i, :) = helperRK4(X(i-1, :), 1, 2);
+    if mod(i, 60*60) == 1
+        fprintf(file, ' %2d\t %16.6f\t %16.6f\t %16.6f\t %12.6f\t %12.6f\t %12.6f\n', int32(i/3600), X(i, :));
+    end
+end
+
+% ===== Close Output file
 fclose(file);
