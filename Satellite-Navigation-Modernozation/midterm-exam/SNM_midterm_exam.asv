@@ -10,10 +10,10 @@ syms x y  xA yA xB yB;
 F1 = sqrt((x-xA)^2 + (y-yA)^2);
 F2 = sqrt((x-xB)^2 + (y-yB)^2);
 
-A = jacobian([F1; F2], [x; y])
+A = jacobian([F1; F2], [x; y]);
 
 % ===== theta - theta system 
 F1 = atan2(y-yA, x-xA);
 F2 = atan2(y-yB, x-xB);
 
-A = jacobian([F1; F2], [x; y]);
+A = jacobian([F1; F2], [x; y])
