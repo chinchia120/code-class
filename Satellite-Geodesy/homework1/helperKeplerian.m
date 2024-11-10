@@ -17,4 +17,3 @@ az = -GM*z/r^3;
 a = [pos(4: 6) ax ay az];
 
 end
-
