@@ -21,6 +21,13 @@ we = 7.292115*10^-5;        % rad/s
 GAST0 = 0;
 
 %% ========== Sub-Satellite Track ========== %%
+% ===== Create Output File
+file = fopen([OutputFolder '/SG_HW2_Ground_Track.txt'], 'w');
+
+% ===== Calculate State of Satellite
+fprintf(file, '%%%% === Satellite''s Position === %%%%\n');
+fprintf(file, 'Hour\t   latitude\t    longitude\n');
+
 pos = zeros(60*60*24, 2);
 for i = 2: 60*60*24+1
     X(i, :) = helperRK4(X(i-1, :), 1, 2);
@@ -29,7 +36,17 @@ for i = 2: 60*60*24+1
     pos(i-1, :) = ([sphe(1)-GAST sphe(2)]);
     
     if pos(i-1, 1) < -180; pos(i-1, 1) = pos(i-1, 1) + 360; end
+    if mod(i, 60*60) == 1
+        fprintf(file, ' %2d\t %12.6f\t %12.6f\n', int32(i/3600), pos(i-1, :));
+    end
 end
 
 %% ========== Plot Trajectory ========== %%
 helperScatter(pos(:, 2), pos(:, 1), [OutputFolder '/ground_track']);
+
+%% ========== Revolution in a Sidereal Day ========== %%
+Maxlat = max(pos(:, 2));
+R = 1436 / (12*60);
+fprintf(file, '\n%%%% == Satellite''s Information == %%%%\n');
+fprintf(file, 'Maximum latitude = %9.6f\n', Maxlat);
+fprintf(file, 'Satellite''s Revolution = %4.2f\n', R);
