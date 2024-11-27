@@ -45,6 +45,6 @@ shift_19 = helperCorrelation(CA_19, signal_1, 19, [OutputFolder '/Auto-Correlati
 helperCorrelation(CA_22, signal_1, 22, [OutputFolder '/Auto-Correlation-PRN22']);
 
 % ===== Pseudorange Delay
-chipping_rate = 1 / (1.023 * 10^6);
-delay_13 = shift_13 * chipping_rate * c
-delay_19 = shift_19 * chipping_rate * c
+chip_time = 1 / (1.023 * 10^6);
+delay_13 = shift_13 * chip_time * c;
+delay_19 = shift_19 * chip_time * c;
