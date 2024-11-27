@@ -14,7 +14,7 @@ for i = 1: length(S1)
 end
 
 % ===== Plot Cross-Correlation Result
-plot(R);
+plot(0: length(R)-1, R);
 hold on;
 
 % ===== Plot Config
@@ -23,8 +23,8 @@ if size(PRN) == 1
     [maxR, maxshift] = max(R);
     [minR, minshift] = min(R);
     
-    if abs(maxR) > abs(minR); peak = maxR; shift = maxshift;
-    else; peak = minR; shift = minshift; end
+    if abs(maxR) > abs(minR); peak = maxR; shift = maxshift-1;
+    else; peak = minR; shift = minshift-1; end
 
     % ==== Plot Peak
     plot(shift, peak, '*');
@@ -37,7 +37,7 @@ end
 
 xlabel('Time Shift');
 ylabel('Normalized Correlation');
-xlim([1 length(R)]);
+xlim([0 length(R)-1]);
 grid on;
 
 % ===== Save Figure
