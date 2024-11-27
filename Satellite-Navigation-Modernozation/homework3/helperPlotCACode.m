@@ -1,7 +1,9 @@
 function [] = helperPlotCACode(CA, PRN, chip, OutputName)
 
-% ===== Initial Value
+% ===== Setup
 clf;
+
+% ===== Initial Value
 chips = repmat(1:chip, 2, 1);
 chips = chips((2: end));
 
