@@ -1,7 +1,9 @@
-function [] = helperCorrelation(S1, S2, PRN, OutputName)
+function [shift] = helperCorrelation(S1, S2, PRN, OutputName)
+
+% ===== Setup
+clf;
 
 % ===== Initial Value
-clf;
 R = zeros(1, length(S1));
 
 % ===== Cross-Correlation
