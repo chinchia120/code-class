@@ -5,24 +5,21 @@
 %
 % Written by Andrew Barrows
 
-function [wlat, wlon, walt] = wgsxyz2lla(xyz)
-
-        %  This dual-variable iteration seems to be 7 or 8 times faster than
-	%  a one-variable (in latitude only) iteration.  AKB 7/17/95 
+function w = wgsxyz2lla(xyz)
+    %  This dual-variable iteration seems to be 7 or 8 times faster than a one-variable (in latitude only) iteration.  AKB 7/17/95 
 
 	A_EARTH = 6378137;
 	flattening = 1/298.257223563;
 	NAV_E2 = (2-flattening)*flattening; % also e^2
-        rad2deg = 180/pi;
+    rad2deg = 180/pi;
+    if xyz(1) == 0.0 && xyz(2) == 0.0
+        wlon = 0.0;
+    else
+        wlon = atan2(xyz(2), xyz(1))*rad2deg;
+    end
 
-	if ((xyz(1) == 0.0) & (xyz(2) == 0.0))
-		wlon = 0.0;
-	else
-		wlon = atan2(xyz(2), xyz(1))*rad2deg;
-        end
-
-	if ((xyz(1) == 0.0) & (xyz(2) == 0.0) & (xyz(3) == 0.0))
-	        error('WGS xyz at center of earth');
+	if xyz(1) == 0.0 && xyz(2) == 0.0 && xyz(3) == 0.0
+	    error('WGS xyz at center of earth');
 	else 
 		% Make initial lat and alt guesses based on spherical earth.
 		rhosqrd = xyz(1)*xyz(1) + xyz(2)*xyz(2);
@@ -32,12 +29,10 @@ function [wlat, wlon, walt] = wgsxyz2lla(xyz)
 		rhoerror = 1000.0;
 		zerror   = 1000.0;
 
-		%  Newton's method iteration on templat and tempalt makes
-		%	the residuals on rho and z progressively smaller.  Loop
-		%	is implemented as a 'while' instead of a 'do' to simplify
-		%	porting to MATLAB
+		% Newton's method iteration on templat and tempalt makes the residuals on rho and z progressively smaller.
+        % Loop is implemented as a 'while' instead of a 'do' to simplify porting to MATLAB.
 
-		while ((abs(rhoerror) > 1e-6) | (abs(zerror) > 1e-6)) 
+		while abs(rhoerror) > 1e-6 || abs(zerror) > 1e-6
 			slat = sin(templat);
 			clat = cos(templat);
 			q = 1 - NAV_E2*slat*slat;
@@ -47,11 +42,11 @@ function [wlat, wlon, walt] = wgsxyz2lla(xyz)
 			rhoerror = (r_n + tempalt)*clat - rho;
 			zerror   = (r_n*(1 - NAV_E2) + tempalt)*slat - xyz(3);
 
-			%			  --                               -- --      --
-			%			  |  drhoerror/dlat  drhoerror/dalt | |  a  b  |
-                        % Find Jacobian           |		       		    |=|        |
-			%			  |   dzerror/dlat    dzerror/dalt  | |  c  d  |
-			%			  --                               -- --      -- 
+			% --                               -- --      --
+			% |  drhoerror/dlat  drhoerror/dalt | |  a  b  |
+            % Find Jacobian           |		       		   |=|        |
+			% |   dzerror/dlat    dzerror/dalt  | |  c  d  |
+			% --                               -- --      -- 
 
 			aa = drdl*clat - (r_n + tempalt)*slat;
 			bb = clat;
@@ -67,4 +62,6 @@ function [wlat, wlon, walt] = wgsxyz2lla(xyz)
 
 		wlat = templat*rad2deg;
 		walt = tempalt;
+        
+        w = [wlat; wlon; walt];
 	end
