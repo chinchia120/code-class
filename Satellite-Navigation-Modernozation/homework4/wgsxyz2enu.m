@@ -8,24 +8,24 @@
 % Note: Requires functions wgslla2xyz.m and rot.m to be in the 
 % same directory
 
-function enu=wgsxyz2enu(xyz, reflat, reflon, refalt)
+function enu = wgsxyz2enu(xyz, reflat, reflon, refalt)
 
-[m n] = size(xyz);
+[m, n] = size(xyz);
 if m ~= 3 | n ~= 1
 	error('wgsxyz2enu: xyz input vector must be 3 x 1');
 end
 
-[m n] = size(reflat);
+[m, n] = size(reflat);
 if m ~= 1 | n ~= 1
 	error('wgsxyz2enu: reflat input vector must be scalar');
 end
 
-[m n] = size(reflon);
+[m, n] = size(reflon);
 if m ~= 1 | n ~= 1
 	error('wgsxyz2enu: reflon input vector must be scalar');
 end
 
-[m n] = size(refalt);
+[m, n] = size(refalt);
 if m ~= 1 | n ~= 1
 	error('wgsxyz2enu: refalt input vector must be scalar');
 end

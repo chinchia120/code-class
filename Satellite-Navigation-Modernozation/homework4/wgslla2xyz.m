@@ -10,7 +10,6 @@
 %Defense Mapping Agency Aerospace Center. 
 function xyz = wgslla2xyz(wlat, wlon, walt)
 
-
 	A_EARTH = 6378137;
 	flattening = 1/298.257223563;
 	NAV_E2 = (2-flattening)*flattening; % also e^2
@@ -23,10 +22,9 @@ function xyz = wgslla2xyz(wlat, wlon, walt)
 	        (r_n + walt)*clat*sin(wlon*deg2rad);  
 	        (r_n*(1 - NAV_E2) + walt)*slat ];
 
-	if ((wlat < -90.0) | (wlat > +90.0) |...
-				(wlon < -180.0) | (wlon > +360.0))
-		error('WGS lat or WGS lon out of range');
-        end
+    if wlat < -90.0 || wlat > +90.0 || wlon < -180.0 || wlon > +360.0
+        error('WGS lat or WGS lon out of range');
+    end
 return
 
 

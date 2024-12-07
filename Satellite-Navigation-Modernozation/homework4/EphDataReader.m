@@ -2,30 +2,31 @@ classdef EphDataReader
     properties
         FileName        % Name of the .dat file
         Data            % Matrix loaded from the .dat file
-        RcvrTow         % Column 1: Receiver time of week (s)
-        Svid            % Column 2: Satellite PRN number (1–32)
-        Toc             % Column 3: Reference time of clock parameters (s)
-        Toe             % Column 4: Reference time of ephemeris parameters (s)
-        Af0             % Column 5: Clock correction coefficient – group delay (s)
-        Af1             % Column 6: Clock correction coefficient (s/s)
-        Af2             % Column 7: Clock correction coefficient (s/s/s)
-        Ura             % Column 8: User range accuracy (m)
-        E               % Column 9: Eccentricity (-)
-        Sqrta           % Column 10: Square root of semi-major axis a (m**1/2)
-        Dn              % Column 11: Mean motion correction (r/s)
-        M0              % Column 12: Mean anomaly at reference time (r)
-        W               % Column 13: Argument of perigee (r)
-        Omg0            % Column 14: Right ascension (r)
-        I0              % Column 15: Inclination angle at reference time (r)
-        Odot            % Column 16: Rate of right ascension (r/s)
-        Idot            % Column 17: Rate of inclination angle (r/s)
-        Cus             % Column 18: Argument of latitude correction, sine (r)
-        Cuc             % Column 19: Argument of latitude correction, cosine (r)
-        Cis             % Column 20: Inclination correction, sine (r)
-        Cic             % Column 21: Inclination correction, cosine (r)
-        Crs             % Column 22: Radius correction, sine (m)
-        Crc             % Column 23: Radius correction, cosine (m)
-        Iod             % Column 24: Issue of data number
+
+        rcvr_tow        % Column 1: Receiver time of week (s)
+        svid            % Column 2: Satellite PRN number (1–32)
+        toc             % Column 3: Reference time of clock parameters (s)
+        toe             % Column 4: Reference time of ephemeris parameters (s)
+        af0             % Column 5: Clock correction coefficient – group delay (s)
+        af1             % Column 6: Clock correction coefficient (s/s)
+        af2             % Column 7: Clock correction coefficient (s/s/s)
+        ura             % Column 8: User range accuracy (m)
+        e               % Column 9: Eccentricity (-)
+        sqrta           % Column 10: Square root of semi-major axis a (m**1/2)
+        dn              % Column 11: Mean motion correction (r/s)
+        m0              % Column 12: Mean anomaly at reference time (r)
+        w               % Column 13: Argument of perigee (r)
+        omg0            % Column 14: Right ascension (r)
+        i0              % Column 15: Inclination angle at reference time (r)
+        odot            % Column 16: Rate of right ascension (r/s)
+        idot            % Column 17: Rate of inclination angle (r/s)
+        cus             % Column 18: Argument of latitude correction, sine (r)
+        cuc             % Column 19: Argument of latitude correction, cosine (r)
+        cis             % Column 20: Inclination correction, sine (r)
+        cic             % Column 21: Inclination correction, cosine (r)
+        crs             % Column 22: Radius correction, sine (m)
+        crc             % Column 23: Radius correction, cosine (m)
+        iod             % Column 24: Issue of data number
     end
     
     methods
@@ -33,51 +34,55 @@ classdef EphDataReader
         function obj = EphDataReader(fileName)
             if nargin > 0
                 obj.FileName = fileName;
-                obj = obj.loadData(); % Automatically load data
-                obj = obj.extractColumns(); % Extract columns to properties
+                obj = obj.loadData();
+                obj = obj.extractColumns();
             end
         end
         
         % ===== Method to load the .dat file
         function obj = loadData(obj)
             if isfile(obj.FileName)
-                obj.Data = readmatrix(obj.FileName); % Load data into matrix
-                fprintf('File %s loaded successfully.\n', obj.FileName);
+                obj.Data = readmatrix(obj.FileName);
+                obj.Data = sortrows(obj.Data, 2);
+                
+                fprintf('%%%% ===== File %s loaded successfully ===== %%%%\n', obj.FileName);
             else
-                error('File %s does not exist.', obj.FileName);
+                error('%%%% ===== File %s does not exist  ===== %%%%\n', obj.FileName);
             end
         end
         
         % ===== Method to extract columns into class properties
         function obj = extractColumns(obj)
             if isempty(obj.Data)
-                error('No data loaded. Use the loadData method first.');
+                error('%%%% ===== No data loaded ===== %%%%\n\n');
             end
-            obj.RcvrTow = obj.Data(:, 1);       % Column 1
-            obj.Svid = obj.Data(:, 2);          % Column 2
-            obj.Toc = obj.Data(:, 3);           % Column 3
-            obj.Toe = obj.Data(:, 4);           % Column 4
-            obj.Af0 = obj.Data(:, 5);           % Column 5
-            obj.Af1 = obj.Data(:, 6);           % Column 6
-            obj.Af2 = obj.Data(:, 7);           % Column 7
-            obj.Ura = obj.Data(:, 8);           % Column 8
-            obj.E = obj.Data(:, 9);             % Column 9
-            obj.Sqrta = obj.Data(:, 10);        % Column 10
-            obj.Dn = obj.Data(:, 11);           % Column 11
-            obj.M0 = obj.Data(:, 12);           % Column 12
-            obj.W = obj.Data(:, 13);            % Column 13
-            obj.Omg0 = obj.Data(:, 14);         % Column 14
-            obj.I0 = obj.Data(:, 15);           % Column 15
-            obj.Odot = obj.Data(:, 16);         % Column 16
-            obj.Idot = obj.Data(:, 17);         % Column 17
-            obj.Cus = obj.Data(:, 18);          % Column 18
-            obj.Cuc = obj.Data(:, 19);          % Column 19
-            obj.Cis = obj.Data(:, 20);          % Column 20
-            obj.Cic = obj.Data(:, 21);          % Column 21
-            obj.Crs = obj.Data(:, 22);          % Column 22
-            obj.Crc = obj.Data(:, 23);          % Column 23
-            obj.Iod = obj.Data(:, 24);          % Column 24
-            fprintf('Columns extracted successfully.\n');
+
+            obj.rcvr_tow = obj.Data(:, 1);      % Column 1
+            obj.svid = obj.Data(:, 2);          % Column 2
+            obj.toc = obj.Data(:, 3);           % Column 3
+            obj.toe = obj.Data(:, 4);           % Column 4
+            obj.af0 = obj.Data(:, 5);           % Column 5
+            obj.af1 = obj.Data(:, 6);           % Column 6
+            obj.af2 = obj.Data(:, 7);           % Column 7
+            obj.ura = obj.Data(:, 8);           % Column 8
+            obj.e = obj.Data(:, 9);             % Column 9
+            obj.sqrta = obj.Data(:, 10);        % Column 10
+            obj.dn = obj.Data(:, 11);           % Column 11
+            obj.m0 = obj.Data(:, 12);           % Column 12
+            obj.w = obj.Data(:, 13);            % Column 13
+            obj.omg0 = obj.Data(:, 14);         % Column 14
+            obj.i0 = obj.Data(:, 15);           % Column 15
+            obj.odot = obj.Data(:, 16);         % Column 16
+            obj.idot = obj.Data(:, 17);         % Column 17
+            obj.cus = obj.Data(:, 18);          % Column 18
+            obj.cuc = obj.Data(:, 19);          % Column 19
+            obj.cis = obj.Data(:, 20);          % Column 20
+            obj.cic = obj.Data(:, 21);          % Column 21
+            obj.crs = obj.Data(:, 22);          % Column 22
+            obj.crc = obj.Data(:, 23);          % Column 23
+            obj.iod = obj.Data(:, 24);          % Column 24
+
+            fprintf('%%%% ===== Columns extracted successfully ===== %%%%\n\n');
         end
     end
 end
