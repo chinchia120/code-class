@@ -3,10 +3,6 @@
 clc; clear; close all;
 format long;
 
-% ===== Creat Output Folder
-OutputFolder = sprintf('OutputFigure');
-if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
-
 % ===== Initial Value
 c = 299792458;              % the speed of light (m/s)
 wedot = 7.2921151467 * 10^-5;   % earth rotation rate
