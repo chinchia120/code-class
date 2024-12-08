@@ -13,11 +13,11 @@ GM = 3.986005 * 10^14;      % gravitation constant
 F = -4.442807633 * 10^-10;  % relativistic correction term constant
 init_wgs84_xyz = [-2950000; 5070000; 2470000];
 
-%% ========== XYZ Position ========== %%
 % ===== Read Data
 rcvr = RcvrDataReader('DataFile_hw4/rcvr.dat');
 eph = EphDataReader('DataFile_hw4/eph.dat');
 
+%% ========== Clock Error Correction ========== %%
 % ===== GPS System Time
 t = rcvr.rcvr_tow - rcvr.pr / c;
 
@@ -78,36 +78,31 @@ wgs84_xyz = [xk yk zk];
 d_tr = F .* eph.e .* eph.sqrta .* sin(Ek);
 d_tsv = eph.af0 + eph.af1.*tk + eph.af2.*tk.^2 + d_tr;
 
-% ===== Initial Position
-init_lla = wgsxyz2lla(init_wgs84_xyz);
-
 %% ========== Tropospheric Delay Correction ========== %%
+% ===== Initial Position
+% init_lla = wgsxyz2lla(init_wgs84_xyz);
+
 % ===== Calculate the Vector of Satellite to Receiver in ENU
-sv_enu = zeros(length(rcvr.svid), 3);
-for i = 1: length(sv_enu)
-    sv_enu(i, :) = wgsxyz2enu(wgs84_xyz(i)-init_wgs84_xyz, init_lla(1), init_lla(2), init_lla(3));
-end
+% sv_enu = zeros(length(rcvr.svid), 3);
+% for i = 1: length(sv_enu)
+%     sv_enu(i, :) = wgsxyz2enu(wgs84_xyz(i)-init_wgs84_xyz, init_lla(1), init_lla(2), init_lla(3));
+% end
+
+% ===== Elevation Angle
+% elevation_angle = atan2(sv_enu(:, 3), norm(sv_enu(:, 1:2)));
+
+% ===== Zenith Angle
+% z = pi - elevation_angle;
 
 % ===== Standard Temperature and Pressure
-% ===== Partial Pressure of Dry Air (mbars)
-P0 = 1013.25;
-
-% ===== Temperature (K)
-T0 = 273.15;
-
-% ===== Partial Pressure of Water Vapor (mbars)
-e0 = 6;
+P0 = 1013.25; % Partial Pressure of Dry Air (mbars)
+T0 = 273.15; % Temperature (K)
+e0 = 6; % Partial Pressure of Water Vapor (mbars)
 
 % ===== Tropospheric Delay
 tro = 77.6*10^-6*P0*43/(5*T0) + 0.373*e0*12/(5*T0^2);
 
-% ===== Elevation Angle
-elevation_angle = atan2(sv_enu(:, 3), norm(sv_enu(:, 1:2)));
-
-% ===== Zenith Angle
-z = pi - elevation_angle;
-
-%% ========== Satellite Position Correct Caused By Earth Rotation ========== %%
+%% ========== Earth Rotation Correction ========== %%
 transmit_time = (rcvr.pr+c*d_tsv+tro) / c;
 
 sv_enu_ro = zeros(length(rcvr.svid), 3);
@@ -119,13 +114,14 @@ for i = 1: length(sv_enu_ro)
     sv_enu_ro(i, :) = R*wgs84_xyz(i, :)';
 end
 
+%% ========== Satellite Position ========== %%
 Satellite.PRN = rcvr.svid;
 Satellite.X = sv_enu_ro(:, 1);
 Satellite.Y = sv_enu_ro(:, 2);
 Satellite.Z = sv_enu_ro(:, 3);
 SatellitePos = struct2table(Satellite)
 
-%% ========== Iteration ========== %%
+%% ========== Calculate Receiver Position ========== %%
 syms x y z b
 
 F = sqrt((x-sv_enu_ro(:, 1)).^2 + (y-sv_enu_ro(:, 2)).^2 + (z-sv_enu_ro(:, 3)).^2) + b;
@@ -152,13 +148,14 @@ while 1
     if it > 50; break; end
 end
 
+%% ========== Receiver Position ========== %%
 receiver_lla = wgsxyz2lla(xyzb(1: 3));
 ReceiverPos.Lat = receiver_lla(1);
 ReceiverPos.Lon = receiver_lla(2);
 ReceiverPos.Alt = receiver_lla(3);
 ReceiverPos = struct2table(ReceiverPos)
 
+%% ========== Receiver Time ========== %%
 EStimated_Range = double(subs(F, [x y z b], xyzb'));
 ReceiverTime.Time = t + EStimated_Range/c - d_tsv - tro/c;
 ReceiverTime = struct2table(ReceiverTime)
-
