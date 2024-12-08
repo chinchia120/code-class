@@ -1,6 +1,7 @@
 %% ========== Setup ========== %%
 % ===== Setup
 clc; clear; close all;
+format long;
 
 % ===== Creat Output Folder
 OutputFolder = sprintf('OutputFigure');
@@ -111,15 +112,15 @@ for i = 1: length(sv_enu_ro)
     R = [ cos(theta), sin(theta), 0;
          -sin(theta), cos(theta), 0;
                    0,          0, 1];
-    sv_enu_ro(i, :) = R*wgs84_xyz(i, :)';
+    sv_enu_ro(i, :) = R * wgs84_xyz(i, :)';
 end
 
 %% ========== Satellite Position ========== %%
-Satellite.PRN = rcvr.svid;
-Satellite.X = sv_enu_ro(:, 1);
-Satellite.Y = sv_enu_ro(:, 2);
-Satellite.Z = sv_enu_ro(:, 3);
-SatellitePos = struct2table(Satellite)
+Satellite_xyz.PRN = rcvr.svid;
+Satellite_xyz.X = sv_enu_ro(:, 1);
+Satellite_xyz.Y = sv_enu_ro(:, 2);
+Satellite_xyz.Z = sv_enu_ro(:, 3);
+SatellitePos = struct2table(Satellite_xyz)
 
 %% ========== Calculate Receiver Position ========== %%
 syms x y z b
@@ -149,11 +150,19 @@ while 1
 end
 
 %% ========== Receiver Position ========== %%
+% ===== Receiver Position - XYZ
+ReceiverPos_xyz.X = xyzb(1);
+ReceiverPos_xyz.Y = xyzb(2);
+ReceiverPos_xyz.Z = xyzb(3);
+ReceiverPos_xyz.b = xyzb(4);
+ReceiverPos_xyz = struct2table(ReceiverPos_xyz)
+
+% ===== Receiver Position - LLA
 receiver_lla = wgsxyz2lla(xyzb(1: 3));
-ReceiverPos.Lat = receiver_lla(1);
-ReceiverPos.Lon = receiver_lla(2);
-ReceiverPos.Alt = receiver_lla(3);
-ReceiverPos = struct2table(ReceiverPos)
+ReceiverPos_lla.Lat = receiver_lla(1);
+ReceiverPos_lla.Lon = receiver_lla(2);
+ReceiverPos_lla.Alt = receiver_lla(3);
+ReceiverPos_lla = struct2table(ReceiverPos_lla)
 
 %% ========== Receiver Time ========== %%
 EStimated_Range = double(subs(F, [x y z b], xyzb'));
