@@ -157,7 +157,8 @@ end
 ReceiverPos_xyz.X = xyzb(1);
 ReceiverPos_xyz.Y = xyzb(2);
 ReceiverPos_xyz.Z = xyzb(3);
-ReceiverPos_xyz.b = xyzb(4);
+ReceiverPos_xyz.b_m = xyzb(4);
+ReceiverPos_xyz.b_s = xyzb(4)/c;
 ReceiverPos_xyz = struct2table(ReceiverPos_xyz)
 
 % ===== Receiver Position - LLA
