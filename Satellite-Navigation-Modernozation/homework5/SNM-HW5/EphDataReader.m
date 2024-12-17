@@ -44,6 +44,7 @@ classdef EphDataReader
             if isfile(obj.FileName)
                 obj.Data = readmatrix(obj.FileName);
                 obj.Data = sortrows(obj.Data, 2);
+                obj.Data = sortrows(obj.Data, 1);
                 
                 fprintf('%%%% ===== File %s loaded successfully ===== %%%%\n', obj.FileName);
             else

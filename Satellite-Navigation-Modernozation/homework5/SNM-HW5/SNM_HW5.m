@@ -13,6 +13,14 @@ init_wgs84_xyz = [-2950000; 5070000; 2470000];
 rcvr = RcvrDataReader('DataFile_hw5/rcvr.dat');
 eph = EphDataReader('DataFile_hw5/eph.dat');
 
+%% ========== Correct Data ========== %%
+for i = 1: length(rcvr.svid)
+    if eph.svid(1) == rcvr.svid(i)
+        disp('true')
+        if eph.rcvr_tow(1) == rcvr.rcvr_tow(i); disp('true'); end
+    end
+end
+
 %% ========== Clock Error Correction ========== %%
 % ===== GPS System Time
 t = rcvr.rcvr_tow - rcvr.pr / GPSConstant.c;
