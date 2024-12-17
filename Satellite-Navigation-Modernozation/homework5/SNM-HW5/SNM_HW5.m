@@ -7,25 +7,21 @@ format long;
 % https://www.gps.gov/technical/icwg/IS-GPS-200M.pdf
 
 % ===== Initial Value
-c = 299792458;              % the speed of light (m/s)
-wedot = 7.2921151467 * 10^-5;   % earth rotation rate
-GM = 3.986005 * 10^14;      % gravitation constant
-F = -4.442807633 * 10^-10;  % relativistic correction term constant
 init_wgs84_xyz = [-2950000; 5070000; 2470000];
 
 % ===== Read Data
-rcvr = RcvrDataReader('DataFile_hw4/rcvr.dat');
-eph = EphDataReader('DataFile_hw4/eph.dat');
+rcvr = RcvrDataReader('DataFile_hw5/rcvr.dat');
+eph = EphDataReader('DataFile_hw5/eph.dat');
 
 %% ========== Clock Error Correction ========== %%
 % ===== GPS System Time
-t = rcvr.rcvr_tow - rcvr.pr / c;
+t = rcvr.rcvr_tow - rcvr.pr / GPSConstant.c;
 
 % ===== Ephemeris Reference Epoch
 tk = t - eph.toe;
 
 % ===== Mean Motion
-n0 = sqrt(GM./eph.sqrta.^2.^3);
+n0 = sqrt(GPSConstant.GM./eph.sqrta.^2.^3);
 
 % ===== Corrected Mean Motion
 n = n0 + eph.dn;
@@ -67,7 +63,7 @@ xk_o = rk .* cos(uk);
 yk_o = rk .* sin(uk);
 
 % ===== Corrected Longitude of Ascending Node
-omgk = eph.omg0 + (eph.odot-wedot).*tk - wedot.*eph.toe;
+omgk = eph.omg0 + (eph.odot-GPSConstant.wedot).*tk - GPSConstant.wedot.*eph.toe;
 
 % ===== Earth-Fixed Geocentric Satellite Coordinate
 xk = xk_o.*cos(omgk) - yk_o.*sin(omgk).*cos(ik);
@@ -76,7 +72,7 @@ zk = yk_o.*sin(ik);
 wgs84_xyz = [xk yk zk];
 
 % ===== Satellite Broadcast Clock Error
-d_tr = F .* eph.e .* eph.sqrta .* sin(Ek);
+d_tr = GPSConstant.F .* eph.e .* eph.sqrta .* sin(Ek);
 d_tsv = eph.af0 + eph.af1.*tk + eph.af2.*tk.^2 + d_tr;
 
 %% ========== Tropospheric Delay Correction ========== %%
@@ -107,11 +103,11 @@ tro = 0.002277 ./ cos(z) .* (P0+((1255/T0)+0.05)*e0-tand(z).^2);
 tro = 77.6*10^-6*P0*43/(5*T0) + 0.373*e0*12/(5*T0^2);
 
 %% ========== Earth Rotation Correction ========== %%
-transmit_time = (rcvr.pr+c*d_tsv+tro) / c;
+transmit_time = (rcvr.pr+GPSConstant.c*d_tsv+tro) / GPSConstant.c;
 
 sv_enu_ro = zeros(length(rcvr.svid), 3);
 for i = 1: length(sv_enu_ro)
-    theta = wedot * transmit_time(i);
+    theta = GPSConstant.wedot * transmit_time(i);
     R = [ cos(theta), sin(theta), 0;
          -sin(theta), cos(theta), 0;
                    0,          0, 1];
@@ -131,7 +127,7 @@ syms x y z b
 F = sqrt((x-sv_enu_ro(:, 1)).^2 + (y-sv_enu_ro(:, 2)).^2 + (z-sv_enu_ro(:, 3)).^2) + b;
 
 A = jacobian(F, [x; y; z; b]);
-L = rcvr.pr + c*d_tsv + tro;
+L = rcvr.pr + GPSConstant.c*d_tsv + tro;
 X = F;
 
 it = 1;
@@ -158,7 +154,7 @@ ReceiverPos_xyz.X = xyzb(1);
 ReceiverPos_xyz.Y = xyzb(2);
 ReceiverPos_xyz.Z = xyzb(3);
 ReceiverPos_xyz.b_m = xyzb(4);
-ReceiverPos_xyz.b_s = xyzb(4)/c;
+ReceiverPos_xyz.b_s = xyzb(4)/GPSConstant.c;
 ReceiverPos_xyz = struct2table(ReceiverPos_xyz)
 
 % ===== Receiver Position - LLA
@@ -170,5 +166,5 @@ ReceiverPos_lla = struct2table(ReceiverPos_lla)
 
 %% ========== Receiver Time ========== %%
 EStimated_Range = double(subs(F, [x y z b], xyzb'));
-ReceiverTime.Time = t + EStimated_Range/c - d_tsv - tro/c;
+ReceiverTime.Time = t + EStimated_Range/GPSConstant.c - d_tsv - tro/GPSConstant.c;
 ReceiverTime = struct2table(ReceiverTime)
