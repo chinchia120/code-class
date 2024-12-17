@@ -1,7 +1,7 @@
 classdef EphDataReader
     properties
-        FileName        % Name of the .dat file
-        Data            % Matrix loaded from the .dat file
+        FileName        % Name of the .dat file (optional)
+        Data            % Matrix loaded from file or provided directly
 
         rcvr_tow        % Column 1: Receiver time of week (s)
         svid            % Column 2: Satellite PRN number (1–32)
@@ -30,12 +30,16 @@ classdef EphDataReader
     end
     
     methods
-        % ===== Constructor to initialize the file name and load data
-        function obj = EphDataReader(fileName)
+        % ===== Constructor to accept file name or matrix
+        function obj = EphDataReader(input)
             if nargin > 0
-                obj.FileName = fileName;
-                obj = obj.loadData();
-                obj = obj.extractColumns();
+                if ischar(input) || isstring(input)
+                    obj.FileName = input;
+                    obj = obj.loadData();  % Load data from file
+                elseif isnumeric(input) && ismatrix(input)
+                    obj.Data = input;      % Assign matrix directly
+                end
+                obj = obj.extractColumns(); % Extract columns to properties
             end
         end
         
@@ -43,21 +47,12 @@ classdef EphDataReader
         function obj = loadData(obj)
             if isfile(obj.FileName)
                 obj.Data = readmatrix(obj.FileName);
-                obj.Data = sortrows(obj.Data, 2);
-                obj.Data = sortrows(obj.Data, 1);
-                
-                fprintf('%%%% ===== File %s loaded successfully ===== %%%%\n', obj.FileName);
-            else
-                error('%%%% ===== File %s does not exist  ===== %%%%\n', obj.FileName);
+                obj.Data = sortrows(obj.Data, 2); % Sort by svid (Column 2)
             end
         end
         
         % ===== Method to extract columns into class properties
         function obj = extractColumns(obj)
-            if isempty(obj.Data)
-                error('%%%% ===== No data loaded ===== %%%%\n\n');
-            end
-
             obj.rcvr_tow = obj.Data(:, 1);      % Column 1
             obj.svid = obj.Data(:, 2);          % Column 2
             obj.toc = obj.Data(:, 3);           % Column 3
@@ -82,8 +77,6 @@ classdef EphDataReader
             obj.crs = obj.Data(:, 22);          % Column 22
             obj.crc = obj.Data(:, 23);          % Column 23
             obj.iod = obj.Data(:, 24);          % Column 24
-
-            fprintf('%%%% ===== Columns extracted successfully ===== %%%%\n\n');
         end
     end
 end
