@@ -1,19 +1,28 @@
 %% ========== Setup ========== %%
-% ===== Setup
-clc; clear; close all;
-format longG;
-
 % ===== Reference IS-GPS-200M
 % https://www.gps.gov/technical/icwg/IS-GPS-200M.pdf
 
-% ===== Read Data
-rcvr = RcvrDataReader('DataFile_hw5/rcvr.dat');
-eph = EphDataReader('DataFile_hw5/eph.dat');
+% ===== Setup
+clc; clear; close all;
+
+% ===== Read rcvr Data
+[rcvrfname, rcvrpname] = uigetfile({'*.dat'}, 'Please select your rcvr.dat file', pwd);
+rcvr = RcvrDataReader([rcvrpname rcvrfname]);
+
+% ===== Read eph Data
+[ephfname, ephpname] = uigetfile({'*.dat'}, 'Please select your eph.dat file', pwd);
+eph = EphDataReader([ephpname ephfname]);
+
+% ===== Output Data
+OutputFolder = sprintf('OutputFigure');
+if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
+OutputMat = [OutputFolder '/' extractBefore(rcvrfname, '_rcvr') '_ReceiverPos.mat'];
 
 %% ========== Correct Data ========== %%
 currtime = rcvr.rcvr_tow(1);
 index_rcvr = 1;
 rcvr_pos_index = 1;
+
 for i = 1: length(rcvr.svid)
     if currtime == rcvr.rcvr_tow(i)
         % ===== Align rcvr Data
@@ -25,29 +34,40 @@ for i = 1: length(rcvr.svid)
         
         % ===== Align rcvr Data to eph Data
         index_eph = 1;
+
         for j = 1: length(rcvri.svid)
             index_eph_svid = 1;
+            flag = 0;
             for k = 1: length(eph.svid)
                 if rcvri.svid(j) == eph.svid(k)
                     eph_svid(index_eph_svid, :) = eph.Data(k, :);
                     index_eph_svid = index_eph_svid + 1;
+                    flag = 1;
+                elseif rcvri.svid(j) < eph.svid(k)
+                    break;
                 end
             end
-            
+
+            if flag == 0; continue; end
+
             [~, idx] = min(abs(eph_svid(:, 1)-rcvri.rcvr_tow(j)));
             eph_tmp(index_eph, :) = eph_svid(idx, :);
             index_eph = index_eph + 1;
         end
         
         % ===== Save eph Data
-        ehpi = EphDataReader(eph_tmp);
+        ephi = EphDataReader(eph_tmp);
+
+        % ===== Remove rcvr Empty PRN
+        [~, idx] = intersect(rcvri.svid, ephi.svid);
+        rcvr_tmp = rcvr_tmp(idx, :);
 
         % ===== Calculate 
         rcvr_pos(rcvr_pos_index, :) = ReceiverPos(rcvr_tmp, eph_tmp);
         rcvr_pos_index = rcvr_pos_index + 1;
         
         % ===== Save Receiver Position
-        save('ReceiverPos.mat', 'rcvr_pos');
+        save(OutputMat, 'rcvr_pos');
 
         % ===== Next Time Data
         currtime = rcvr.rcvr_tow(i);
@@ -58,4 +78,4 @@ for i = 1: length(rcvr.svid)
 end
 
 %% ========== Save Receiver Position ========== %%
-save('ReceiverPos.mat', 'rcvr_pos');
+save(OutputMat, 'rcvr_pos');

@@ -1,10 +1,13 @@
 function [out] = ReceiverPos(rcvr_dat, eph_dat)
-%% ===== Initial Value ========== %%
+%% ========== Initial Value ========== %%
 init_wgs84_xyz = [-2950000; 5070000; 2470000];
 
-%% ===== Read Data ========== %%
+%% ========== Read Data ========== %%
 rcvr = RcvrDataReader(rcvr_dat);
 eph = EphDataReader(eph_dat);
+
+%% ========== Check the Satellite Number ========== %%
+if length(rcvr.svid) < 4; return; end 
 
 %% ========== Clock Error Correction ========== %%
 % ===== GPS System Time
@@ -106,6 +109,7 @@ for i = 1: length(sv_enu_ro)
                    0,          0, 1];
     sv_enu_ro(i, :) = R * wgs84_xyz(i, :)';
 end
+
 %% ========== Satellite Position ========== %%
 % Satellite_xyz.PRN = rcvr.svid;
 % Satellite_xyz.X = sv_enu_ro(:, 1);
