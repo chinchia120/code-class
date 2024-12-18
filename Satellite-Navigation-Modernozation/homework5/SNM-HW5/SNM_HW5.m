@@ -4,6 +4,7 @@
 
 % ===== Setup
 clc; clear; close all;
+format longG;
 
 % ===== Read rcvr Data
 [rcvrfname, rcvrpname] = uigetfile({'*.dat'}, 'Please select your rcvr.dat file', pwd);
@@ -17,6 +18,7 @@ eph = EphDataReader([ephpname ephfname]);
 OutputFolder = sprintf('OutputFigure');
 if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 OutputMat = [OutputFolder '/' extractBefore(rcvrfname, '_rcvr') '_ReceiverPos.mat'];
+OutputAnalysis = [OutputFolder '/' extractBefore(rcvrfname, '_rcvr')];
 
 %% ========== Correct Data ========== %%
 currtime = rcvr.rcvr_tow(1);
@@ -34,7 +36,6 @@ for i = 1: length(rcvr.svid)
         
         % ===== Align rcvr Data to eph Data
         index_eph = 1;
-
         for j = 1: length(rcvri.svid)
             index_eph_svid = 1;
             flag = 0;
@@ -48,7 +49,10 @@ for i = 1: length(rcvr.svid)
                 end
             end
 
-            if flag == 0; continue; end
+            if flag == 0
+                clear eph_svid;
+                continue; 
+            end
 
             [~, idx] = min(abs(eph_svid(:, 1)-rcvri.rcvr_tow(j)));
             eph_tmp(index_eph, :) = eph_svid(idx, :);
@@ -62,12 +66,9 @@ for i = 1: length(rcvr.svid)
         [~, idx] = intersect(rcvri.svid, ephi.svid);
         rcvr_tmp = rcvr_tmp(idx, :);
 
-        % ===== Calculate 
+        % ===== Calculate
         rcvr_pos(rcvr_pos_index, :) = ReceiverPos(rcvr_tmp, eph_tmp);
         rcvr_pos_index = rcvr_pos_index + 1;
-        
-        % ===== Save Receiver Position
-        save(OutputMat, 'rcvr_pos');
 
         % ===== Next Time Data
         currtime = rcvr.rcvr_tow(i);
@@ -77,5 +78,14 @@ for i = 1: length(rcvr.svid)
     end
 end
 
-%% ========== Save Receiver Position ========== %%
+% ===== Save Receiver Position
 save(OutputMat, 'rcvr_pos');
+
+%% ========== Analysis ========== %%
+% ===== Read Receiver Data
+ReceiverMat = OutputMat;
+TruePos = [-2957019.96479584 5075869.39013485 2476273.62080572 22.9953147372084 120.22354780385 81.6995685297398];
+% TruePos = [];
+
+% ===== Analysis
+ReceiverAnalysis(ReceiverMat, TruePos, OutputAnalysis);

@@ -1,4 +1,4 @@
-function [out] = ReceiverPos(rcvr_dat, eph_dat)
+function out = ReceiverPos(rcvr_dat, eph_dat)
 %% ========== Initial Value ========== %%
 init_wgs84_xyz = [-2950000; 5070000; 2470000];
 
@@ -72,55 +72,18 @@ d_tr = GPSConstant.F .* eph.e .* eph.sqrta .* sin(Ek);
 d_tsv = eph.af0 + eph.af1.*tk + eph.af2.*tk.^2 + d_tr;
 
 %% ========== Tropospheric Delay Correction ========== %%
-% ===== Initial Position
-init_lla = wgsxyz2lla(init_wgs84_xyz);
-
-% ===== Calculate the Vector of Satellite to Receiver in ENU
-sv_enu = zeros(length(rcvr.svid), 3);
-for i = 1: length(sv_enu)
-    sv_enu(i, :) = wgsxyz2enu(wgs84_xyz(i)-init_wgs84_xyz, init_lla(1), init_lla(2), init_lla(3));
-end
-
-% ===== Elevation Angle
-% elevation_angle = atan2(sv_enu(:, 3), norm(sv_enu(:, 1:2)));
-
-% ===== Zenith Angle
-% z = pi - elevation_angle;
-
 % ===== Standard Temperature and Pressure
-P0 = 1013.25; % Partial Pressure of Dry Air (mbars)
-T0 = 273.15; % Temperature (K)
-e0 = 6; % Partial Pressure of Water Vapor (mbars)
-
-% ===== Tropospheric Delay - Saastamoinen Model
-% tro = 0.002277 ./ cos(z) .* (P0+((1255/T0)+0.05)*e0-tand(z).^2);
+P0 = 1013.25;   % Partial Pressure of Dry Air (mbars)
+T0 = 273.15;    % Temperature (K)
+e0 = 6;         % Partial Pressure of Water Vapor (mbars)
 
 % ===== Tropospheric Delay - Hopfield Model
 tro = 77.6*10^-6*P0*43/(5*T0) + 0.373*e0*12/(5*T0^2);
 
-%% ========== Earth Rotation Correction ========== %%
-transmit_time = (rcvr.pr+GPSConstant.c*d_tsv+tro) / GPSConstant.c;
-
-sv_enu_ro = zeros(length(rcvr.svid), 3);
-for i = 1: length(sv_enu_ro)
-    theta = GPSConstant.wedot * transmit_time(i);
-    R = [ cos(theta), sin(theta), 0;
-         -sin(theta), cos(theta), 0;
-                   0,          0, 1];
-    sv_enu_ro(i, :) = R * wgs84_xyz(i, :)';
-end
-
-%% ========== Satellite Position ========== %%
-% Satellite_xyz.PRN = rcvr.svid;
-% Satellite_xyz.X = sv_enu_ro(:, 1);
-% Satellite_xyz.Y = sv_enu_ro(:, 2);
-% Satellite_xyz.Z = sv_enu_ro(:, 3);
-% SatellitePos = struct2table(Satellite_xyz);
-
 %% ========== Calculate Receiver Position ========== %%
 syms x y z b
 
-F = sqrt((x-sv_enu_ro(:, 1)).^2 + (y-sv_enu_ro(:, 2)).^2 + (z-sv_enu_ro(:, 3)).^2) + b;
+F = sqrt((x-wgs84_xyz(:, 1)).^2 + (y-wgs84_xyz(:, 2)).^2 + (z-wgs84_xyz(:, 3)).^2) + b;
 
 A = jacobian(F, [x; y; z; b]);
 L = rcvr.pr + GPSConstant.c*d_tsv + tro;
@@ -140,7 +103,7 @@ while 1
 
     it = it + 1;
 
-    if max(abs(W)) < 10^-6; break; end
+    if max(abs(d)) < 10^-6; break; end
     if it > 50; break; end
 end
 
@@ -148,25 +111,21 @@ end
 % ===== Receiver Time
 EStimated_Range = double(subs(F, [x y z b], xyzb'));
 ReceiverTime = t + EStimated_Range/GPSConstant.c - d_tsv - tro/GPSConstant.c;
-ReceiverPos.Time = mean(ReceiverTime);
+ReceiverPos(1) = mean(ReceiverTime);        % Receiver Time
 
 % ===== Receiver Position - XYZ
-ReceiverPos.X = xyzb(1);
-ReceiverPos.Y = xyzb(2);
-ReceiverPos.Z = xyzb(3);
+ReceiverPos(2) = xyzb(1);                   % Receiver X Pos
+ReceiverPos(3) = xyzb(2);                   % Receiver Y Pos
+ReceiverPos(4) = xyzb(3);                   % Receiver Z Pos
 
 % ===== Receiver Position - LLA
-receiver_lla = wgsxyz2lla(xyzb(1: 3));
-ReceiverPos.Lat = receiver_lla(1);
-ReceiverPos.Lon = receiver_lla(2);
-ReceiverPos.Alt = receiver_lla(3);
-ReceiverPos.Clock_Bias = xyzb(4)/GPSConstant.c;
-
-% ===== Display Result
-ReceiverPos = struct2table(ReceiverPos)
+receiver_lla = wgsxyz2lla(xyzb(1: 3));      
+ReceiverPos(5) = receiver_lla(1);           % Receiver Lat Pos
+ReceiverPos(6) = receiver_lla(2);           % Receiver Lon Pos
+ReceiverPos(7) = receiver_lla(3);           % Receiver Alt Pos
+ReceiverPos(8) = xyzb(4)/GPSConstant.c;     % Receiver Clock Bias
 
 %% ========== Return Value ========== %%
 out = ReceiverPos;
 
 end
-
