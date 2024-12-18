@@ -84,8 +84,8 @@ save(OutputMat, 'rcvr_pos');
 %% ========== Analysis ========== %%
 % ===== Read Receiver Data
 ReceiverMat = OutputMat;
-TruePos = [-2957019.96479584 5075869.39013485 2476273.62080572 22.9953147372084 120.22354780385 81.6995685297398];
-% TruePos = [];
+% TruePos = [-2957049.61127712 5075853.28740182 2476274.22547061 22.9953162021276 120.223876713871 82.8651043531462];
+TruePos = [];
 
 % ===== Analysis
 ReceiverAnalysis(ReceiverMat, TruePos, OutputAnalysis);
