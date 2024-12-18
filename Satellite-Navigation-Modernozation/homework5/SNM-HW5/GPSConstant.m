@@ -6,4 +6,3 @@ classdef GPSConstant
         F = -4.442807633 * 10^-10;      % relativistic correction term constant
     end
 end
-
