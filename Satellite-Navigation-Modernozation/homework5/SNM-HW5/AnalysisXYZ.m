@@ -1,4 +1,4 @@
-function [] = AnalysisENU(expData, trueData, outName)
+function [] = AnalysisXYZ(expData, trueData, outName)
 %% ========== Setup ========== %%
 clf;
 
@@ -15,8 +15,8 @@ hold off;
 
 % ===== Figure Config
 title('Horizontal');
-xlabel('E (m)');
-ylabel('N (m)');
+xlabel('X (m)');
+ylabel('Y (m)');
 legend('Experiment Data', 'Ground Truth');
 grid on;
 
@@ -34,11 +34,11 @@ hold off;
 % ===== Figure Config
 title('Altitude');
 xlabel('Time (s)');
-ylabel('U (m)');
+ylabel('Z (m)');
 legend('Experiment Data', 'Ground Truth');
 grid on;
 
 %% ========== Save Figure ========== %%
 saveas(gcf, [outName '.png']);
-
 end
+

@@ -11,7 +11,7 @@ end
 AnalysisData(receiver.Data(:, 1:11), TruePos(1:3), [OutputFolder '_Analysis']);
 
 %% ========== Analysis XYZ ========== %%
-AnalysisENU([receiver.Data(:, 1:4)], TruePos(1:3), [OutputFolder '_XYZ']);
+AnalysisXYZ([receiver.Data(:, 1:4)], TruePos(1:3), [OutputFolder '_XYZ']);
 
 %% ========== Analysis ENU ========== %%
 AnalysisENU([receiver.Data(:, 1) receiver.Data(:, 5:7)], [0 0 0], [OutputFolder '_ENU']);
