@@ -4,7 +4,15 @@
 
 % ===== Setup
 clc; clear; close all;
-format longG;
+
+% ===== Initial Value
+% ===== HW5 DataFile
+% TruePos = [-2957049.61127712 5075853.28740182 2476274.22547061 22.9953162021276 120.223876713871 82.8651043531462];
+% ENU_Center = [-2957049.61127712 5075853.28740182 2476274.22547061];
+
+% ===== Experiment Data
+TruePos = [-2956634.65698538 5075890.90266528 2476672.11683424 22.9992456862769 120.22019483302 75.9676635700867];
+ENU_Center = [-2956634.65698538 5075890.90266528 2476672.11683424];
 
 % ===== Read rcvr Data
 [rcvrfname, rcvrpname] = uigetfile({'*.dat'}, 'Please select your rcvr.dat file', pwd);
@@ -67,7 +75,7 @@ for i = 1: length(rcvr.svid)
         rcvr_tmp = rcvr_tmp(idx, :);
 
         % ===== Calculate
-        rcvr_pos(rcvr_pos_index, :) = ReceiverPos(rcvr_tmp, eph_tmp);
+        rcvr_pos(rcvr_pos_index, :) = ReceiverPos(rcvr_tmp, eph_tmp, ENU_Center);
         rcvr_pos_index = rcvr_pos_index + 1;
 
         % ===== Next Time Data
@@ -84,8 +92,6 @@ save(OutputMat, 'rcvr_pos');
 %% ========== Analysis ========== %%
 % ===== Read Receiver Data
 ReceiverMat = OutputMat;
-% TruePos = [-2957049.61127712 5075853.28740182 2476274.22547061 22.9953162021276 120.223876713871 82.8651043531462];
-TruePos = [];
 
 % ===== Analysis
 ReceiverAnalysis(ReceiverMat, TruePos, OutputAnalysis);

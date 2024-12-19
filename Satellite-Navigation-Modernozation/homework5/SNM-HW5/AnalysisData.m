@@ -1,8 +1,17 @@
 function [] = AnalysisData(expData, trueData, outName)
 %% ========== Initial Value ========== %%
+Data = [];
 Error = zeros(length(expData), 5);
 
 %% ========== Data Analysis ========== %%
+Data(1, :) = mean(expData(:, 2:11));
+Data(2, :) = std(expData(:, 2:11));
+
+%% ========== Save Data Analysis Result ========== %%
+array2table(Data)
+save([outName '_Data.mat'], 'Data');
+
+%% ========== Error Analysis ========== %%
 for i = 1: length(expData)
     Error(i, 1) = expData(i, 2) - trueData(1);
     Error(i, 2) = expData(i, 3) - trueData(2);
@@ -30,7 +39,7 @@ ErrorRMSE(5) = sqrt(ErrorRMSE(4)^2 + ErrorRMSE(3)^2);
 % ===== Error Table
 ErrorTable = [ErrorAvg; ErrorMax; ErrorStd; ErrorRMSE];
 
-%% ========== Save Analysis Result ========== %%
+%% ========== Save Error Analysis Result ========== %%
 save([outName '_Error.mat'], 'Error');
 save([outName '_ErrorTable.mat'], 'ErrorTable');
 
@@ -60,7 +69,6 @@ grid on;
 sgtitle('Error Figure');
 
 % ===== Save Figure
-saveas(gcf, [outName '_ENU.fig']);
-saveas(gcf, [outName '_ENU.png']);
+saveas(gcf, [outName '_XYZ.png']);
 
 end
