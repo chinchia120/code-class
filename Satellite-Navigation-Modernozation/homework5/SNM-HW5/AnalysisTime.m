@@ -41,7 +41,6 @@ main.XLabel.Visible='on';
 xlabel(main,'Time (s)');
 
 %% ========== Save Figure ========== %%
-saveas(gcf, [outName '.fig']);
 saveas(gcf, [outName '.png']);
 
 end

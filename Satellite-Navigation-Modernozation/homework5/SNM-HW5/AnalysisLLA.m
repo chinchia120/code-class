@@ -37,7 +37,6 @@ legend('Experiment Data', 'Ground Truth');
 grid on;
 
 %% ========== Save Figure ========== %%
-saveas(gcf, [outName '.fig']);
 saveas(gcf, [outName '.png']);
 
 end

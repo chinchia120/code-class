@@ -1,4 +1,4 @@
-function out = ReceiverPos(rcvr_dat, eph_dat)
+function out = ReceiverPos(rcvr_dat, eph_dat, ENU_Center)
 %% ========== Initial Value ========== %%
 init_wgs84_xyz = [-2950000; 5070000; 2470000];
 
@@ -111,19 +111,19 @@ end
 % ===== Receiver Time
 EStimated_Range = double(subs(F, [x y z b], xyzb'));
 ReceiverTime = t + EStimated_Range/GPSConstant.c - d_tsv - tro/GPSConstant.c;
-ReceiverPos(1) = mean(ReceiverTime);        % Receiver Time
+ReceiverPos(1) = mean(ReceiverTime);
 
 % ===== Receiver Position - XYZ
-ReceiverPos(2) = xyzb(1);                   % Receiver X Pos
-ReceiverPos(3) = xyzb(2);                   % Receiver Y Pos
-ReceiverPos(4) = xyzb(3);                   % Receiver Z Pos
+ReceiverPos(2:4) = xyzb(1:3);
+
+% ===== Receiver Position - ENU
+ReceiverPos(5:7) = xyz2enu(xyzb(1:3), ENU_Center);
 
 % ===== Receiver Position - LLA
-receiver_lla = wgsxyz2lla(xyzb(1: 3));      
-ReceiverPos(5) = receiver_lla(1);           % Receiver Lat Pos
-ReceiverPos(6) = receiver_lla(2);           % Receiver Lon Pos
-ReceiverPos(7) = receiver_lla(3);           % Receiver Alt Pos
-ReceiverPos(8) = xyzb(4)/GPSConstant.c;     % Receiver Clock Bias
+ReceiverPos(8:10) = wgsxyz2lla(xyzb(1: 3));      
+
+% ===== Reciver Clock Bias
+ReceiverPos(11) = xyzb(4)/GPSConstant.c;
 
 %% ========== Return Value ========== %%
 out = ReceiverPos;
