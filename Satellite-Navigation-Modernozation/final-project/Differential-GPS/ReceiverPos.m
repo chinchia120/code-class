@@ -1,4 +1,5 @@
-function out = ReceiverPose(rcvr_dat, eph_dat, pr_cor)
+function out = ReceiverPos(rcvr_dat, eph_dat, pr_cor)
+% out = [RecTime RecPos_Lat RecePos_Lon RecPos_Alt RecClockBias SatNum EDOP NDOP VDOP TDOP]
 %% ========== Read Data ========== %%
 rcvr = RcvrDataReader(rcvr_dat);
 eph = EphDataReader(eph_dat);
@@ -7,7 +8,7 @@ eph = EphDataReader(eph_dat);
 if length(rcvr.svid) < 4; out = []; return; end 
 
 %% ========== Satellite Position ========== %%
-out = SatellitePose(rcvr_dat, eph_dat);
+out = SatellitePos(rcvr_dat, eph_dat);
 t = out(:, 1);
 d_tsv = out(:, 4);
 wgs84_xyz = out(:, 5:7);
@@ -48,17 +49,17 @@ for i = 1: length(rcvr.svid)
 end
 
 %% ========== Earth Rotation Correction ========== %%
-transmit_time = rcvr.pr / GPSConstant.c;
-
-sv_enu_ro = zeros(length(rcvr.svid), 3);
-for i = 1: length(sv_enu_ro)
-    theta = GPSConstant.wedot * transmit_time(i);
-    R = [ cos(theta), sin(theta), 0;
-         -sin(theta), cos(theta), 0;
-                   0,          0, 1];
-    sv_enu_ro(i, :) = R * wgs84_xyz(i, :)';
-end
-% sv_enu_ro = wgs84_xyz;
+% transmit_time = rcvr.pr / GPSConstant.c;
+% 
+% sv_enu_ro = zeros(length(rcvr.svid), 3);
+% for i = 1: length(sv_enu_ro)
+%     theta = GPSConstant.wedot * transmit_time(i);
+%     R = [ cos(theta), sin(theta), 0;
+%          -sin(theta), cos(theta), 0;
+%                    0,          0, 1];
+%     sv_enu_ro(i, :) = R * wgs84_xyz(i, :)';
+% end
+sv_enu_ro = wgs84_xyz;
 
 %% ========== Calculate Receiver Position ========== %%
 % ===== Initial Guess
@@ -97,16 +98,27 @@ end
 %% ========== Receiver Time and Position ========== %%
 % ===== Receiver Time
 EStimated_Range = double(subs(F, [x y z b], xyzb'));
-ReceiverTime = t + EStimated_Range/GPSConstant.c - d_tsv - tro/GPSConstant.c;
-ReceiverPos(1) = mean(ReceiverTime);
+ReceiverTime = mean(t + EStimated_Range/GPSConstant.c - d_tsv - tro/GPSConstant.c);
 
 % ===== Receiver Position - LLA
-ReceiverPos(2:4) = wgsxyz2lla(xyzb(1: 3));
+ReceiverPos = wgsxyz2lla(xyzb(1: 3))';
 
 % ===== Reciver Clock Bias
-ReceiverPos(5) = xyzb(4)/GPSConstant.c;
+ReceiverCB = xyzb(4)/GPSConstant.c;
+
+ReceiverInfo = [ReceiverTime ReceiverPos ReceiverCB];
+
+%% ========== DOP ========== %%
+H = double(subs(A, [x y z b], xyzb'));
+H_ECEF = inv(H'*H);
+EDOP = sqrt(H_ECEF(1, 1));
+NDOP = sqrt(H_ECEF(2, 2));
+VDOP = sqrt(H_ECEF(3, 3));
+TDOP = sqrt(H_ECEF(4, 4));
+
+DOP = [EDOP NDOP VDOP TDOP];
 
 %% ========== Return Value ========== %%
-out = ReceiverPos;
+out = [ReceiverInfo length(rcvr.svid) DOP];
 
 end

@@ -9,6 +9,12 @@ TimeAlignDataENU = zeros(length(expData), 4);
 % ===== ErrorList [Time ErrorE ErrorN ErrorU Error2D Error3D]
 ErrorList = zeros(length(expData), 6);
 
+%% ========== Check Reference Data ========== %%
+if size(refData, 1) == 1
+    refData = repmat(refData, length(expData), 1);
+    refData(:, 1) = expData(:, 1);
+end
+
 % ===== DOP
 DOP = expData(:, 7:10);
 

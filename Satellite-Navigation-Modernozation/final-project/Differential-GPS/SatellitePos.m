@@ -1,4 +1,4 @@
-function out = SatellitePose(rcvr_dat, eph_dat)
+function out = SatellitePos(rcvr_dat, eph_dat)
 %% ========== Read Data ========== %%
 rcvr = RcvrDataReader(rcvr_dat);
 eph = EphDataReader(eph_dat);
