@@ -1,4 +1,4 @@
-function xyz = lla2xyz(lla)
+function xyz = wgslla2xyz(lla)
 
 [k, ~] = size(lla);
 

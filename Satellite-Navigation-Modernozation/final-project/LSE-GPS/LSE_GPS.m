@@ -6,8 +6,7 @@
 clc; clear; close all;
 format longG;
 
-% ===== Initial
-% RefPose = [-2956560.21714865 5076017.17083689 2476601.64675965];
+% ===== Initial Value
 % RefPose = [-2956554.94163553 5076015.62439893 2476596.00901585];
 % RefPose = [-2956517.76926541 5076035.26024164 2476582.34767972];
 
@@ -22,7 +21,7 @@ eph = EphDataReader([ephpname ephfname]);
 % ===== Output Data
 OutputFolder = sprintf('OutputFigure');
 if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
-OutputPose = [OutputFolder '/' extractBefore(rcvrfname, '_rcvr') '_ReceiverPos.txt'];
+OutputPose = [OutputFolder '/' extractBefore(rcvrfname, '_rcvr') '_LSE_ReceiverPos.txt'];
 
 %% ========== Align Data ========== %%
 [uniqueValues, ~, groupIndices] = unique(rcvr.rcvr_tow);

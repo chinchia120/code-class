@@ -1,6 +1,6 @@
 %% ========== Setup ========== %%
 % ===== Setup
-clear; close all;
+clear; close all; close all;
 
 %% ========== Select Reference File ========== %%
 [reffname, refpname] = uigetfile({'*.txt'}, 'Please Select Reference File', pwd);
@@ -19,5 +19,4 @@ if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 OutputFile = [OutputFolder '/' extractBefore(expfname, '.txt')];
 
 %% ========== Error Analysis ========== %%
-close all;
 ReceiverAnalysis(expData, refData, OutputFile);

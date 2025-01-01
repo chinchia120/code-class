@@ -3,7 +3,6 @@ function out = ReceiverPos(rcvr_dat, eph_dat)
 
 %% ========== Initial Value ========== %%
 init_wgs84_xyz = [-2950000; 5070000; 2470000];
-ENUCenter = [-2956517.76926541 5076035.26024164 2476582.34767972];
 
 %% ========== Read Data ========== %%
 rcvr = RcvrDataReader(rcvr_dat);
@@ -136,8 +135,7 @@ ReceiverCB = xyzb(4)/GPSConstant.c;
 ReceiverInfo = [ReceiverTime ReceiverPos ReceiverCB];
 
 %% ========== DOP ========== %%
-ENU = xyz2enu(xyzb(1:3), ENUCenter);
-H = double(subs(A, [x y z b], [ENU' xyzb(4)]));
+H = double(subs(A, [x y z b], xyzb'));
 H_ECEF = inv(H'*H);
 EDOP = sqrt(H_ECEF(1, 1));
 NDOP = sqrt(H_ECEF(2, 2));
