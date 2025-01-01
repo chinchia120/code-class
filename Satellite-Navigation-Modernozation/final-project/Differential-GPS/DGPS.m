@@ -38,7 +38,7 @@ Expeph = EphDataReader([Expephpname Expephfname]);
 % ===== Output Data
 OutputFolder = sprintf('OutputFigure');
 if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
-OutputPose = [OutputFolder '/' extractBefore(Exprcvrfname, '_rcvr') '_ReceiverPos.txt'];
+OutputPose = [OutputFolder '/' extractBefore(Exprcvrfname, '_rcvr') '_DGPS_ReceiverPos.txt'];
 
 %% ========== Align Data ========== %%
 [RefrcvrGroup, RefephGroup] = AlignRcvrEph(Refrcvr.Data, Refeph.Data);
@@ -48,7 +48,7 @@ OutputPose = [OutputFolder '/' extractBefore(Exprcvrfname, '_rcvr') '_ReceiverPo
 PrCor = cell(size(RefrcvrGroup, 1), 1);
 for i = 1:size(RefrcvrGroup, 1)
     % ===== Satellite Position
-    satpos = SatellitePose(RefrcvrGroup{i}, RefephGroup{i});
+    satpos = SatellitePos(RefrcvrGroup{i}, RefephGroup{i});
     if ~isempty(satpos)
     % ===== Correct Pesudorange
         prTure = sqrt(sum((satpos(:, 5:7)-RefPose).^2, 2));
@@ -59,9 +59,9 @@ end
 PrCor = PrCor(~cellfun('isempty', PrCor));
 
 %% ========== Receiver Position ========== %%
-ExprcvrPos = zeros(size(ExprcvrGroup, 1), 5);
+ExprcvrPos = zeros(size(ExprcvrGroup, 1), 10);
 for i = 1: size(ExprcvrGroup, 1)
-    pos = ReceiverPose(ExprcvrGroup{i}, ExpephGroup{i}, PrCor)
+    pos = ReceiverPos(ExprcvrGroup{i}, ExpephGroup{i}, PrCor)
     if ~isempty(pos)
         ExprcvrPos(i, :) = pos;
     end

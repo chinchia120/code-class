@@ -14,6 +14,7 @@ if length(rcvr.svid) < 4; out = []; return; end
 %% ========== Clock Error Correction ========== %%
 % ===== GPS System Time
 t = rcvr.rcvr_tow - rcvr.pr / GPSConstant.c;
+if t < 463284; out = []; return; end
 
 % ===== Ephemeris Reference Epoch
 tk = t - eph.toe;
@@ -83,17 +84,18 @@ e0 = 6;         % Partial Pressure of Water Vapor (mbars)
 tro = 77.6*10^-6*P0*43/(5*T0) + 0.373*e0*12/(5*T0^2);
 
 %% ========== Earth Rotation Correction ========== %%
-transmit_time = (rcvr.pr+GPSConstant.c*d_tsv+tro) / GPSConstant.c;
+% transmit_time = (rcvr.pr+GPSConstant.c*d_tsv+tro) / GPSConstant.c;
+% 
+% sv_enu_ro = zeros(length(rcvr.svid), 3);
+% for i = 1: length(sv_enu_ro)
+%     theta = GPSConstant.wedot * transmit_time(i);
+%     R = [ cos(theta), sin(theta), 0;
+%          -sin(theta), cos(theta), 0;
+%                    0,          0, 1];
+%     sv_enu_ro(i, :) = R * wgs84_xyz(i, :)';
+% end
+sv_enu_ro = wgs84_xyz;
 
-sv_enu_ro = zeros(length(rcvr.svid), 3);
-for i = 1: length(sv_enu_ro)
-    theta = GPSConstant.wedot * transmit_time(i);
-    R = [ cos(theta), sin(theta), 0;
-         -sin(theta), cos(theta), 0;
-                   0,          0, 1];
-    sv_enu_ro(i, :) = R * wgs84_xyz(i, :)';
-end
-% sv_enu_ro = wgs84_xyz;
 %% ========== Calculate Receiver Position ========== %%
 syms x y z b
 
