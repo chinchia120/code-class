@@ -12,14 +12,10 @@ format longG;
 % RefPose = [-2956517.76926541 5076035.26024164 2476582.34767972];
 
 % ===== Read rcvr Data
-% rcvrpname = '/Users/chinchia120/Documents/code-class/Satellite-Navigation-Modernozation/final-project/Experiment-Data/20241113/E2-Tainan-Shalun/';
-% rcvrfname = 'NMUT22070002W_2024-11-13_06-05-10_rcvr.dat';
 [rcvrfname, rcvrpname] = uigetfile({'*_rcvr.dat'}, 'Please select your rcvr.dat file', pwd);
 rcvr = RcvrDataReader([rcvrpname rcvrfname]);
 
 % ===== Read eph Data
-% ephpname = '/Users/chinchia120/Documents/code-class/Satellite-Navigation-Modernozation/final-project/Experiment-Data/20241113/E2-Tainan-Shalun/';
-% ephfname = 'NMUT22070002W_2024-11-13_06-05-10_eph.dat';
 [ephfname, ephpname] = uigetfile({'*_eph.dat'}, 'Please select your eph.dat file', rcvrpname);
 eph = EphDataReader([ephpname ephfname]);
 
@@ -66,7 +62,7 @@ for i = 1:length(uniqueValues)
 end
 
 %% ========== Compute Receiver Position ========== %%
-rcvrPos = zeros(size(rcvrGroup, 1), 5);
+rcvrPos = zeros(size(rcvrGroup, 1), 10);
 for i = 1: size(rcvrGroup, 1)
     pos = ReceiverPos(rcvrGroup{i}, ephGroup{i})
     if ~isempty(pos)
