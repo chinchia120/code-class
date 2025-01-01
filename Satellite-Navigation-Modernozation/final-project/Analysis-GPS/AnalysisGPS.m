@@ -19,4 +19,5 @@ if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 OutputFile = [OutputFolder '/' extractBefore(expfname, '.txt')];
 
 %% ========== Error Analysis ========== %%
+close all;
 ReceiverAnalysis(expData, refData, OutputFile);

@@ -65,3 +65,4 @@ function w = wgsxyz2lla(xyz)
         
         w = [wlat; wlon; walt];
 	end
+end

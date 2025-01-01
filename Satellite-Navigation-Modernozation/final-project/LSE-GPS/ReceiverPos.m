@@ -1,6 +1,9 @@
 function out = ReceiverPos(rcvr_dat, eph_dat)
+% out = [RecTime RecPos_Lat RecePos_Lon RecPos_Alt RecClockBias SatNum EDOP NDOP VDOP TDOP]
+
 %% ========== Initial Value ========== %%
 init_wgs84_xyz = [-2950000; 5070000; 2470000];
+ENUCenter = [-2956517.76926541 5076035.26024164 2476582.34767972];
 
 %% ========== Read Data ========== %%
 rcvr = RcvrDataReader(rcvr_dat);
@@ -122,16 +125,28 @@ end
 %% ========== Receiver Time and Position ========== %%
 % ===== Receiver Time
 EStimated_Range = double(subs(F, [x y z b], xyzb'));
-ReceiverTime = t + EStimated_Range/GPSConstant.c - d_tsv - tro/GPSConstant.c;
-ReceiverPos(1) = mean(ReceiverTime);
+ReceiverTime = mean(t + EStimated_Range/GPSConstant.c - d_tsv - tro/GPSConstant.c);
 
 % ===== Receiver Position - LLA
-ReceiverPos(2:4) = wgsxyz2lla(xyzb(1: 3));
+ReceiverPos = wgsxyz2lla(xyzb(1: 3))';
 
 % ===== Reciver Clock Bias
-ReceiverPos(5) = xyzb(4)/GPSConstant.c;
+ReceiverCB = xyzb(4)/GPSConstant.c;
+
+ReceiverInfo = [ReceiverTime ReceiverPos ReceiverCB];
+
+%% ========== DOP ========== %%
+ENU = xyz2enu(xyzb(1:3), ENUCenter);
+H = double(subs(A, [x y z b], [ENU' xyzb(4)]));
+H_ECEF = inv(H'*H);
+EDOP = sqrt(H_ECEF(1, 1));
+NDOP = sqrt(H_ECEF(2, 2));
+VDOP = sqrt(H_ECEF(3, 3));
+TDOP = sqrt(H_ECEF(4, 4));
+
+DOP = [EDOP NDOP VDOP TDOP];
 
 %% ========== Return Value ========== %%
-out = ReceiverPos;
+out = [ReceiverInfo length(rcvr.svid) DOP];
 
 end
