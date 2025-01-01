@@ -220,7 +220,8 @@ geoplot(refDataAlignLLA(:, 2), refDataAlignLLA(:, 3), Marker='.', Color='r');
 hold on;
 
 % ===== Experiment Data
-geoplot(expData(:, 2), expData(:, 3), Marker='.', Color='b');
+expDataAlignLLA = expData(expData(:, 1) >= refData(1, 1) & expData(:, 1) <= refData(end, 1), :);
+geoplot(expDataAlignLLA(:, 2), expDataAlignLLA(:, 3), Marker='.', Color='b');
 hold off;
 
 % ===== Geoplot Config
