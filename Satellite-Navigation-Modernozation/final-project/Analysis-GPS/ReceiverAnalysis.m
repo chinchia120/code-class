@@ -18,10 +18,10 @@ expDataXYZ(:, 1) = expData(:, 1);
 refDataXYZ(:, 1) = refData(:, 1);
 
 % ===== Experiment Data to ECEF
-expDataXYZ(:, 2:4) = llh2xyz(expData(:, 2:4));
+expDataXYZ(:, 2:4) = wgslla2xyz(expData(:, 2:4));
 
 % ===== Reference Data to ECEF
-refDataXYZ(:, 2:4) = llh2xyz(refData(:, 2:4));
+refDataXYZ(:, 2:4) = wgslla2xyz(refData(:, 2:4));
 
 %% ========== Time Alignment ========== %%
 for i = 1: length(expDataXYZ)
@@ -148,6 +148,25 @@ grid on;
 
 % ===== Save Figure
 saveas(gcf, [OutName '_ClockBias.png']);
+
+%% ========== Satellite Number ========== %%
+% ===== Setup
+figure('Name', 'Satellite Numbe in View');
+
+% ===== Satellite Number
+plot(expData(:, 1), expData(:, 6), 'b', 'LineWidth', 1.5);
+
+% ===== Config
+xlim([expData(1, 1) expData(end, 1)]);
+ylim([min(expData(:, 6))-1 max(expData(:, 6)+1)]);
+title('Satellite Number in View');
+xlabel('GPS Time (s)');
+ylabel('Satellite Number');
+legend(sprintf('avg = %.4f', mean(expData(:, 6))));
+grid on;
+
+% ===== Save Figure
+saveas(gcf, [OutName '_SatelliteNumber.png']);
 
 %% ========== ENU Position ========== %%
 % ===== Setup

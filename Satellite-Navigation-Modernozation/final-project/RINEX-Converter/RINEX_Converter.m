@@ -2,17 +2,14 @@
 clc; clear; close all;
 
 %% ========== Select RINEX Observation File ========== %%
-obspname = '/Users/chinchia120/Documents/code-class/Satellite-Navigation-Modernozation/final-project/RINEX-Converter/RINEXv3_02/';
-obsfname = 'NMUT22070002W_2024-11-13_06-05-10.24O';
-[obsfname, obspname] = uigetfile({'*.*'}, 'Please Select Your RINEX Observation File', pwd);
+
+[obsfname, obspname] = uigetfile({'*.*'}, 'Please Select RINEX Observation File', pwd);
 obsFilePath = [obspname obsfname];
 obsData = rinexread(obsFilePath);
 [obspath, obsfile, obsext] = fileparts(obsFilePath);
 
 %% ========== Select RINEX Navigation File ========== %%
-navpname = '/Users/chinchia120/Documents/code-class/Satellite-Navigation-Modernozation/final-project/RINEX-Converter/RINEXv3_02/';
-navfname = 'NMUT22070002W_2024-11-13_06-05-10.24N';
-[navfname, navpname] = uigetfile({'*.*'}, 'Please Select Your RINEX Navigation File', obspname);
+[navfname, navpname] = uigetfile({'*.*'}, 'Please Select RINEX Navigation File', obspname);
 navFilePath = [navpname navfname];
 navData = rinexread(navFilePath);
 [navpath, navfile, navext] = fileparts(navFilePath);
@@ -29,8 +26,11 @@ rcvr.rcvr_tow = obstime(:, 2);
 rcvr.svid = obsDataGPS.SatelliteID;
 rcvr.pr = obsDataGPS.C1C;
 rcvr.carrier_phase = obsDataGPS.L1C;
-% rcvr.doppler_frequency = obsDataGPS.D1C;
-rcvr.doppler_frequency = obsDataGPS.C2W;
+if isfield(obsDataGPS, 'D2W')
+    rcvr.doppler_frequency = obsDataGPS.D2W;
+else
+    rcvr.doppler_frequency = zeros(size(rcvr.svid));
+end
 rcvr.snr_dbhz = obsDataGPS.S1C;
 
 rcvrData = [rcvr.rcvr_tow, rcvr.svid, rcvr.pr, rcvr.carrier_phase, rcvr.doppler_frequency, rcvr.snr_dbhz];
