@@ -37,7 +37,7 @@ for i = 1: length(rcvr.svid)
     flag = 0;
     for j = 1: length(PrCor)
         if rcvr.svid(i) == PrCor(j, 2)
-            rcvr.pr(i) = rcvr.pr(i) + PrCor(j, 3) - GPSConstant.c*d_tsv(i);
+            rcvr.pr(i) = rcvr.pr(i) - PrCor(j, 3);
             flag = 1;
             break;
         end

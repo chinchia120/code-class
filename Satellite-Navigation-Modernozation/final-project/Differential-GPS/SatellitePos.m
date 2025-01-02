@@ -1,4 +1,5 @@
 function out = SatellitePos(rcvr_dat, eph_dat)
+% out = [GPSTime PRN RecPr d_tsv SatPos_X SatPos_Y SatPos_Z];
 %% ========== Read Data ========== %%
 rcvr = RcvrDataReader(rcvr_dat);
 eph = EphDataReader(eph_dat);
@@ -28,7 +29,6 @@ d_Ek = 100;
 while min(abs(d_Ek)) > 10^-12
     tmp = Ek;
     Ek = Ek + ((Mk-Ek+eph.e.*sin(Ek)) ./ (1-eph.e.*cos(Ek)));
-    % Ek = Mk + eph.e.*sin(Ek);
 
     d_Ek = Ek-tmp;
 end

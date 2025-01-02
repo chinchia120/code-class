@@ -1,6 +1,6 @@
 %% ========== Setup ========== %%
 % ===== Setup
-clear; close all; close all;
+clear; close all;
 
 %% ========== Select Reference File ========== %%
 [reffname, refpname] = uigetfile({'*.txt'}, 'Please Select Reference File', pwd);
