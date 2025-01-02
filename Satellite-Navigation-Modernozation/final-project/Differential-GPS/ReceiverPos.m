@@ -49,17 +49,17 @@ for i = 1: length(rcvr.svid)
 end
 
 %% ========== Earth Rotation Correction ========== %%
-transmit_time = rcvr.pr / GPSConstant.c;
-
-sv_enu_ro = zeros(length(rcvr.svid), 3);
-for i = 1: length(sv_enu_ro)
-    theta = GPSConstant.wedot * transmit_time(i);
-    R = [ cos(theta), sin(theta), 0;
-         -sin(theta), cos(theta), 0;
-                   0,          0, 1];
-    sv_enu_ro(i, :) = R * wgs84_xyz(i, :)';
-end
-% sv_enu_ro = wgs84_xyz;
+% transmit_time = rcvr.pr / GPSConstant.c;
+% 
+% sv_enu_ro = zeros(length(rcvr.svid), 3);
+% for i = 1: length(sv_enu_ro)
+%     theta = GPSConstant.wedot * transmit_time(i);
+%     R = [ cos(theta), sin(theta), 0;
+%          -sin(theta), cos(theta), 0;
+%                    0,          0, 1];
+%     sv_enu_ro(i, :) = R * wgs84_xyz(i, :)';
+% end
+sv_enu_ro = wgs84_xyz;
 
 %% ========== Calculate Receiver Position ========== %%
 % ===== Initial Guess
