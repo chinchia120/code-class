@@ -30,7 +30,7 @@ OutputPose = [OutputFolder '/' extractBefore(rcvrfname, '_rcvr') '_LSE_ReceiverP
 %% ========== Compute Receiver Position ========== %%
 rcvrPos = zeros(size(rcvrGroup, 1), 10);
 for i = 1: size(rcvrGroup, 1)
-    pos = ReceiverPos(rcvrGroup{i}, ephGroup{i});
+    pos = ReceiverPos(rcvrGroup{i}, ephGroup{i})
     if ~isempty(pos)
         rcvrPos(i, :) = pos;
     end
@@ -47,7 +47,6 @@ writecell(formattedMatrix, OutputPose, 'Delimiter', '\t');
 %% ========== Receiver Position ========== %%
 % ===== Remove Error
 rcvrPosFilter = rcvrPos;
-% rcvrPosFilter(rcvrPosFilter(:, 2) < 22.9983 | rcvrPosFilter(:, 2) > 22.9987 | rcvrPosFilter(:, 3) < 120.21 | rcvrPosFilter(:, 3) > 120.22, :) = [];
 
 % ===== LLA
 rcvrPosLLA = mean(rcvrPosFilter(:, 2:4));
