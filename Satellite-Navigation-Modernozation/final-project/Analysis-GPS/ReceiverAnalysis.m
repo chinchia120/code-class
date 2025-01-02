@@ -168,7 +168,7 @@ ylim([min(expData(:, 6))-1 max(expData(:, 6)+1)]);
 title('Satellite Number in View');
 xlabel('GPS Time (s)');
 ylabel('Satellite Number');
-legend(sprintf('avg = %.4f', mean(expData(:, 6))));
+legend(sprintf('Avg = %.4f', mean(expData(:, 6))));
 grid on;
 
 % ===== Save Figure

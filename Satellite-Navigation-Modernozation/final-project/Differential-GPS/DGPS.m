@@ -4,28 +4,19 @@
 
 % ===== Setup
 clc; clear; close all;
-format longG;
-
-% ===== Initial
-% RefPose = [-2956554.94163553 5076015.62439893 2476596.00901585];
-RefPose = [-2956517.76926541 5076035.26024164 2476582.34767972]; % Information Building
-% RefPose = [-2956619.16455631 5075902.22105795  2476625.54446272]; % CKSV
-
-% ===== Read Reference rcvr Data
-[Refrcvrfname, Refrcvrpname] = uigetfile({'*_rcvr.dat'}, 'Please Select Reference rcvr.dat File', pwd);
-Refrcvr = RcvrDataReader([Refrcvrpname Refrcvrfname]);
-
-% ===== Read Reference eph Data
-[Refephfname, Refephpname] = uigetfile({'*_eph.dat'}, 'Please Select Reference eph.dat File', Refrcvrpname);
-Refeph = EphDataReader([Refephpname Refephfname]);
 
 % ===== Read Experiment rcvr Data
-[Exprcvrfname, Exprcvrpname] = uigetfile({'*_rcvr.dat'}, 'Please Select Experiment rcvr.dat File', Refrcvrpname);
+[Exprcvrfname, Exprcvrpname] = uigetfile({'*_rcvr.dat'}, 'Please Select Experiment rcvr.dat File', pwd);
 Exprcvr = RcvrDataReader([Exprcvrpname Exprcvrfname]);
 
 % ===== Read Experiment eph Data
 [Expephfname, Expephpname] = uigetfile({'*_eph.dat'}, 'Please Select Experiment eph.dat File', Exprcvrpname);
 Expeph = EphDataReader([Expephpname Expephfname]);
+
+% ===== Read Pesudorange Correction Data
+[PrCorfname, PrCorpname] = uigetfile({'*_PrCor.mat'}, 'Please Select Pesudorange Correction File', Exprcvrpname);
+Data = load([PrCorpname PrCorfname]);
+PrCor = Data.PrCor;
 
 % ===== Output Data
 OutputFolder = sprintf('OutputFigure');
@@ -33,23 +24,7 @@ if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 OutputPose = [OutputFolder '/' extractBefore(Exprcvrfname, '_rcvr') '_DGPS_ReceiverPos.txt'];
 
 %% ========== Align Data ========== %%
-[RefrcvrGroup, RefephGroup] = AlignRcvrEph(Refrcvr.Data, Refeph.Data);
 [ExprcvrGroup, ExpephGroup] = AlignRcvrEph(Exprcvr.Data, Expeph.Data);
-
-%% ========== Compute Pseudorange Coorection ========== %%
-PrCor = cell(size(RefrcvrGroup, 1), 1);
-for i = 1:size(RefrcvrGroup, 1)
-    % ===== Satellite Position
-    satpos = SatellitePos(RefrcvrGroup{i}, RefephGroup{i});
-
-    if ~isempty(satpos)
-    % ===== Correct Pesudorange
-        prTure = sqrt(sum((satpos(:, 5:7)-RefPose).^2, 2));
-        prCor = satpos(:, 3) - prTure;
-        PrCor{i} = [satpos(:, 1: 2) prCor];
-    end
-end 
-PrCor = PrCor(~cellfun('isempty', PrCor));
 
 %% ========== Receiver Position ========== %%
 ExprcvrPos = zeros(size(ExprcvrGroup, 1), 10);

@@ -10,8 +10,8 @@ if length(rcvr.svid) < 4; out = []; return; end
 %% ========== Satellite Position ========== %%
 out = SatellitePos(rcvr_dat, eph_dat);
 t = out(:, 1);
-d_tsv = out(:, 4);
-wgs84_xyz = out(:, 5:7);
+d_tsv = out(:, 2);
+wgs84_xyz = out(:, 3:5);
 
 %% ========== Correction Time ========== %%
 PrCor = [];
@@ -49,17 +49,17 @@ for i = 1: length(rcvr.svid)
 end
 
 %% ========== Earth Rotation Correction ========== %%
-% transmit_time = rcvr.pr / GPSConstant.c;
-% 
-% sv_enu_ro = zeros(length(rcvr.svid), 3);
-% for i = 1: length(sv_enu_ro)
-%     theta = GPSConstant.wedot * transmit_time(i);
-%     R = [ cos(theta), sin(theta), 0;
-%          -sin(theta), cos(theta), 0;
-%                    0,          0, 1];
-%     sv_enu_ro(i, :) = R * wgs84_xyz(i, :)';
-% end
-sv_enu_ro = wgs84_xyz;
+transmit_time = rcvr.pr / GPSConstant.c;
+
+sv_enu_ro = zeros(length(rcvr.svid), 3);
+for i = 1: length(sv_enu_ro)
+    theta = GPSConstant.wedot * transmit_time(i);
+    R = [ cos(theta), sin(theta), 0;
+         -sin(theta), cos(theta), 0;
+                   0,          0, 1];
+    sv_enu_ro(i, :) = R * wgs84_xyz(i, :)';
+end
+% sv_enu_ro = wgs84_xyz;
 
 %% ========== Calculate Receiver Position ========== %%
 % ===== Initial Guess
