@@ -7,15 +7,16 @@ clc; clear; close all;
 format longG;
 
 % ===== Initial Value
-% RefPose = [-2956554.94163553 5076015.62439893 2476596.00901585];
-% RefPose = [-2956517.76926541 5076035.26024164 2476582.34767972];
+% RefPose = [-2956517.76926541 5076035.26024164 2476582.34767972]; % Information Building
+% RefPose = [-2956619.16455631 5075902.22105795 2476625.54446272]; % CKSV
+% RefPose = [-2957049.61127712 5075853.28740182 2476274.22547061]; % AA
 
 % ===== Read rcvr Data
-[rcvrfname, rcvrpname] = uigetfile({'*_rcvr.dat'}, 'Please select your rcvr.dat file', pwd);
+[rcvrfname, rcvrpname] = uigetfile({'*rcvr.dat'}, 'Please select your rcvr.dat file', pwd);
 rcvr = RcvrDataReader([rcvrpname rcvrfname]);
 
 % ===== Read eph Data
-[ephfname, ephpname] = uigetfile({'*_eph.dat'}, 'Please select your eph.dat file', rcvrpname);
+[ephfname, ephpname] = uigetfile({'*eph.dat'}, 'Please select your eph.dat file', rcvrpname);
 eph = EphDataReader([ephpname ephfname]);
 
 % ===== Output Data
@@ -24,46 +25,12 @@ if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 OutputPose = [OutputFolder '/' extractBefore(rcvrfname, '_rcvr') '_LSE_ReceiverPos.txt'];
 
 %% ========== Align Data ========== %%
-[uniqueValues, ~, groupIndices] = unique(rcvr.rcvr_tow);
-rcvrGroup = cell(length(uniqueValues), 1);
-ephGroup = cell(length(uniqueValues), 1);
-
-for i = 1:length(uniqueValues)
-    % ===== Receiver Group
-    A = rcvr.Data(groupIndices == i, :);
-    
-    % ===== Eph Data
-    B = eph.Data;
-
-    Align_A = [];
-    Align_B = [];
-    
-    for j = 1: size(A, 1)
-        Time_A = A(j, 1);
-        PRN_A = A(j, 2);
-        
-        PRN_B = B(B(:, 2) == PRN_A, :);
-
-        if ~isempty(PRN_B)
-            timeDiff = abs(PRN_B(:, 1) - Time_A);
-
-            [~, minIdx] = min(timeDiff);
-            closestRow = PRN_B(minIdx, :);
-
-            Align_A = [Align_A; A(j, :)];
-            Align_B = [Align_B; closestRow];
-        end
-    end
-    
-    % ===== Save Align Data
-    rcvrGroup{i} = Align_A;
-    ephGroup{i} = Align_B;
-end
+[rcvrGroup, ephGroup] = AlignRcvrEph(rcvr.Data, eph.Data);
 
 %% ========== Compute Receiver Position ========== %%
 rcvrPos = zeros(size(rcvrGroup, 1), 10);
 for i = 1: size(rcvrGroup, 1)
-    pos = ReceiverPos(rcvrGroup{i}, ephGroup{i})
+    pos = ReceiverPos(rcvrGroup{i}, ephGroup{i});
     if ~isempty(pos)
         rcvrPos(i, :) = pos;
     end
@@ -80,7 +47,7 @@ writecell(formattedMatrix, OutputPose, 'Delimiter', '\t');
 %% ========== Receiver Position ========== %%
 % ===== Remove Error
 rcvrPosFilter = rcvrPos;
-rcvrPosFilter(rcvrPosFilter(:, 2) < 22.9983 | rcvrPosFilter(:, 2) > 22.9987 | rcvrPosFilter(:, 3) < 120.21 | rcvrPosFilter(:, 3) > 120.22, :) = [];
+% rcvrPosFilter(rcvrPosFilter(:, 2) < 22.9983 | rcvrPosFilter(:, 2) > 22.9987 | rcvrPosFilter(:, 3) < 120.21 | rcvrPosFilter(:, 3) > 120.22, :) = [];
 
 % ===== LLA
 rcvrPosLLA = mean(rcvrPosFilter(:, 2:4));

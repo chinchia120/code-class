@@ -14,7 +14,7 @@ if length(rcvr.svid) < 4; out = []; return; end
 %% ========== Clock Error Correction ========== %%
 % ===== GPS System Time
 t = rcvr.rcvr_tow - rcvr.pr / GPSConstant.c;
-if t < 463284; out = []; return; end
+% if t > 463284; out = []; return; end
 
 % ===== Ephemeris Reference Epoch
 tk = t - eph.toe;
@@ -34,7 +34,6 @@ d_Ek = 100;
 while min(abs(d_Ek)) > 10^-12
     tmp = Ek;
     Ek = Ek + ((Mk-Ek+eph.e.*sin(Ek)) ./ (1-eph.e.*cos(Ek)));
-    % Ek = Mk + eph.e.*sin(Ek);
 
     d_Ek = Ek-tmp;
 end
