@@ -43,15 +43,3 @@ formattedMatrix = sprintfc('%0.10f', rcvrPos);
  
 % ===== Save Text File
 writecell(formattedMatrix, OutputPose, 'Delimiter', '\t');
-
-%% ========== Receiver Position ========== %%
-% ===== Remove Error
-rcvrPosFilter = rcvrPos;
-
-% ===== LLA
-rcvrPosLLA = mean(rcvrPosFilter(:, 2:4));
-array2table(rcvrPosLLA, 'VariableNames', {'Lat', 'Lon', 'Alt'})
-
-% ===== XYZ
-rcvrPosXYZ = wgslla2xyz(rcvrPosLLA);
-array2table(rcvrPosXYZ, 'VariableNames', {'X', 'Y', 'Z'})
