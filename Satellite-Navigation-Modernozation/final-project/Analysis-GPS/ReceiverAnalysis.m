@@ -220,14 +220,14 @@ subplot(2, 1, 1);
 pos1 = get(gca, 'Position');
 set(gca, 'Position', [pos1(1) pos1(2)*0.8 pos1(3) pos1(4)*1.4]);
 
-% ===== Reference Data
-refDataAlignLLA = refData(refData(:, 1) >= expData(1, 1) & refData(:, 1) <= expData(end, 1), :);
-geoplot(refDataAlignLLA(:, 2), refDataAlignLLA(:, 3), Marker='.', Color='r');
-hold on;
-
 % ===== Experiment Data
 expDataAlignLLA = expData(expData(:, 1) >= refData(1, 1) & expData(:, 1) <= refData(end, 1), :);
 geoplot(expDataAlignLLA(:, 2), expDataAlignLLA(:, 3), Marker='.', Color='b');
+hold on;
+
+% ===== Reference Data
+refDataAlignLLA = refData(refData(:, 1) >= expData(1, 1) & refData(:, 1) <= expData(end, 1), :);
+geoplot(refDataAlignLLA(:, 2), refDataAlignLLA(:, 3), Marker='.', Color='r');
 hold off;
 
 % ===== Geoplot Config
