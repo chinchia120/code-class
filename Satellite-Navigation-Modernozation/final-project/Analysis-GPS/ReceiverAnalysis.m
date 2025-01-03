@@ -139,7 +139,7 @@ figure('Name', 'Receiver Clock Bias');
 plot(expData(:, 1), expData(:, 5), 'b', 'LineWidth', 1.5);
 hold on;
 
-% ===== Slope of Clock Bias and TIme
+% ===== Slope of Clock Bias and Time
 coeffs = polyfit(expData(:, 1), expData(:, 5), 1);
 regLine = polyval(coeffs, expData(:, 1));
 plot(expData(:, 1), regLine, 'r--', 'LineWidth', 1.5);
