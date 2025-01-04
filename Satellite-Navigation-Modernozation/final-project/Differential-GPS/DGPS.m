@@ -21,7 +21,9 @@ PrCor = Data.PrCor;
 % ===== Output Data
 OutputFolder = sprintf('OutputFigure');
 if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
-OutputPose = [OutputFolder '/' extractBefore(Exprcvrfname, '_rcvr') '_DGPS_ReceiverPos.txt'];
+
+if ispc; OutputPose = [OutputFolder '\' extractBefore(Exprcvrfname, '_rcvr') '_DGPS_ReceiverPos.txt'];
+elseif isunix; OutputPose = [OutputFolder '/' extractBefore(Exprcvrfname, '_rcvr') '_DGPS_ReceiverPos.txt']; end
 
 %% ========== Align Data ========== %%
 [ExprcvrGroup, ExpephGroup] = AlignRcvrEph(Exprcvr.Data, Expeph.Data);

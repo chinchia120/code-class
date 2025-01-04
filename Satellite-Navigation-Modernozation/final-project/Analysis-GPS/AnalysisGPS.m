@@ -15,8 +15,8 @@ expData = readmatrix([exppname, expfname]);
 OutputFolder = sprintf('OutputFigure');
 if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 
-% ===== Output File
-OutputFile = [OutputFolder '/' extractBefore(expfname, '.txt')];
+if ispc; OutputFile = [OutputFolder '\' extractBefore(expfname, '.txt')];
+elseif isunix; OutputFile = [OutputFolder '/' extractBefore(expfname, '.txt')]; end
 
 %% ========== Error Analysis ========== %%
 ReceiverAnalysis(expData, refData, OutputFile);
