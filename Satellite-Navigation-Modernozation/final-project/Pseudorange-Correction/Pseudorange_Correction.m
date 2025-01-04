@@ -22,7 +22,9 @@ Refeph = EphDataReader([Refephpname Refephfname]);
 % ===== Output Data
 OutputFolder = sprintf('OutputFigure');
 if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
-OutputPrCor = [OutputFolder '/' extractBefore(Refrcvrfname, '_rcvr') '_PrCor.mat'];
+
+if ispc; OutputPrCor = [OutputFolder '\' extractBefore(Refrcvrfname, '_rcvr') '_PrCor.mat'];
+elseif isunix; OutputPrCor = [OutputFolder '/' extractBefore(Refrcvrfname, '_rcvr') '_PrCor.mat']; end
 
 %% ========== Align Data ========== %%
 [RefrcvrGroup, RefephGroup] = AlignRcvrEph(Refrcvr.Data, Refeph.Data);

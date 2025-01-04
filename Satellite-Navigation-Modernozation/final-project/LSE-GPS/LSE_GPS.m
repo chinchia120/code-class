@@ -22,7 +22,10 @@ eph = EphDataReader([ephpname ephfname]);
 % ===== Output Data
 OutputFolder = sprintf('OutputFigure');
 if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
-OutputPose = [OutputFolder '/' extractBefore(rcvrfname, '_rcvr') '_LSE_ReceiverPos.txt'];
+
+if ispc; OutputPose = [OutputFolder '\' extractBefore(rcvrfname, '_rcvr') '_LSE_ReceiverPos.txt'];
+elseif isunix; OutputPose = [OutputFolder '/' extractBefore(rcvrfname, '_rcvr') '_LSE_ReceiverPos.txt']; end
+
 
 %% ========== Align Data ========== %%
 [rcvrGroup, ephGroup] = AlignRcvrEph(rcvr.Data, eph.Data);
