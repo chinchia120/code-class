@@ -7,9 +7,8 @@ clc; close all;
 format longG;
 
 % ===== Initial
-% RefPose = [-2956554.94163553 5076015.62439893 2476596.00901585];
-% RefPose = [-2956517.76926541 5076035.26024164 2476582.34767972]; % Information Building
-RefPose = [-2956619.16455631 5075902.22105795  2476625.54446272]; % CKSV
+RefPose = [-2956517.76926541 5076035.26024164 2476582.34767972]; % Information Building
+% RefPose = [-2956619.16455631 5075902.22105795  2476625.54446272]; % CKSV
 
 % ===== Read Reference rcvr Data
 [Refrcvrfname, Refrcvrpname] = uigetfile({'*_rcvr.dat'}, 'Please Select Reference rcvr.dat File', pwd);
