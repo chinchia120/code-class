@@ -62,3 +62,4 @@ Qw_6 = 0.00001^2;
 
 estimated_X = kalman_filter(A, r, R, X0_6, Q0_6, Qw_6, Phi);
 scatter_plot(1: length(estimated_X), estimated_X(:, 1), [OutputFolder '/exercise06_Q1_Case6']);
+
