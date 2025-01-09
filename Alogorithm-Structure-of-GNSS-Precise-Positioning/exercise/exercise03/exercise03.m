@@ -4,7 +4,7 @@ clc; clear; close all;
 
 % ===== Create File
 file = fopen('exercise03_output.txt', 'w');
-fprintf(file, '%%%% ========== Exercise 3 ========== %%%%\n');
+fprintf(file, '%%%% ========== Exercise 03 ========== %%%%\n');
 
 % ===== Initial Value
 syms x y;
@@ -102,12 +102,5 @@ fprintf(file, '%% ===== Question 3 ===== %%\n');
 fprintf(file, 'x = %.10f (m)\n', Xcond2(1));
 fprintf(file, 'y = %.10f (m)\n', Xcond2(2));
 fprintf(file, 'var = %.10f (m)\n\n', var3);
-
-fprintf(file, '%% ===== Analysis ===== %%\n');
-fprintf(file, ['In the Question 2 and Question 3, they have constrain conditions in x and y. Both of\n' ...
-               'the conditions have very large weighted. Thus, the variable x and y are almost equal\n' ...
-               'to the condition, as the answer shown in Question 2 and 3. In the variances, Question 3\n' ...
-               'is many times bigger than Question 2, because constrain condition isn''t reasonable in\n' ...
-               'Question 3. If fixed the variables, the equation will present large error in this case.']);
 
 fclose(file);

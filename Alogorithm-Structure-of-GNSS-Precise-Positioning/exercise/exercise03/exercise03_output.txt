@@ -1,4 +1,4 @@
-%% ========== Exercise 3 ========== %%
+%% ========== Exercise 03 ========== %%
 % ===== Question 1 ===== %
 x = 0.9235289111 (m)
 y = 0.9124757580 (m)
@@ -14,9 +14,3 @@ x = 9.9999997656 (m)
 y = 0.0000000083 (m)
 var = 21354.7216720956 (m)
 
-% ===== Analysis ===== %
-In the Question 2 and Question 3, they have constrain conditions in x and y. Both of
-the conditions have very large weighted. Thus, the variable x and y are almost equal
-to the condition, as the answer shown in Question 2 and 3. In the variances, Question 3
-is many times bigger than Question 2, because constrain condition isn't reasonable in
-Question 3. If fixed the variables, the equation will present large error in this case.
