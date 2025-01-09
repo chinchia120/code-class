@@ -1,4 +1,4 @@
-%% ========== Exercise 2 ========== %%
+%% ========== Exercise 02 ========== %%
 % ===== Question 1 ===== %
 x = 0.9843220774 (m)
 y = 0.9072667556 (m)
@@ -13,7 +13,3 @@ x = 0.9235289111 (m)
 y = 0.9124757580 (m)
 var = 3.5103829887 (m)
 
-% ===== Analysis ===== %
-In the Question 2 and Question 3, they use the same parameters but different way to
-calculate the unknown variables. In theory, they should present the same result in this
-exercise. As the calculating result, they present the same estimates and variances.

@@ -4,7 +4,7 @@ clc; clear; close all;
 
 % ===== Create File
 file = fopen('exercise02_output.txt', 'w');
-fprintf(file, '%%%% ========== Exercise 2 ========== %%%%\n');
+fprintf(file, '%%%% ========== Exercise 02 ========== %%%%\n');
 
 % ===== Initial Value
 syms x y;
@@ -75,10 +75,5 @@ fprintf(file, '%% ===== Question 3 ===== %%\n');
 fprintf(file, 'x = %.10f (m)\n', X(1));
 fprintf(file, 'y = %.10f (m)\n', X(2));
 fprintf(file, 'var = %.10f (m)\n\n', var3);
-
-fprintf(file, '%% ===== Analysis ===== %%\n');
-fprintf(file, ['In the Question 2 and Question 3, they use the same parameters but different way to\n' ...
-               'calculate the unknown variables. In theory, they should present the same result in this\n' ...
-               'exercise. As the calculating result, they present the same estimates and variances.']);
 
 fclose(file);

@@ -4,7 +4,7 @@ clc; clear; close all;
 
 % ===== Create file
 file = fopen('exercise01_output.txt', 'w');
-fprintf(file, '%%%% ========== Exercise 1 ========== %%%%\n');
+fprintf(file, '%%%% ========== Exercise 01 ========== %%%%\n');
 
 %% ========== Initial Value ========== %%
 syms x y dx dy;
