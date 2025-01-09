@@ -10,9 +10,11 @@ TimeAlignDataENU = zeros(length(expData), 4);
 ErrorList = zeros(length(expData), 6);
 
 %% ========== Check Reference Data ========== %%
+flag = 0;
 if size(refData, 1) == 1
     refData = repmat(refData, length(expData), 1);
     refData(:, 1) = expData(:, 1);
+    flag = 1;
 end
 
 % ===== DOP
@@ -220,20 +222,37 @@ subplot(2, 1, 1);
 pos1 = get(gca, 'Position');
 set(gca, 'Position', [pos1(1) pos1(2)*0.8 pos1(3) pos1(4)*1.4]);
 
-% ===== Experiment Data
+% ===== Align Experiment Data
 expDataAlignLLA = expData(expData(:, 1) >= refData(1, 1) & expData(:, 1) <= refData(end, 1), :);
-geoplot(expDataAlignLLA(:, 2), expDataAlignLLA(:, 3), Marker='.', Color='b', MarkerSize=6);
-hold on;
 
-% ===== Reference Data
+% ===== Align Reference Data
 refDataAlignLLA = refData(refData(:, 1) >= expData(1, 1) & refData(:, 1) <= expData(end, 1), :);
-geoplot(refDataAlignLLA(:, 2), refDataAlignLLA(:, 3), Marker='.', Color='r', MarkerSize=15);
-hold off;
+
+if flag == 0
+    % ===== Reference Data
+    geoplot(refDataAlignLLA(:, 2), refDataAlignLLA(:, 3), Marker='.', Color='r', MarkerSize=6);
+    hold on;
+
+    % ===== Experiment Data
+    geoplot(expDataAlignLLA(:, 2), expDataAlignLLA(:, 3), Marker='.', Color='b', MarkerSize=6);
+    hold off;
+
+    legend('Reference Data', 'Experiment Data');
+else
+    % ===== Experiment Data
+    geoplot(expDataAlignLLA(:, 2), expDataAlignLLA(:, 3), Marker='.', Color='b', MarkerSize=6);
+    hold on;
+
+    % ===== Reference Data
+    geoplot(refDataAlignLLA(:, 2), refDataAlignLLA(:, 3), Marker='.', Color='r', MarkerSize=15);
+    hold off;
+
+    legend('Experiment Data', 'Reference Data');
+end
 
 % ===== Geoplot Config
 geobasemap satellite;
 title('Geodetic Position');
-legend('Reference Data', 'Experiment Data');
 
 % ===== Altitude
 subplot(2, 1, 2);
