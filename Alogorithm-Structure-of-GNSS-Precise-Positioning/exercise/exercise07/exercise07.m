@@ -10,7 +10,7 @@ if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 UTCTime = struct2array(load('GPSTime.mat'));
 CKSV_Bro = struct2array(load('CKSV_broadcast_20230101.mat'));
 CKSV_Fin = struct2array(load('CKSV_final_20230101.mat'));
-PRN = 8;
+PRN = 32;
 
 %% ========== Convert Time ========== %%
 TimeEpoch = UTCTime(:, 4)*3600 + UTCTime(:, 5)*60 + UTCTime(:, 6);
