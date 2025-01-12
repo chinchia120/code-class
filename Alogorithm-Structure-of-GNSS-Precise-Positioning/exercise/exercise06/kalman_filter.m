@@ -1,4 +1,4 @@
-function estimated_X = kalman_filter(A, L, R, X0, Q0, Qw, Phi)
+function [estimated_X, estimated_Qx] = kalman_filter(A, L, R, X0, Q0, Qw, Phi)
 %% ========== Initial Value ========== %%
 predict_X = zeros(length(L), 1);
 predict_Qx = zeros(length(L), 1);
