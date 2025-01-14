@@ -53,3 +53,7 @@ for PRN = 1: size(Sat_Pos, 1)
     PRN_Info{PRN} = [TimeEpoch Pos Vel pr t SagnacEffect];
 end
 
+%% ========== Sagnac Effect ========== %%
+for PRN = 1: length(PRN_Info)
+    SagnacEffectAnalysis(PRN_Info{PRN}, PRN, sprintf([OutputFolder '/SagnacEffect_PRN%d'], PRN));
+end
