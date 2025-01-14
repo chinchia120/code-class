@@ -7,11 +7,49 @@ OutputFolder = sprintf('OutputFigure');
 if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 
 % ===== Initial Value
-CKSV = [-2956619.417; 5075902.173; 2476625.484];
-w = [0; 0; 7.2921151467*10^-5];
+CKSV = [-2956619.417 5075902.173 2476625.484];
+we = 7.2921151467*10^-5;
 c = 299792458;
 GM = 3.986005 * 10^14;
-mat = load('CKSV_final_20230101.mat');
-gsvmat = mat.gsvmat;
 
-%% ========== Question 1 ========== %%
+UTCTime = struct2array(load('GPSTime.mat'));
+Sat_Pos = struct2array(load('CKSV_final_20230101.mat'));
+Sat_Vel = struct2array(load('GVel_ecef.mat'));
+
+%% ========== Convert Time ========== %%
+TimeEpoch = UTCTime(:, 4)*3600 + UTCTime(:, 5)*60 + UTCTime(:, 6);
+
+%% ========== Satellite Information ========== %%
+% PRN_Info: [TimeEpoch SatPosX SatPosY SatPosZ SatVelX SatVelY SatVelZ PseudoRange TravelTime SagnacEffect]
+
+PRN_Info = cell(size(Sat_Pos, 1), 1);
+for PRN = 1: size(Sat_Pos, 1)
+    % ===== Position
+    Pos = Sat_Pos(PRN, :, :);
+    Pos = reshape(Pos, [size(Pos, 2:3)])';
+
+    % ===== Velocity
+    Vel = Sat_Vel(PRN, :, :);
+    Vel = reshape(Vel, [size(Vel, 2:3)])';
+
+    % ===== PseudoRange
+    pr = sqrt(sum(Pos-CKSV, 2));
+
+    % ===== Travel Time
+    t = pr / c;
+
+    % ===== Sagnac Effect
+    SagnacEffect = zeros(length(TimeEpoch), 1);
+    theta = we * t;
+    rot = RotationZ(theta);
+    
+    for time  = 1: length(rot)
+        CKSV_Rot = rot{time}*CKSV';
+        CKSV_Diff = CKSV_Rot - CKSV';
+        SagnacEffect(time) = sqrt(sum(CKSV_Diff));
+    end
+
+    % ===== PRN Information
+    PRN_Info{PRN} = [TimeEpoch Pos Vel pr t SagnacEffect];
+end
+
