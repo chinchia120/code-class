@@ -1,8 +1,5 @@
 function [] = RelativisticEffectsClkAnalysis(RelativisticEffectsClk, PRN, OutName)
-% ===== Config
-figure;
-
-% ===== Relativistic Effect Stc
+% ===== Relativistic Effect CLK
 plot(RelativisticEffectsClk(:, 1), RelativisticEffectsClk(:, 12));
 
 xlabel('Time Epoch (s)');

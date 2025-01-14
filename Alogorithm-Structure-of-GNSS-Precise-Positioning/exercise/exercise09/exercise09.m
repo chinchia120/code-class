@@ -63,7 +63,7 @@ end
 
 %% ========== Correction Plot ========== %%
 for PRN = 1: length(PRN_Info)
-    SagnacEffectAnalysis(PRN_Info{PRN}, PRN, sprintf([OutputFolder '/SagnacEffect_PRN%d'], PRN));
+    SagnacEffectAnalysis(PRN_Info{PRN}, PRN, sprintf([OutputFolder '/Sagnac_PRN%d'], PRN));
     RelativisticEffectsStcAnalysis(PRN_Info{PRN}, PRN, sprintf([OutputFolder '/RelStc_PRN%d'], PRN));
     RelativisticEffectsClkAnalysis(PRN_Info{PRN}, PRN, sprintf([OutputFolder '/RelClk_PRN%d'], PRN));
 end
