@@ -1,10 +1,11 @@
-function [] = RelativisticEffectsStcAnalysis(RelativisticEffectsStc, PRN, OutName)
+function [] = RelativisticEffectsSTCAnalysis(RelativisticEffectsSTC, PRN, OutName)
 % ===== Relativistic Effect STC
-plot(RelativisticEffectsStc(:, 1), RelativisticEffectsStc(:, 11));
+plot(RelativisticEffectsSTC(:, 1), RelativisticEffectsSTC(:, 11));
 
 xlabel('Time Epoch (s)');
-ylabel('Relativistic Effect Stc (m)');
-title(sprintf('Relativistic Effect Stc of PRN %d', PRN));
+ylabel('Relativistic Effect STC (m)');
+xlim([RelativisticEffectsSTC(1, 1) RelativisticEffectsSTC(end, 1)]);
+title(sprintf('Relativistic Effect STC of PRN %d', PRN));
 grid minor;
 
 % ===== Save Figure
