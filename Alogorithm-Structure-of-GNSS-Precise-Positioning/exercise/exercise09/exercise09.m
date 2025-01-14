@@ -20,7 +20,7 @@ Sat_Vel = struct2array(load('GVel_ecef.mat'));
 TimeEpoch = UTCTime(:, 4)*3600 + UTCTime(:, 5)*60 + UTCTime(:, 6);
 
 %% ========== Satellite Information ========== %%
-% PRN_Info: [TimeEpoch SatPosX SatPosY SatPosZ SatVelX SatVelY SatVelZ PseudoRange TravelTime SagnacEffect]
+% PRN_Info: [TimeEpoch SatPosX SatPosY SatPosZ SatVelX SatVelY SatVelZ PseudoRange TravelTime SagnacEffect RelativisticEffectsStc RelativisticEffectsCLK]
 
 PRN_Info = cell(size(Sat_Pos, 1), 1);
 for PRN = 1: size(Sat_Pos, 1)
@@ -49,11 +49,21 @@ for PRN = 1: size(Sat_Pos, 1)
         SagnacEffect(time) = sqrt(sum(CKSV_Diff));
     end
 
+    % ===== Relativistic Effects Stc
+    rs = sum(Pos, 2);
+    rr = sum(CKSV);
+    REL_STC = 2*GM/c^2 * log((rs+rr+pr)./(rs+rr-pr));
+
+    % ===== Relativistic Effects CLK
+    REL_CLK = -2/c^2 * sum(rs.*Vel, 2);
+
     % ===== PRN Information
-    PRN_Info{PRN} = [TimeEpoch Pos Vel pr t SagnacEffect];
+    PRN_Info{PRN} = [TimeEpoch Pos Vel pr t SagnacEffect REL_STC REL_CLK];
 end
 
-%% ========== Sagnac Effect ========== %%
+%% ========== Correction Plot ========== %%
 for PRN = 1: length(PRN_Info)
-    SagnacEffectAnalysis(PRN_Info{PRN}, PRN, sprintf([OutputFolder '/SagnacEffect_PRN%d'], PRN));
+    % SagnacEffectAnalysis(PRN_Info{PRN}, PRN, sprintf([OutputFolder '/SagnacEffect_PRN%d'], PRN));
+    % RelativisticEffectsStcAnalysis(PRN_Info{PRN}, PRN, sprintf([OutputFolder '/RelStc_PRN%d'], PRN));
+    RelativisticEffectsClkAnalysis(PRN_Info{PRN}, PRN, sprintf([OutputFolder '/RelClk_PRN%d'], PRN));
 end
