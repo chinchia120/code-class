@@ -2,7 +2,7 @@ function [] = SagnacEffectAnalysis(SagnacEffect, PRN, OutName)
 % ===== Config
 figure;
 
-% ===== SagnacEffect
+% ===== Sagnac Effect
 plot(SagnacEffect(:, 1), SagnacEffect(:, 10));
 
 xlabel('Time Epoch (s)');
