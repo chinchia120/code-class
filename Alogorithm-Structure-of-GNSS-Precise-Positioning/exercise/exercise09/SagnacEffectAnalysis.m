@@ -1,7 +1,4 @@
 function [] = SagnacEffectAnalysis(SagnacEffect, PRN, OutName)
-% ===== Config
-figure;
-
 % ===== Sagnac Effect
 plot(SagnacEffect(:, 1), SagnacEffect(:, 10));
 

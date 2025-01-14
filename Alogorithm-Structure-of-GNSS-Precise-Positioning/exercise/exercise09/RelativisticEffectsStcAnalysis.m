@@ -1,8 +1,5 @@
 function [] = RelativisticEffectsStcAnalysis(RelativisticEffectsStc, PRN, OutName)
-% ===== Config
-figure;
-
-% ===== Relativistic Effect Stc
+% ===== Relativistic Effect STC
 plot(RelativisticEffectsStc(:, 1), RelativisticEffectsStc(:, 11));
 
 xlabel('Time Epoch (s)');
