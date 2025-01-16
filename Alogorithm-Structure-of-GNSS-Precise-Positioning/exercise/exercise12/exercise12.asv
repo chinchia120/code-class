@@ -33,11 +33,7 @@ InitialVCMatrix = diag([SigmaX^2 SigmaY^2 SigmaZ^2 SigmaN^2*ones(1, 77) SigmaZTD
 tmp = zeros(2880, 1);
 for i = 1: length(tmp)
     X = estimatedX{i};
-    tmp(i) = X(81);
+    tmp(i) = X(end);
 end
 plot(1:2880, tmp);
-xlim([1 2880]);
-xlabel('Time Epoch (s)');
-ylabel('Estimated X (m)');
-legend(sprintf('avg = %.4f', mean(tmp)));
-grid minor;
+xlim(1)
