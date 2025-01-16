@@ -21,15 +21,14 @@ LCOM = struct2array(load('L_Vector.mat'));
 WeightMatrix = struct2array(load('WeightMatrix.mat'));
 
 %% ========== Design Matrix ========== %%
-TransitionMatrix = diag([ones(length(LCOM{1}), 1)]);
+TransitionMatrix = diag([ones(size(ACOM{1}, 2), 1)]);
 VCMatrix = diag([SigmaX^2 SigmaY^2 SigmaZ^2 SigmaN^2*ones(1, 77) SigmaZTD^2]);
-InitialVector = zeros(length(LCOM{1}), 1);
+InitialVector = zeros(size(ACOM{1}, 2), 1);
 InitialVCMatrix = diag([SigmaX^2 SigmaY^2 SigmaZ^2 SigmaN^2*ones(1, 77) SigmaZTD^2]);
 
 %% ========== Kalman Filter ========== %%
-for time = 1: length(ACOM)
-    [estimatedX, ~] = kalman_filter(ACOM{time}, LCOM{time}, TransitionMatrix, InitialVector, InitialVCMatrix, VCMatrix, WeightMatrix{time});
-end
+[estimatedX, ~] = kalman_filter(ACOM, LCOM, WeightMatrix, InitialVector, InitialVCMatrix, VCMatrix, TransitionMatrix);
+
 
 
 
