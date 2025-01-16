@@ -1,4 +1,13 @@
 function [estimated_X, estimated_Qx] = kalman_filter(A, L, R, X0, Q0, Qw, Phi)
+% ACOM{time}, LCOM{time}, WeightMatrix{time}, InitialVector, InitialVCMatrix, VCMatrix, TransitionMatrix
+% ACOM{time} = A = 18 * 81
+% LCOM{time} = L = 18 * 01
+% WeightMatrix{time} = R = 18 * 18
+% InitialVector = X0 = 81 * 01
+% InitialVCMatrix = Q0 = 81 * 81
+% VCMatrix = Qw = 81 * 81
+% TransitionMatrix = Phi = 18 * 18
+
 %% ========== Initial Value ========== %%
 predict_X = cell(length(L), 1);
 predict_Qx = cell(length(L), 1);
@@ -6,14 +15,14 @@ estimated_X = cell(length(L), 1);
 estimated_Qx = cell(length(L), 1);
 
 %% ========== Kalman Filter ========== %%
-for i = 1: length(L)
-    if i == 1
-        predict_X{i} = X0;
-        predict_Qx{i} = Q0;
+for time = 1: length(L)
+    if time == 1
+        predict_X{time} = X0;
+        predict_Qx{time} = Q0;
     else
-        [predict_X{i}, predict_Qx{i}] = prediction(estimated_X{i-1}, estimated_Qx{i-1}, Phi, Qw);        
+        [predict_X{time}, predict_Qx{time}] = prediction(estimated_X{time-1}, estimated_Qx{time-1}, Phi, Qw);        
     end
-        [estimated_X{i}, estimated_Qx{i}] = updation(predict_X{i}, predict_Qx{i}, A, L, R);
+        [estimated_X{time}, estimated_Qx{time}] = updation(predict_X{time}, predict_Qx{time}, A{time}, L{time}, R{time});
 end
 
 end
@@ -27,8 +36,13 @@ end
 % A = 18 * 81
 % T = 18 * 18
 % 
-% estimated_X = predicted_X - K*(A*predicted_X-L);
-% X = 18 * 01
+% estimated_X = predicted_X - K*(A*predicted_X-L) = 81 * 01
+% X = 81 * 01
 % K = 81 * 18
 % A = 18 * 81
 % L = 18 * 01
+%
+% estimated_Qx = predicted_Qx - K*A*predicted_Qx = 81 * 81
+%
+% predict_X = Phi*estimated_X + 0;
+% 
