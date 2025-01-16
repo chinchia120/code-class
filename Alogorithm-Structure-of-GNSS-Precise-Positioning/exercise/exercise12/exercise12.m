@@ -10,9 +10,9 @@ if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 CKSV = [-2956619.406; 5075902.161; 2476625.471];
 SigmaPhase = 0.003; 
 SigmaCode = 0.300;
-SigmaX = 0;
-SigmaY = 0;
-SigmaZ = 0;
+SigmaX = 100;
+SigmaY = 100;
+SigmaZ = 100;
 SigmaN = 0;
 SigmaZTD = 0.00003;
 
@@ -27,17 +27,42 @@ InitialVector = zeros(size(ACOM{1}, 2), 1);
 InitialVCMatrix = diag([SigmaX^2 SigmaY^2 SigmaZ^2 SigmaN^2*ones(1, 77) SigmaZTD^2]);
 
 %% ========== Kalman Filter ========== %%
-[estimatedX, estimatedQx] = kalman_filter(ACOM, LCOM, WeightMatrix, InitialVector, InitialVCMatrix, VCMatrix, TransitionMatrix);
+[estimatedX, estimatedQx] = KalmanFilter(ACOM, LCOM, WeightMatrix, InitialVector, InitialVCMatrix, VCMatrix, TransitionMatrix);
 
-%% ========== Plot ========== %%
-tmp = zeros(2880, 1);
-for i = 1: length(tmp)
+%% ========== Static ========== %%
+Static_X = zeros(length(ACOM), 1);
+Static_Y = zeros(length(ACOM), 1);
+Static_Z = zeros(length(ACOM), 1);
+Static_ZTD = zeros(length(ACOM), 1);
+
+for i = 1: length(Static_X)
     X = estimatedX{i};
-    tmp(i) = X(81);
+    Static_X(i) = X(1);
+    Static_Y(i) = X(2);
+    Static_Z(i) = X(3);
+    Static_ZTD(i) = X(end);
 end
-plot(1:2880, tmp);
-xlim([1 2880]);
-xlabel('Time Epoch (s)');
-ylabel('Estimated X (m)');
-legend(sprintf('avg = %.4f', mean(tmp)));
-grid minor;
+
+% GNSSAnalysis(1: length(Static_X), Static_X, [OutputFolder '/StaticX']);
+% GNSSAnalysis(1: length(Static_Y), Static_Y, [OutputFolder '/StaticY']);
+% GNSSAnalysis(1: length(Static_Z), Static_Z, [OutputFolder '/StaticZ']);
+% GNSSAnalysis(1: length(Static_ZTD), Static_ZTD, [OutputFolder '/StaticZTD']);
+
+%% ========== Kinematic ========== %%
+Kinematic_X = zeros(length(ACOM), 1);
+Kinematic_Y = zeros(length(ACOM), 1);
+Kinematic_Z = zeros(length(ACOM), 1);
+Kinematic_ZTD = zeros(length(ACOM), 1);
+
+for i = 1: length(Kinematic_X)
+    X = estimatedX{i};
+    Kinematic_X(i) = X(1);
+    Kinematic_Y(i) = X(2);
+    Kinematic_Z(i) = X(3);
+    Kinematic_ZTD(i) = X(end);
+end
+
+GNSSAnalysis(1: length(Kinematic_X), Kinematic_X, [OutputFolder '/KinematicX']);
+GNSSAnalysis(1: length(Kinematic_Y), Kinematic_Y, [OutputFolder '/KinematicY']);
+GNSSAnalysis(1: length(Kinematic_Z), Kinematic_Z, [OutputFolder '/KinematicZ']);
+GNSSAnalysis(1: length(Kinematic_ZTD), Kinematic_ZTD, [OutputFolder '/KinematicZTD']);

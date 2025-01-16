@@ -1,4 +1,4 @@
-function [estimated_X, estimated_Qx] = kalman_filter(A, L, R, X0, Q0, Qw, Phi)
+function [estimated_X, estimated_Qx] = KalmanFilter(A, L, R, X0, Q0, Qw, Phi)
 % ACOM{time}, LCOM{time}, WeightMatrix{time}, InitialVector, InitialVCMatrix, VCMatrix, TransitionMatrix
 % ACOM{time} = A = 18 * 81
 % LCOM{time} = L = 18 * 01
