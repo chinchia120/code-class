@@ -35,14 +35,3 @@ options = optimoptions('fminunc','Algorithm','quasi-newton','Display','iter', 'O
 
 %% Disp
 disp("x = "+ sol.x+ ", "+ "y = "+ sol.y);
-
-
-
-
-
-
-
-
-
-
-
