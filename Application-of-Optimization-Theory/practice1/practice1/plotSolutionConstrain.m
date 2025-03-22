@@ -26,7 +26,7 @@ fill([0, 0, 2, 0], [0, 1, 0, 0], 'r', 'FaceAlpha', 0.2);
     
 %% ========== Plot Solution ========== %%
 plot(sol(1), sol(2), 'r*', 'MarkerSize', 10);
-text(sol(1)+0.5, sol(2), sprintf('[%.2f, %.2f]', sol(1), sol(2)));
+text(sol(1)+0.5, sol(2), sprintf('[%.4f, %.4f]', sol(1), sol(2)));
 
 %% ========== Plot Config ========== %%
 colorbar;
