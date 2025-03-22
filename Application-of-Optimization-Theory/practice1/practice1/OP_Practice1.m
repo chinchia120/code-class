@@ -48,82 +48,11 @@ end
 option2 = optimoptions("fmincon","Display","off");
 [solution2,objectiveValue2] = fmincon(@objectiveFcn2,x02,A,b,[],[],lb2,ub2,[],option2);
 
+% ===== Plot level sets
+plotLevelSets(lb2, ub2, @objectiveFcn2, [OutputFolder '/LevelSets_2']);
+
 % ===== Plot level sets with feasible region
-plotLevelSetsWithFeasible(lb2, ub2, @objectiveFcn2, A, b, [OutputFolder '/LevelSets_2']);
+plotLevelSetsConstrain(lb2, ub2, @objectiveFcn2, A, b, [OutputFolder '/LevelSetsCon_2']);
 
 % ===== Plot Solution with feasible region
-plotSolutionWithFeasible(lb2, ub2, @objectiveFcn2, solution2, A, b, [OutputFolder '/Solution_2']);
-
-function plotLevelSetsWithFeasible(lb, ub, objFcn, A, b, savePath)
-    % Create level sets plot
-    figure;
-    [X, Y] = meshgrid(lb(1):0.1:ub(1), lb(2):0.1:ub(2));
-    
-    % Calculate Z values using the objective function
-    Z = zeros(size(X));
-    for i = 1:size(X,1)
-        for j = 1:size(X,2)
-            Z(i,j) = objFcn([X(i,j), Y(i,j)]);
-        end
-    end
-    
-    % Create contour plot with labels
-    contour(X, Y, Z, 100);
-    colorbar;
-    hold on;
-    
-    % Plot feasible region
-    x = 0:0.1:5;
-    y = (b - A(1)*x)/A(2);  % x + 2y <= 2
-    plot(x, y, 'r-', 'LineWidth', 2);  % Constraint line
-    fill([0, 0, 2, 0], [0, 1, 0, 0], 'r', 'FaceAlpha', 0.2);  % Feasible region
-    
-    xlabel('x');
-    ylabel('y');
-    title('Level Sets with Feasible Region');
-    grid on;
-    legend('Level Sets', 'Constraint: x + 2y ≤ 2', 'Feasible Region');
-    hold off;
-    
-    % Save figure
-    saveas(gcf, savePath);
-end
-
-function plotSolutionWithFeasible(lb, ub, objFcn, solution, A, b, savePath)
-    % Create level sets plot
-    figure;
-    [X, Y] = meshgrid(lb(1):0.1:ub(1), lb(2):0.1:ub(2));
-    
-    % Calculate Z values using the objective function
-    Z = zeros(size(X));
-    for i = 1:size(X,1)
-        for j = 1:size(X,2)
-            Z(i,j) = objFcn([X(i,j), Y(i,j)]);
-        end
-    end
-    
-    % Create contour plot with labels
-    [C, h] = contour(X, Y, Z, 100);
-    clabel(C, h, 'FontSize', 8);
-    colorbar;
-    hold on;
-    
-    % Plot feasible region
-    x = 0:0.1:5;
-    y = (b - A(1)*x)/A(2);  % x + 2y <= 2
-    plot(x, y, 'r-', 'LineWidth', 2);  % Constraint line
-    fill([0, 0, 2, 0], [0, 1, 0, 0], 'r', 'FaceAlpha', 0.2);  % Feasible region
-    
-    % Plot optimal solution
-    plot(solution(1), solution(2), 'k*', 'MarkerSize', 10);
-    
-    xlabel('x');
-    ylabel('y');
-    title('Optimal Solution with Feasible Region');
-    grid on;
-    legend('Level Sets', 'Constraint: x + 2y ≤ 2', 'Feasible Region', 'Optimal Solution', 'Location', 'best');
-    hold off;
-    
-    % Save figure
-    saveas(gcf, savePath);
-end
+plotSolutionConstrain(lb2, ub2, @objectiveFcn2, solution2, A, b, [OutputFolder '/Solution_2']);
