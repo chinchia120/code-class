@@ -26,7 +26,7 @@ option1 = optimoptions("fmincon","Display","off");
 plotLevelSets(lb1, ub1, @objectiveFcn1, [OutputFolder '/LevelSets_1']);
 
 % ===== Plot Solution
-plotSolution(lb1, ub1, @objectiveFcn1, solution1, [OutputFolder '/Soution_1']);
+plotSolution(lb1, ub1, @objectiveFcn1, solution1, [OutputFolder '/Solution_1']);
 
 %% ========== Question 2 ========== %%
 % ===== Initial Value
