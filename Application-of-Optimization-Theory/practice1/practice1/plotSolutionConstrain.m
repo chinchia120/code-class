@@ -1,4 +1,4 @@
-function plotSolution(lb, ub, objFcn, sol, OutName)
+function plotSolutionConstrain(lb, ub, objFcn, sol, A, b, OutName)
 %% ========== Setup ========== %%
 figure; clf;
 
@@ -12,11 +12,18 @@ for i = 1:size(X,1)
         Z(i,j) = objFcn([X(i,j), Y(i,j)]);
     end
 end
-
+    
+    
 %% ========== Plot Level Set ========== %%
 contour(X, Y, Z, 100);
 hold on;
-
+    
+%% ========== Plot Constrain ========== %%
+x = 0:0.1:2;
+y = (b - A(1)*x)/A(2);  % x + 2y <= 2
+plot(x, y, 'r-', 'LineWidth', 2);
+fill([0, 0, 2, 0], [0, 1, 0, 0], 'r', 'FaceAlpha', 0.2);
+    
 %% ========== Plot Solution ========== %%
 plot(sol(1), sol(2), 'r*', 'MarkerSize', 10);
 text(sol(1)+0.5, sol(2), sprintf('[%.2f, %.2f]', sol(1), sol(2)));
@@ -25,11 +32,11 @@ text(sol(1)+0.5, sol(2), sprintf('[%.2f, %.2f]', sol(1), sol(2)));
 colorbar;
 xlabel('x');
 ylabel('y');
-title('Solution of Objective Function');
-legend('Level Sets', 'Optimal Point');
+title('Solution of Objective Function with Constrain');
+legend('Level Sets', 'Constraint: x + 2y ≤ 2', 'Feasible Region', 'Optimal Point');
 grid on;
 hold off;
-
+    
 %% ========== Save Figure ========== %%
 saveas(gcf, OutName, 'png');
 
