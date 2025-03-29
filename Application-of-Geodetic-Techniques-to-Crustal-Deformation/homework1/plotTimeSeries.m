@@ -11,21 +11,21 @@ dataU = readmatrix(staU, 'FileType', 'text');
 % ===== E Direction
 subplot(3, 1, 1);
 
-plot(dataE(:, 1), dataE(:, 2));
+scatter(dataE(:, 1), dataE(:, 2), 4);
 ylabel('E (mm)');
 grid minor;
 
 % ===== N Direction
 subplot(3, 1, 2);
 
-plot(dataN(:, 1), dataN(:, 2));
+scatter(dataN(:, 1), dataN(:, 2), 4);
 ylabel('N (mm)');
 grid minor;
 
 % ===== U Direction
 subplot(3, 1, 3);
 
-plot(dataU(:, 1), dataU(:, 2));
+scatter(dataU(:, 1), dataU(:, 2), 4);
 ylabel('U (mm)');
 grid minor;
 

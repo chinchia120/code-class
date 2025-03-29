@@ -3,7 +3,7 @@
 clc; clear; close all;
 
 %% ========== Read Dataset ========== %%
-FolderPath = uigetdir('', 'Select Folder');
+FolderPath = uigetdir(pwd, 'Select Folder');
 Files = dir(fullfile(FolderPath, '*.gmt'));
 
 %% ========== Creat Output Folder ========== %%
@@ -21,7 +21,7 @@ for i = 1:length(Files)
     fid = fopen(OutputFile, 'w');
 
     for j = 1:length(FileData)
-        fprintf(fid, '%.5f    %.4f    %.4f\n', FileData(j, 1:3));
+        fprintf(fid, '%.5f    %8.4f    %8.4f\r\n', FileData(j, 1:3));
     end
     fclose(fid);
 end

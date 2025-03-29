@@ -1,0 +1,491 @@
+Number of stations:    49
+# CK01  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   48.138 +-   0.012
+      N component:   -2.659 +-   0.012
+      U component:   -0.158 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:    7.689 +-   0.066
+      N component:    9.211 +-   0.069
+      U component:    2.944 +-   0.092
+# CK02  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   44.598 +-   0.012
+      N component:   -2.496 +-   0.011
+      U component:   -0.539 +-   0.016
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   10.501 +-   0.070
+      N component:    8.732 +-   0.067
+      U component:    2.312 +-   0.096
+# CK03  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   42.047 +-   0.011
+      N component:   -2.652 +-   0.011
+      U component:    0.804 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   13.868 +-   0.067
+      N component:    8.997 +-   0.067
+      U component:    1.809 +-   0.100
+# CK04  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   30.069 +-   0.012
+      N component:   -2.461 +-   0.012
+      U component:   -1.627 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:    6.464 +-   0.071
+      N component:    7.036 +-   0.070
+      U component:   -1.254 +-   0.098
+# CK05  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   14.159 +-   0.012
+      N component:   -0.987 +-   0.012
+      U component:   -0.068 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   -8.097 +-   0.071
+      N component:    9.369 +-   0.069
+      U component:   -3.101 +-   0.098
+# CK06  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:    6.021 +-   0.012
+      N component:   -1.855 +-   0.012
+      U component:    0.188 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -12.550 +-   0.070
+      N component:   11.267 +-   0.067
+      U component:   -2.440 +-   0.099
+# CK07  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:    4.212 +-   0.012
+      N component:   -0.363 +-   0.012
+      U component:   -2.074 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -11.850 +-   0.067
+      N component:    9.146 +-   0.071
+      U component:   -2.478 +-   0.096
+# CK08  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   47.822 +-   0.012
+      N component:   -1.716 +-   0.012
+      U component:    0.699 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:    9.887 +-   0.071
+      N component:    8.867 +-   0.073
+      U component:    3.277 +-   0.100
+# CK09  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   45.583 +-   0.012
+      N component:   -0.472 +-   0.012
+      U component:    2.255 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   14.256 +-   0.068
+      N component:   13.863 +-   0.070
+      U component:    1.739 +-   0.098
+# CK10  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   40.355 +-   0.012
+      N component:   -3.519 +-   0.012
+      U component:   -0.794 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   22.324 +-   0.071
+      N component:   22.084 +-   0.068
+      U component:    0.209 +-   0.101
+# CK11  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   30.062 +-   0.012
+      N component:   -0.637 +-   0.012
+      U component:   -0.033 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   17.052 +-   0.070
+      N component:   16.238 +-   0.070
+      U component:    0.800 +-   0.097
+# CK12  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   12.618 +-   0.011
+      N component:   -0.943 +-   0.012
+      U component:   -0.624 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -24.472 +-   0.067
+      N component:   18.168 +-   0.070
+      U component:   -1.173 +-   0.097
+# CK13  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:    6.141 +-   0.011
+      N component:   -1.909 +-   0.012
+      U component:    0.310 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -22.652 +-   0.066
+      N component:   20.216 +-   0.069
+      U component:   -4.465 +-   0.096
+# CK14  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:    1.840 +-   0.012
+      N component:   -0.805 +-   0.011
+      U component:   -0.405 +-   0.016
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -12.603 +-   0.070
+      N component:   11.624 +-   0.066
+      U component:   -4.172 +-   0.096
+# CK15  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   47.414 +-   0.012
+      N component:   -0.165 +-   0.013
+      U component:   -0.530 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:    6.823 +-   0.071
+      N component:    9.177 +-   0.071
+      U component:    0.308 +-   0.100
+# CK16  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   45.402 +-   0.012
+      N component:    0.023 +-   0.011
+      U component:    1.152 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   14.010 +-   0.068
+      N component:   16.832 +-   0.065
+      U component:    2.604 +-   0.097
+# CK17  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   40.535 +-   0.012
+      N component:   -0.482 +-   0.012
+      U component:   -1.021 +-   0.018
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   33.163 +-   0.066
+      N component:   38.298 +-   0.071
+      U component:   -0.294 +-   0.102
+# CK18  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   29.974 +-   0.012
+      N component:   -0.232 +-   0.012
+      U component:   -0.903 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   83.283 +-   0.068
+      N component:   76.213 +-   0.072
+      U component:  -18.724 +-   0.100
+# CK19  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   15.075 +-   0.011
+      N component:   -1.610 +-   0.012
+      U component:   -0.395 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -68.972 +-   0.067
+      N component:   67.040 +-   0.069
+      U component:   10.074 +-   0.098
+# CK20  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:    8.638 +-   0.012
+      N component:   -2.093 +-   0.012
+      U component:   -0.184 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -27.922 +-   0.067
+      N component:   30.332 +-   0.070
+      U component:   -3.951 +-   0.099
+# CK21  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:    5.055 +-   0.012
+      N component:   -1.255 +-   0.012
+      U component:    1.354 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -14.780 +-   0.067
+      N component:   13.881 +-   0.070
+      U component:   -2.290 +-   0.100
+# CK22  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   45.861 +-   0.012
+      N component:   -0.458 +-   0.012
+      U component:    1.876 +-   0.016
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:    6.836 +-   0.070
+      N component:    3.260 +-   0.070
+      U component:   -0.767 +-   0.098
+# CK23  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   44.559 +-   0.012
+      N component:    0.306 +-   0.012
+      U component:   -1.232 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   11.968 +-   0.068
+      N component:    6.910 +-   0.069
+      U component:   -1.404 +-   0.097
+# CK24  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   39.162 +-   0.012
+      N component:   -1.448 +-   0.012
+      U component:   -0.888 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   39.301 +-   0.070
+      N component:   11.957 +-   0.072
+      U component:   -1.192 +-   0.103
+# CK25  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   30.630 +-   0.013
+      N component:   -1.132 +-   0.012
+      U component:    0.294 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  153.326 +-   0.073
+      N component:   13.995 +-   0.070
+      U component:   -3.147 +-   0.098
+# CK26  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   15.750 +-   0.012
+      N component:    2.396 +-   0.012
+      U component:   -0.726 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component: -102.289 +-   0.067
+      N component:   14.121 +-   0.069
+      U component:    0.270 +-   0.098
+# CK27  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:    8.074 +-   0.012
+      N component:   -1.264 +-   0.012
+      U component:    1.813 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -27.758 +-   0.069
+      N component:    9.606 +-   0.072
+      U component:   -1.146 +-   0.100
+# CK28  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:    2.361 +-   0.012
+      N component:    1.275 +-   0.012
+      U component:    1.459 +-   0.016
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -11.036 +-   0.066
+      N component:    3.952 +-   0.067
+      U component:   -0.598 +-   0.093
+# CK29  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   46.887 +-   0.012
+      N component:    0.723 +-   0.011
+      U component:    0.418 +-   0.016
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:    5.829 +-   0.069
+      N component:   -4.778 +-   0.068
+      U component:    0.372 +-   0.096
+# CK30  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   43.531 +-   0.012
+      N component:   -0.850 +-   0.012
+      U component:    0.330 +-   0.016
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   15.437 +-   0.071
+      N component:  -12.200 +-   0.067
+      U component:   -1.603 +-   0.094
+# CK31  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   39.875 +-   0.011
+      N component:   -0.422 +-   0.011
+      U component:   -0.536 +-   0.016
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   37.990 +-   0.065
+      N component:  -25.058 +-   0.066
+      U component:   -2.221 +-   0.094
+# CK32  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   31.108 +-   0.012
+      N component:   -0.558 +-   0.012
+      U component:    0.535 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  133.683 +-   0.069
+      N component:  -31.487 +-   0.071
+      U component:    5.179 +-   0.098
+# CK33  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   15.320 +-   0.012
+      N component:    0.145 +-   0.012
+      U component:    0.800 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -91.227 +-   0.071
+      N component:  -36.332 +-   0.070
+      U component:   -6.572 +-   0.100
+# CK34  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:    7.031 +-   0.011
+      N component:    1.030 +-   0.012
+      U component:   -0.259 +-   0.018
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -28.860 +-   0.067
+      N component:  -19.886 +-   0.071
+      U component:   -0.507 +-   0.101
+# CK35  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:    4.468 +-   0.012
+      N component:   -1.903 +-   0.012
+      U component:    1.521 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -12.145 +-   0.069
+      N component:  -10.368 +-   0.069
+      U component:    0.020 +-   0.098
+# CK36  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   48.198 +-   0.012
+      N component:    2.153 +-   0.012
+      U component:    0.562 +-   0.016
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:    7.198 +-   0.068
+      N component:   -8.836 +-   0.068
+      U component:   -3.637 +-   0.095
+# CK37  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   43.943 +-   0.012
+      N component:    0.888 +-   0.012
+      U component:   -0.085 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   15.939 +-   0.068
+      N component:  -17.853 +-   0.070
+      U component:   -4.052 +-   0.096
+# CK38  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   39.156 +-   0.012
+      N component:   -0.503 +-   0.012
+      U component:    0.237 +-   0.016
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   33.506 +-   0.066
+      N component:  -33.686 +-   0.067
+      U component:   -3.315 +-   0.093
+# CK39  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   29.213 +-   0.012
+      N component:   -0.146 +-   0.012
+      U component:    0.871 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   51.393 +-   0.069
+      N component:  -43.274 +-   0.070
+      U component:    7.220 +-   0.097
+# CK40  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   13.902 +-   0.011
+      N component:    0.326 +-   0.012
+      U component:   -0.847 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -53.892 +-   0.066
+      N component:  -47.071 +-   0.070
+      U component:   -4.679 +-   0.095
+# CK41  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:    6.262 +-   0.012
+      N component:    0.338 +-   0.012
+      U component:   -0.584 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -28.672 +-   0.070
+      N component:  -28.129 +-   0.070
+      U component:    2.510 +-   0.097
+# CK42  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:    4.216 +-   0.011
+      N component:    1.318 +-   0.011
+      U component:    1.869 +-   0.016
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -13.626 +-   0.066
+      N component:  -14.120 +-   0.067
+      U component:    2.083 +-   0.096
+# CK43  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   44.679 +-   0.012
+      N component:    1.648 +-   0.012
+      U component:   -0.334 +-   0.018
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:    7.452 +-   0.072
+      N component:   -9.322 +-   0.073
+      U component:   -2.892 +-   0.103
+# CK44  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   45.276 +-   0.012
+      N component:    0.357 +-   0.012
+      U component:    1.040 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   11.961 +-   0.071
+      N component:  -15.665 +-   0.070
+      U component:   -2.047 +-   0.096
+# CK45  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   40.323 +-   0.012
+      N component:    0.555 +-   0.011
+      U component:    0.841 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   19.005 +-   0.067
+      N component:  -17.988 +-   0.065
+      U component:   -3.506 +-   0.094
+# CK46  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   31.771 +-   0.011
+      N component:    1.149 +-   0.011
+      U component:    1.459 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:   10.135 +-   0.066
+      N component:  -11.998 +-   0.066
+      U component:   -1.749 +-   0.097
+# CK47  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:   13.585 +-   0.012
+      N component:    0.580 +-   0.013
+      U component:    0.054 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -16.270 +-   0.069
+      N component:  -13.154 +-   0.073
+      U component:    2.273 +-   0.099
+# CK48  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:    6.346 +-   0.012
+      N component:    1.820 +-   0.011
+      U component:   -3.088 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -17.605 +-   0.068
+      N component:  -15.927 +-   0.065
+      U component:   -0.721 +-   0.098
+# CK49  Recorded Number of EQ:   1
+    secular motion (mm/yr):
+      E component:    2.261 +-   0.012
+      N component:    0.021 +-   0.013
+      U component:   -1.487 +-   0.017
+  ! earthquake occurred time (yr):  2020.5027
+    coseismic displacements (mm):
+      E component:  -11.474 +-   0.073
+      N component:  -13.335 +-   0.075
+      U component:    1.681 +-   0.101
