@@ -1,4 +1,4 @@
-function [] = plotTimeSeries(staE, staN, staU, station, OutName)
+function [] = plotTimeSeriesFilter(staE, staN, staU, station, OutName)
 %% ========== Setup ========= %%
 clf;
 
@@ -30,7 +30,7 @@ ylabel('U (mm)');
 grid minor;
 
 % ===== Plot Config
-sgtitle(sprintf('Time Series of %s', station));
+sgtitle(sprintf('Filter Time Series of %s', station));
 main = axes('visible', 'off');
 main.XLabel.Visible='on';
 xlabel(main, 'Years');

@@ -1,4 +1,4 @@
-function [] = plotTimeSeries(staE, staN, staU, station, OutName)
+function [] = plotCommonModeError(staE, staN, staU, OutName)
 %% ========== Setup ========= %%
 clf;
 
@@ -11,26 +11,29 @@ dataU = readmatrix(staU, 'FileType', 'text');
 % ===== E Direction
 subplot(3, 1, 1);
 
-plot(dataE(:, 1), dataE(:, 2));
+scatter(dataE(:, 1), dataE(:, 2), 4);
 ylabel('E (mm)');
+grid minor;
 
 % ===== N Direction
 subplot(3, 1, 2);
 
-plot(dataN(:, 1), dataN(:, 2));
+scatter(dataN(:, 1), dataN(:, 2), 4);
 ylabel('N (mm)');
+grid minor;
 
 % ===== U Direction
 subplot(3, 1, 3);
-ylabel('U (mm)');
 
-plot(dataU(:, 1), dataU(:, 2));
+scatter(dataU(:, 1), dataU(:, 2), 4);
+ylabel('U (mm)');
+grid minor;
 
 % ===== Plot Config
-sgtitle('Position Error');
+sgtitle('Common Mode Error');
 main = axes('visible', 'off');
 main.XLabel.Visible='on';
-xlabel(main,'GPS Time (s)');
+xlabel(main, 'Years');
 
 %% ========== save Figure ========== %%
 saveas(gcf, OutName, 'png');
