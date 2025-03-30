@@ -7,7 +7,8 @@ FolderPath = uigetdir(pwd, 'Select Dataset Folder');
 Files = dir(fullfile(FolderPath, '*.gmt'));
 
 %% ========== Creat Output Folder ========== %%
-OutputFolder = sprintf('OutputFigure');
+tmp = strsplit(FolderPath, '/');
+OutputFolder = [cell2mat(tmp(end)) '_OutputFigure'];
 if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 
 %% ========== Plot Raw Time Series ========== %%
@@ -21,9 +22,9 @@ end
 
 %% ========== Plot Filter Time Series ========== %%
 for sta = 1: 49
-    staE = [FolderPath sprintf('/ts_CK%02d_e_f.gmt', sta)];
-    staN = [FolderPath sprintf('/ts_CK%02d_n_f.gmt', sta)];
-    staU = [FolderPath sprintf('/ts_CK%02d_u_f.gmt', sta)];
+    staE = [FolderPath sprintf('/ts_CK%02d_e_c.gmt', sta)];
+    staN = [FolderPath sprintf('/ts_CK%02d_n_c.gmt', sta)];
+    staU = [FolderPath sprintf('/ts_CK%02d_u_c.gmt', sta)];
 
     plotTimeSeriesFilter(staE, staN, staU, sprintf('CK%02d', sta), [OutputFolder sprintf('/CK%02d_filter', sta)]);
 end
@@ -42,5 +43,5 @@ for sta = 1: 1
     cor = [FolderPath '/sta.dat'];
     dis = [FolderPath '/comfilt.out'];
 
-    plotCommonModeError(cor, dis, [OutputFolder '/Displacement']);
+    plotDisplacement(cor, dis, [OutputFolder '/']);
 end
