@@ -41,6 +41,7 @@ while ~feof(disfile)
         cos(int32(i/10), 3) = str2double(disspt(4));
     end
 end
+fclose(disfile);
 
 %% ========== Plot Secular Motion Horizontal ========== %%
 % ===== Setup
