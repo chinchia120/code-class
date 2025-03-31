@@ -1,7 +1,7 @@
 function [] = plotDisplacement(cor, dis, OutName)
 %% ========== Setup ========= %%
 % ===== Setup
-clf; close all;
+clf;
 
 % ===== Initial Value
 sec = zeros(49, 3);

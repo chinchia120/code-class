@@ -43,6 +43,6 @@ for i = 1: length(sec)
     Sta = stadata{1,3}{i};
     Lat = stadata{1,1}(i);
     Lon = stadata{1,2}(i);
-    fprintf(fid, '%s\t%7.4f\t%6.4f\t%7.4f\t%7.4f\t0.01\t0.01\r\n', Sta, Lat, Lon, sec(i,1:2));
+    fprintf(fid, '%s\t%7.4f\t%6.4f\t%8.4f\t%7.4f\t0.01\t0.01\r\n', Sta, Lat, Lon, sec(i,1:2));
 end
 fclose(fid);
