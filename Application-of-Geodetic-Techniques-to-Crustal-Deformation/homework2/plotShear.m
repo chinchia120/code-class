@@ -3,9 +3,9 @@ function [] = plotShear(Station, Shear, OutName)
 % ===== Initial Value
 scale = 0.001;
 
-%% ========== Plot Principal Strain Rate ========= %%
+%% ========== Plot Shear Strain Rate ========= %%
 % ===== Setup
-figure;
+figure('Shear Strain Rate');
 
 % ===== Plot Station
 scatter(Station(:, 1), Station(:, 2), 40, '^', 'filled');

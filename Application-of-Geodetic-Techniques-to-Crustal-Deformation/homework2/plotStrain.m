@@ -5,7 +5,7 @@ scale = 0.001;
 
 %% ========== Plot Principal Strain Rate ========= %%
 % ===== Setup
-figure;
+figure('Principal Strain Rate');
 
 % ===== Plot Station
 scatter(Station(:, 1), Station(:, 2), 40, '^', 'filled');
