@@ -16,15 +16,31 @@ StationData = StationData(:, 1:2);
 
 %% ========== Read Strain Data ========== %%
 StrainFile = fopen([FolderPath '/strain.gmt']);
-cnt = 0;
-while ~feof(StrainFile)
-    cnt = cnt + 1;
-    strainspt = strsplit(fgetl(StrainFile), ' ');
-
-    StrainData(cnt, :) = [str2double(strainspt(2:6))];
-end
+StrainData = cell2mat(textscan(StrainFile, '%f %f %f %f %f', 'Delimiter', '\t', 'MultipleDelimsAsOne', true));
 fclose(StrainFile);
+
+%% ========== Read Shear Data ========== %%
+ShearFile = fopen([FolderPath '/shear_dex.gmt']);
+ShearData = cell2mat(textscan(ShearFile, '%f %f %f %f', 'Delimiter', '\t', 'MultipleDelimsAsOne', true));
+ShearData = ShearData(1:2:end, :);
+fclose(ShearFile);
+
+%% ========== Read Shear Angle Data ========== %%
+AngleFile = fopen([FolderPath '/strain.out']);
+cnt = 0;
+while ~feof(AngleFile)
+    cnt = cnt + 1;
+
+    anglespt = strsplit(fgetl(AngleFile), ' ');
+    if cnt == 1; continue; end
+
+    AngleData(cnt-1, :) = [str2double(anglespt(18))];
+end
+fclose(AngleFile);
 
 %% ========== Plot Principal Strain Rate ========== %%
 plotStrain(StationData, StrainData, [OutputFolder '/Strain']);
 
+%% ========== Plot Shear Strain Rate ========== %%
+ShearAngleData = [ShearData AngleData];
+plotShear(StationData, ShearAngleData, [OutputFolder '/Shear']);
