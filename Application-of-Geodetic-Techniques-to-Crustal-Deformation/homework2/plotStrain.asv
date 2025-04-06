@@ -11,7 +11,7 @@ diffV = abs(Station(1,2)-Station(2,2));
 figure('Name', 'Principal Strain Rate');
 
 % ===== Plot Station
-scatter(Station(:, 1), Station(:, 2), 60, '^', 'filled', 'r');
+scatter(Station(:, 1), Station(:, 2), 40, '^', 'filled');
 hold on;
 
 % ===== Plot Strain
@@ -31,7 +31,7 @@ end
 scale = quiver(max(Station(:, 1)), min(Station(:, 2))-diffV*0.75, diffH*0.75, 0, 0);
 scale.ShowArrowHead = 'on';
 scale.MaxHeadSize = 2;
-text(max(Station(:, 1)), min(Station(:, 2))-diffV*0.5, sprintf('%.2f mm', diffH*0.75/Scale));
+text(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.5, sprintf('%.2f mm', diffH*0.75/scaleVelH));
 hold off;
 
 % ===== Plot Config

@@ -1,6 +1,8 @@
 function [] = plotCommonModeError(staE, staN, staU, OutName)
 %% ========== Setup ========= %%
+% ===== Setup
 clf;
+
 
 %% ========== Read Data ========== %%
 dataE = readmatrix(staE, 'FileType', 'text');
