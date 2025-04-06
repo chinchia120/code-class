@@ -20,8 +20,8 @@ for i = 1: length(Strain)
 
     x2 = [Strain(i, 1)-0.5*Strain(i, 4)*sind(Strain(i, 5)+90)*scale Strain(i, 1)+0.5*Strain(i, 4)*sind(Strain(i, 5)+90)*scale];
     y2 = [Strain(i, 2)-0.5*Strain(i, 4)*cosd(Strain(i, 5)+90)*scale Strain(i, 2)+0.5*Strain(i, 4)*cosd(Strain(i, 5)+90)*scale];
-    plot(x2, y2, 'LineWidth', 1, 'Color', 'k');
-    hold on;
+    plot(x2, y2, 'LineWidth', 2, 'Color', 'b');
+    hold on2
 end
 
 % ===== Plot Config

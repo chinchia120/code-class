@@ -42,5 +42,5 @@ fclose(AngleFile);
 plotStrain(StationData, StrainData, [OutputFolder '/Strain']);
 
 %% ========== Plot Shear Strain Rate ========== %%
-ShearAngleData = [ShearData AngleData];
-plotShear(StationData, ShearAngleData, [OutputFolder '/Shear']);
+% ShearAngleData = [ShearData AngleData];
+% plotShear(StationData, ShearAngleData, [OutputFolder '/Shear']);
