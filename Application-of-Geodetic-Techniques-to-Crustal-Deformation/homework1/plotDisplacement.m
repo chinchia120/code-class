@@ -1,5 +1,8 @@
 function [] = plotDisplacement(cor, dis, OutName)
 %% ========== Setup ========= %%
+% ===== Setup
+clf;
+
 % ===== Initial Value
 sec = zeros(49, 3);
 cos = zeros(49, 3);
@@ -65,8 +68,8 @@ hold off;
 
 % ===== Plot Config
 title('Secular Motion in Horizontal');
-xlabel('Latitude');
-ylabel('Longitude');
+xlabel('Longitude');
+ylabel('Latitude');
 xlim([min(coordinates(:, 1))-0.15 max(coordinates(:, 1))+0.15]);
 ylim([min(coordinates(:, 2))-0.15 max(coordinates(:, 2))+0.15]);
 legend('Station', 'Secular Motion (mm/yr)');
@@ -100,8 +103,8 @@ hold off;
 
 % ===== Plot Config
 title('Secular Motion in Vertical');
-xlabel('Latitude');
-ylabel('Longitude');
+xlabel('Longitude');
+ylabel('Latitude');
 xlim([min(coordinates(:, 1))-0.15 max(coordinates(:, 1))+0.15]);
 ylim([min(coordinates(:, 2))-0.15 max(coordinates(:, 2))+0.15]);
 legend('Station', 'Secular Motion (mm/yr)');
@@ -135,8 +138,8 @@ hold off;
 
 % ===== Plot Config
 title('Coseismic Displacements in Horizontal');
-xlabel('Latitude');
-ylabel('Longitude');
+xlabel('Longitude');
+ylabel('Latitude');
 xlim([min(coordinates(:, 1))-0.15 max(coordinates(:, 1))+0.15]);
 ylim([min(coordinates(:, 2))-0.15 max(coordinates(:, 2))+0.15]);
 legend('Station', 'Coseismic Displacements (mm)');
@@ -169,9 +172,9 @@ text(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.5, sprintf('%.2f mm'
 hold off;
 
 % ===== Plot Config
-title('Coseismic Displacements Vertical');
-xlabel('Latitude');
-ylabel('Longitude');
+title('Coseismic Displacements in Vertical');
+xlabel('Longitude');
+ylabel('Latitude');
 xlim([min(coordinates(:, 1))-0.15 max(coordinates(:, 1))+0.15]);
 ylim([min(coordinates(:, 2))-0.15 max(coordinates(:, 2))+0.15]);
 legend('Station', 'Coseismic Displacements (mm)');

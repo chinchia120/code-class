@@ -5,7 +5,7 @@ scale = 0.001;
 
 %% ========== Plot Shear Strain Rate ========= %%
 % ===== Setup
-figure('Shear Strain Rate');
+figure('Name', 'Shear Strain Rate');
 
 % ===== Plot Station
 scatter(Station(:, 1), Station(:, 2), 40, '^', 'filled');
@@ -26,8 +26,8 @@ end
 
 % ===== Plot Config
 title('Shear Strain Rate');
-xlabel('Latitude');
-ylabel('Longitude');
+xlabel('Longitude');
+ylabel('Latitude');
 xlim([min(Station(:, 1))-0.15 max(Station(:, 1))+0.15]);
 ylim([min(Station(:, 2))-0.15 max(Station(:, 2))+0.15]);
 legend('Station', 'Shear');
