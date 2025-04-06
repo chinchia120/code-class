@@ -1,8 +1,5 @@
 function [] = plotDisplacement(cor, dis, OutName)
 %% ========== Setup ========= %%
-% ===== Setup
-clf;
-
 % ===== Initial Value
 sec = zeros(49, 3);
 cos = zeros(49, 3);
@@ -102,7 +99,7 @@ text(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.5, sprintf('%.2f mm'
 hold off;
 
 % ===== Plot Config
-title('Secular Motion in Verticle');
+title('Secular Motion in Vertical');
 xlabel('Latitude');
 ylabel('Longitude');
 xlim([min(coordinates(:, 1))-0.15 max(coordinates(:, 1))+0.15]);
@@ -172,7 +169,7 @@ text(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.5, sprintf('%.2f mm'
 hold off;
 
 % ===== Plot Config
-title('Coseismic Displacements Verticle');
+title('Coseismic Displacements Vertical');
 xlabel('Latitude');
 ylabel('Longitude');
 xlim([min(coordinates(:, 1))-0.15 max(coordinates(:, 1))+0.15]);

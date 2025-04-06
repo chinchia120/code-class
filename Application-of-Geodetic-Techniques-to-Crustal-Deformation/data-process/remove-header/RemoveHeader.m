@@ -7,7 +7,7 @@ FolderPath = uigetdir(pwd, 'Select Folder');
 Files = dir(fullfile(FolderPath, '*.gmt'));
 
 %% ========== Creat Output Folder ========== %%
-OutputFolder = sprintf([FolderPath '_nohearder']);
+OutputFolder = sprintf([FolderPath '_noheader']);
 if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 
 %% ========== Remove Header ========== %%
