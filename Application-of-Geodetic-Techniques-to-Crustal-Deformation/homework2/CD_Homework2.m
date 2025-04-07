@@ -28,6 +28,7 @@ fclose(ShearFile);
 
 %% ========== Read Shear Angle Data ========== %%
 AngleFile = fopen([FolderPath '/strain.out']);
+AngleData = zeros(size(StrainData, 1), 1);
 cnt = 0;
 while ~feof(AngleFile)
     cnt = cnt + 1;
@@ -43,5 +44,5 @@ fclose(AngleFile);
 plotStrain(StationData, StrainData, [OutputFolder '/Strain']);
 
 %% ========== Plot Shear Strain Rate ========== %%
-% ShearAngleData = [ShearData AngleData];
-% plotShear(StationData, ShearAngleData, [OutputFolder '/Shear']);
+ShearAngleData = [ShearData AngleData];
+plotShear(StationData, ShearAngleData, [OutputFolder '/Shear']);

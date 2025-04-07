@@ -16,13 +16,16 @@ hold on;
 
 % ===== Plot Strain
 for i = 1: length(Strain)
-    x1 = [Strain(i, 1)-0.5*Strain(i, 3)*sind(Strain(i, 5))*Scale Strain(i, 1)+0.5*Strain(i, 3)*sind(Strain(i, 5))*Scale];
-    y1 = [Strain(i, 2)-0.5*Strain(i, 3)*cosd(Strain(i, 5))*Scale Strain(i, 2)+0.5*Strain(i, 3)*cosd(Strain(i, 5))*Scale];
+    vx = sin(deg2rad(Strain(i, 5)));
+    vy = cos(deg2rad(Strain(i, 5)));
+
+    x1 = [Strain(i, 1)-0.5*Strain(i, 3)*vx*Scale Strain(i, 1)+0.5*Strain(i, 3)*vx*Scale];
+    y1 = [Strain(i, 2)-0.5*Strain(i, 3)*vy*Scale Strain(i, 2)+0.5*Strain(i, 3)*vy*Scale];
     plot(x1, y1, 'LineWidth', 2, 'Color', 'k');
     hold on;
 
-    x2 = [Strain(i, 1)-0.5*Strain(i, 4)*sind(Strain(i, 5)+90)*Scale Strain(i, 1)+0.5*Strain(i, 4)*sind(Strain(i, 5)+90)*Scale];
-    y2 = [Strain(i, 2)-0.5*Strain(i, 4)*cosd(Strain(i, 5)+90)*Scale Strain(i, 2)+0.5*Strain(i, 4)*cosd(Strain(i, 5)+90)*Scale];
+    x2 = [Strain(i, 1)-0.5*Strain(i, 4)*-vy*Scale Strain(i, 1)+0.5*Strain(i, 4)*-vy*Scale];
+    y2 = [Strain(i, 2)-0.5*Strain(i, 4)*vx*Scale Strain(i, 2)+0.5*Strain(i, 4)*vx*Scale];
     plot(x2, y2, 'LineWidth', 2, 'Color', 'b');
     hold on;
 end
