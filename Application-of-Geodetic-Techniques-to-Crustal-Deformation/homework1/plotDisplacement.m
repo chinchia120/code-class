@@ -7,7 +7,7 @@ clf;
 sec = zeros(49, 3);
 cos = zeros(49, 3);
 
-scaleVelH = 0.001;
+scaleVelH = 0.002;
 scaleVelV = 0.05;
 scaleCosH = 0.001;
 scaleCosV = 0.01;
@@ -48,14 +48,14 @@ fclose(disfile);
 figure;
 
 % ===== Plot Station
-scatter(coordinates(:, 1), coordinates(:, 2), 20, '^', 'filled');
+scatter(coordinates(:, 1), coordinates(:, 2), 60, '^', 'filled', 'r');
 for i = 1:49 
     text(coordinates(i, 1)-0.03, coordinates(i, 2)-0.02, sprintf('CK%02d', i));
 end
 hold on;
 
 % ===== Plot Secular Motion Horizontal
-error = quiver(coordinates(:, 1), coordinates(:, 2), sec(:, 1)*scaleVelH, sec(:, 2)*scaleVelH, 0);
+error = quiver(coordinates(:, 1), coordinates(:, 2), sec(:, 1)*scaleVelH, sec(:, 2)*scaleVelH, 0, 'k', 'LineWidth', 2);
 error.ShowArrowHead = 'on';
 hold on;
 
@@ -78,19 +78,19 @@ grid minor;
 % ========== save Figure ========== %%
 saveas(gcf, [OutName 'SecH'], 'png');
 
-%% ========== Plot Secular Motion Verticle ========== %%
+%% ========== Plot Secular Motion Vertical ========== %%
 % ===== Setup
 figure;
 
 % ===== Plot Station
-scatter(coordinates(:, 1), coordinates(:, 2), 20, '^', 'filled');
+scatter(coordinates(:, 1), coordinates(:, 2), 60, '^', 'filled', 'r');
 for i = 1:49 
     text(coordinates(i, 1)-0.03, coordinates(i, 2)-0.02, sprintf('CK%02d', i));
 end
 hold on;
 
 % ===== Plot Secular Motion Verticle
-error = quiver(coordinates(:, 1), coordinates(:, 2), sec(:, 3)*0, sec(:, 3)*scaleVelV, 0);
+error = quiver(coordinates(:, 1), coordinates(:, 2), sec(:, 3)*0, sec(:, 3)*scaleVelV, 0, 'k', 'LineWidth', 2);
 error.ShowArrowHead = 'on';
 hold on;
 
@@ -118,14 +118,14 @@ saveas(gcf, [OutName 'SecV'], 'png');
 figure;
 
 % ===== Plot Station
-scatter(coordinates(:, 1), coordinates(:, 2), 20, '^', 'filled');
+scatter(coordinates(:, 1), coordinates(:, 2), 60, '^', 'filled', 'r');
 for i = 1:49 
     text(coordinates(i, 1)-0.03, coordinates(i, 2)-0.02, sprintf('CK%02d', i));
 end
 hold on;
 
 % ===== Plot Coseismic Displacements Horizontal
-error = quiver(coordinates(:, 1), coordinates(:, 2), cos(:, 1)*scaleCosH, cos(:, 2)*scaleCosH, 0);
+error = quiver(coordinates(:, 1), coordinates(:, 2), cos(:, 1)*scaleCosH, cos(:, 2)*scaleCosH, 0, 'k', 'LineWidth', 2);
 error.ShowArrowHead = 'on';
 hold on;
 
@@ -148,19 +148,19 @@ grid minor;
 % ========== save Figure ========== %%
 saveas(gcf, [OutName 'CosH'], 'png');
 
-%% ========== Plot Coseismic Displacements Verticle ========== %%
+%% ========== Plot Coseismic Displacements Vertical ========== %%
 % ===== Setup
 figure;
 
 % ===== Plot Station
-scatter(coordinates(:, 1), coordinates(:, 2), 20, '^', 'filled');
+scatter(coordinates(:, 1), coordinates(:, 2), 60, '^', 'filled', 'r');
 for i = 1:49 
     text(coordinates(i, 1)-0.03, coordinates(i, 2)-0.02, sprintf('CK%02d', i));
 end
 hold on;
 
 % ===== Plot Coseismic Displacements Verticle
-error = quiver(coordinates(:, 1), coordinates(:, 2), cos(:, 3)*0, cos(:, 3)*scaleCosV, 0);
+error = quiver(coordinates(:, 1), coordinates(:, 2), cos(:, 3)*0, cos(:, 3)*scaleCosV, 0, 'k', 'LineWidth', 2);
 error.ShowArrowHead = 'on';
 hold on;
 

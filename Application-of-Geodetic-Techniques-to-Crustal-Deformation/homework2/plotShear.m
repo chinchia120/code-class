@@ -16,8 +16,8 @@ hold on;
 
 % ===== Plot Strain
 for i = 1: length(Shear)
-    vx = sin(Shear(i, 5));
-    vy = cos(Shear(i, 5));
+    vx = sind(Shear(i, 5));
+    vy = cosd(Shear(i, 5));
 
     x1 = [Shear(i, 1)-0.5*Shear(i, 4)*vx*Scale Shear(i, 1)+0.5*Shear(i, 4)*vx*Scale];
     y1 = [Shear(i, 2)-0.5*Shear(i, 4)*vy*Scale Shear(i, 2)+0.5*Shear(i, 4)*vy*Scale];
