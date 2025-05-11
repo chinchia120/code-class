@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%input parameters
-%datatype = 1 for horizontal velocity | format: lon (¢X), lat (¢X), Deast (mm/yr), Dnorth (mm/yr), Sigeast (mm/yr), Signorth (mm/yr)
-%datatype = 2 for vertical velocity | format: lon (¢X), lat (¢X), Dup (mm/yr), Sigup (mm/yr)
-%datatype = 3 for insar los velocity | format: lon (¢X), lat (¢X), Dlos (mm/yr), Siglos (mm/yr)
+%datatype = 1 for horizontal velocity | format: lon (deg), lat (deg), Deast (mm/yr), Dnorth (mm/yr), Sigeast (mm/yr), Signorth (mm/yr)
+%datatype = 2 for vertical velocity | format: lon (deg), lat (deg), Dup (mm/yr), Sigup (mm/yr)
+%datatype = 3 for insar los velocity | format: lon (deg), lat (deg), Dlos (mm/yr), Siglos (mm/yr)
 %weightdata: larger value, lower weighting
 input_file{1}='disp_h_CGPS.dat'; %input file name
 datatype{1}=1;
