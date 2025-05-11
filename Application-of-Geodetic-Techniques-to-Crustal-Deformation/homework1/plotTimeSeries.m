@@ -1,7 +1,5 @@
 function [] = plotTimeSeries(staE, staN, staU, station, OutName)
 %% ========== Setup ========= %%
-% ===== Setup
-clf;
 
 %% ========== Read Data ========== %%
 dataE = readmatrix(staE, 'FileType', 'text');
