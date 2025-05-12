@@ -4,8 +4,8 @@ function [] = plotDisplacement(cor, dis, OutName)
 sec = zeros(49, 3);
 cos = zeros(49, 3);
 
-scaleVelH = 0.002;
-scaleVelV = 0.05;
+scaleSecH = 0.002;
+scaleSecV = 0.05;
 scaleCosH = 0.001;
 scaleCosV = 0.01;
 
@@ -52,15 +52,15 @@ end
 hold on;
 
 % ===== Plot Secular Motion Horizontal
-error = quiver(coordinates(:, 1), coordinates(:, 2), sec(:, 1)*scaleVelH, sec(:, 2)*scaleVelH, 0, 'k', 'LineWidth', 2);
+error = quiver(coordinates(:, 1), coordinates(:, 2), sec(:, 1)*scaleSecH, sec(:, 2)*scaleSecH, 0, 'k', 'LineWidth', 2);
 error.ShowArrowHead = 'on';
 hold on;
 
 % ===== Plot Scale
-scale = quiver(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.75, diffH*0.75, 0, 0);
+scale = quiver(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.75, 50*scaleSecH, 0, 0, 'k', 'LineWidth', 2);
 scale.ShowArrowHead = 'on';
 scale.MaxHeadSize = 2;
-text(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.5, sprintf('%.2f mm', diffH*0.75/scaleVelH));
+text(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.5, '50.0 mm');
 hold off;
 
 % ===== Plot Config
@@ -87,15 +87,15 @@ end
 hold on;
 
 % ===== Plot Secular Motion Verticle
-error = quiver(coordinates(:, 1), coordinates(:, 2), sec(:, 3)*0, sec(:, 3)*scaleVelV, 0, 'k', 'LineWidth', 2);
+error = quiver(coordinates(:, 1), coordinates(:, 2), sec(:, 3)*0, sec(:, 3)*scaleSecV, 0, 'k', 'LineWidth', 2);
 error.ShowArrowHead = 'on';
 hold on;
 
 % ===== Plot Scale
-scale = quiver(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.75, diffH*0.75, 0, 0);
+scale = quiver(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.75, 2*scaleSecV, 0, 0, 'k', 'LineWidth', 2);
 scale.ShowArrowHead = 'on';
 scale.MaxHeadSize = 2;
-text(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.5, sprintf('%.2f mm', diffH*0.75/scaleVelV));
+text(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.5, '2.0 mm');
 hold off;
 
 % ===== Plot Config
@@ -127,10 +127,10 @@ error.ShowArrowHead = 'on';
 hold on;
 
 % ===== Plot Scale
-scale = quiver(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.75, diffH*0.75, 0, 0);
+scale = quiver(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.75, 100*scaleCosH, 0, 0, 'k', 'LineWidth', 2);
 scale.ShowArrowHead = 'on';
 scale.MaxHeadSize = 2;
-text(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.5, sprintf('%.2f mm', diffH*0.75/scaleCosH));
+text(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.5, '100.0 mm');
 hold off;
 
 % ===== Plot Config
@@ -162,10 +162,10 @@ error.ShowArrowHead = 'on';
 hold on;
 
 % ===== Plot Scale
-scale = quiver(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.75, diffH*0.75, 0, 0);
+scale = quiver(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.75, 10*scaleCosV, 0, 0, 'k', 'LineWidth', 2);
 scale.ShowArrowHead = 'on';
 scale.MaxHeadSize = 2;
-text(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.5, sprintf('%.2f mm', diffH*0.75/scaleCosV));
+text(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.5, '10.0 mm');
 hold off;
 
 % ===== Plot Config
@@ -181,4 +181,3 @@ grid minor;
 saveas(gcf, [OutName 'CosV'], 'png');
 
 end
-
