@@ -3,8 +3,10 @@ function [] = plotStrain(Station, Strain, OutName)
 % ===== Initial Value
 Scale = 0.001;
 
-diffH = abs(Station(1,1)-Station(8,1));
 diffV = abs(Station(1,2)-Station(2,2));
+
+x_start = max(Station(:, 1));
+y_start = min(Station(:, 2)) - diffV*0.75;
 
 %% ========== Plot Principal Strain Rate ========= %%
 % ===== Setup
@@ -31,10 +33,8 @@ for i = 1: length(Strain)
 end
 
 % ===== Plot Scale
-scale = quiver(max(Station(:, 1)), min(Station(:, 2))-diffV*0.75, diffH*0.75, 0, 0);
-scale.ShowArrowHead = 'on';
-scale.MaxHeadSize = 2;
-text(max(Station(:, 1)), min(Station(:, 2))-diffV*0.5, sprintf('%.2f mm', diffH*0.75/Scale));
+line([x_start, x_start+100*Scale], [y_start, y_start], 'Color', 'r', 'LineWidth', 2);
+text(max(Station(:, 1)), min(Station(:, 2))-diffV*0.5, '100.0 mm');
 hold off;
 
 % ===== Plot Config

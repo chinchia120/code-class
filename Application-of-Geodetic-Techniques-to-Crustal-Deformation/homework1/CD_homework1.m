@@ -2,7 +2,7 @@
 % ===== Setup
 clc; clear; close all;
 
-%% ========== Read Dataset ========== %%
+%% ========== Read Dataset (32_P66134111_filter1) ========== %%
 FolderPath = uigetdir(pwd, 'Select Dataset Folder');
 Files = dir(fullfile(FolderPath, '*.gmt'));
 
