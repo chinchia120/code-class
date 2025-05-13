@@ -15,7 +15,7 @@ coordinates = coordinates(:, 1:2);
 
 diffV = abs(coordinates(1,2)-coordinates(2,2));
 x_start = max(coordinates(:, 1));
-y_start = min(coordinates(:, 2)) - diffV * 0.75;
+y_start = min(coordinates(:, 2)) - diffV*0.75;
 
 %% ========== Read Displacement Data ========== %%
 disfile = fopen(dis);

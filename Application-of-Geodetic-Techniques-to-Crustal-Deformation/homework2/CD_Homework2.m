@@ -2,9 +2,8 @@
 % ===== Setup
 clc; clear; close all;
 
-%% ========== Read Grid Dataset ========== %%
-FolderPath = '/Users/chinchia120/Documents/code-class/Application-of-Geodetic-Techniques-to-Crustal-Deformation/dataset/32_P66134111_filter1_grid';
-% FolderPath = uigetdir(pwd, 'Select Grid Folder');
+%% ========== Read Grid Dataset (32_P66134111_filter1_grid) ========== %%
+FolderPath = uigetdir(pwd, 'Select Grid Folder');
 
 %% ========== Creat Output Folder ========== %%
 tmp = strsplit(FolderPath, '/');
