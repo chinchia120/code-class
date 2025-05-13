@@ -1,3 +1,7 @@
+%% ========== Setup ========== %%
+% ===== Setup
+clc; clear; close all;
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%input parameters
 %datatype = 1 for horizontal velocity | format: lon (deg), lat (deg), Deast (mm/yr), Dnorth (mm/yr), Sigeast (mm/yr), Signorth (mm/yr)

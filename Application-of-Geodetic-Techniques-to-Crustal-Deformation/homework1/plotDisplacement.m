@@ -13,8 +13,9 @@ scaleCosV = 0.01;
 coordinates = readmatrix(cor, 'FileType', 'text');
 coordinates = coordinates(:, 1:2);
 
-diffH = abs(coordinates(1,1)-coordinates(8,1));
 diffV = abs(coordinates(1,2)-coordinates(2,2));
+x_start = max(coordinates(:, 1));
+y_start = min(coordinates(:, 2)) - diffV * 0.75;
 
 %% ========== Read Displacement Data ========== %%
 disfile = fopen(dis);
@@ -57,9 +58,7 @@ error.ShowArrowHead = 'on';
 hold on;
 
 % ===== Plot Scale
-scale = quiver(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.75, 50*scaleSecH, 0, 0, 'k', 'LineWidth', 2);
-scale.ShowArrowHead = 'on';
-scale.MaxHeadSize = 2;
+line([x_start, x_start+50*scaleSecH], [y_start, y_start], 'Color', 'k', 'LineWidth', 2);
 text(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.5, '50.0 mm');
 hold off;
 
@@ -92,9 +91,7 @@ error.ShowArrowHead = 'on';
 hold on;
 
 % ===== Plot Scale
-scale = quiver(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.75, 2*scaleSecV, 0, 0, 'k', 'LineWidth', 2);
-scale.ShowArrowHead = 'on';
-scale.MaxHeadSize = 2;
+line([x_start, x_start+2*scaleSecV], [y_start, y_start], 'Color', 'k', 'LineWidth', 2);
 text(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.5, '2.0 mm');
 hold off;
 
@@ -127,9 +124,7 @@ error.ShowArrowHead = 'on';
 hold on;
 
 % ===== Plot Scale
-scale = quiver(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.75, 100*scaleCosH, 0, 0, 'k', 'LineWidth', 2);
-scale.ShowArrowHead = 'on';
-scale.MaxHeadSize = 2;
+line([x_start, x_start+100*scaleCosH], [y_start, y_start], 'Color', 'k', 'LineWidth', 2);
 text(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.5, '100.0 mm');
 hold off;
 
@@ -162,9 +157,7 @@ error.ShowArrowHead = 'on';
 hold on;
 
 % ===== Plot Scale
-scale = quiver(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.75, 10*scaleCosV, 0, 0, 'k', 'LineWidth', 2);
-scale.ShowArrowHead = 'on';
-scale.MaxHeadSize = 2;
+line([x_start, x_start+10*scaleCosV], [y_start, y_start], 'Color', 'k', 'LineWidth', 2);
 text(max(coordinates(:, 1)), min(coordinates(:, 2))-diffV*0.5, '10.0 mm');
 hold off;
 
