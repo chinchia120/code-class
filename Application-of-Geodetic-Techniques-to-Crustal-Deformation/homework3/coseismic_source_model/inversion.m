@@ -16,6 +16,7 @@ input_file{2}='disp_u_CGPS.dat'; %input file name
 datatype{2}=2;
 weightdata{2}=1;
 look{2}=NaN; %[flight_direction,looking angle] for InSAR data -- not applicable for other geodetic data
+%{
 input_file{3}='disp_h_SGPS.dat'; %input file name
 datatype{3}=1;
 weightdata{3}=1;
@@ -28,7 +29,6 @@ input_file{5}='disp_u_level.dat'; %input file name
 datatype{5}=2;
 weightdata{5}=1;
 look{5}=NaN; %[flight_direction,looking angle] for InSAR data -- not applicable for other geodetic data
-%{
 input_file{6}='disp_h_NDHU.dat'; %input file name
 datatype{6}=1;
 weightdata{6}=1;
@@ -48,16 +48,22 @@ look{6}=[-1.676091359075176e+02 3.2e+01]; %[flight_direction,looking angle] for 
 %}
 
 %specify fault geometry and boundary condition
-fault_x{1}=[121.820000 121.807684 121.795368 121.783052 121.770736 121.758419 121.746103 121.733787 121.721471 121.709155 121.696839 121.684523 121.672207 121.659891 121.647574 121.635258 121.622942 121.610626 121.598310 121.589771 121.581233 121.572694 121.564155 121.555616 121.547078 121.538539 121.530000];
-fault_y{1}=[24.225000 24.209049 24.193099 24.177148 24.161198 24.145247 24.129297 24.113346 24.097396 24.081445 24.065494 24.049544 24.033593 24.017643 24.001692 23.985742 23.969791 23.953841 23.937890 23.920654 23.903418 23.886181 23.868945 23.851709 23.834473 23.817236 23.800000];
-dep{1}=[0.000000 1.500000 3.000000 4.500000 6.000000 7.500000 9.000000 10.500000 12.000000 13.500000 15.000000]; %top depth of fault
-dp{1}=[56.807400 56.807400 56.807400 56.807400 56.807400 56.807400 56.807400 56.807400 56.807400 56.807400]; %fault dip
-isSurf{1}=1; %isSurf = 1 if fault breaks free surface; = 0 otherwise; = NaN if no smoothing
-bss{1}=1; % bss = 1 if left-lateral; -1 if right-lateral; = NaN if no constraint
-bds{1}=1; %bds = 1 if reverse; -1 if normal; = NaN if no constraint
-gss{1}=NaN; % gss (geological ss rate) = NaN if no constraint; else then value should be positive
-gds{1}=NaN; % gds (geological ds rate) = NaN if no constraint; else then value should be positive
+% fault_x{1}=[121.820000 121.807684 121.795368 121.783052 121.770736 121.758419 121.746103 121.733787 121.721471 121.709155 121.696839 121.684523 121.672207 121.659891 121.647574 121.635258 121.622942 121.610626 121.598310 121.589771 121.581233 121.572694 121.564155 121.555616 121.547078 121.538539 121.530000];
+% fault_y{1}=[24.225000 24.209049 24.193099 24.177148 24.161198 24.145247 24.129297 24.113346 24.097396 24.081445 24.065494 24.049544 24.033593 24.017643 24.001692 23.985742 23.969791 23.953841 23.937890 23.920654 23.903418 23.886181 23.868945 23.851709 23.834473 23.817236 23.800000];
+% dep{1}=[0.000000 1.500000 3.000000 4.500000 6.000000 7.500000 9.000000 10.500000 12.000000 13.500000 15.000000]; %top depth of fault
+% dp{1}=[56.807400 56.807400 56.807400 56.807400 56.807400 56.807400 56.807400 56.807400 56.807400 56.807400]; %fault dip
+fault_x{1} = [120.390300 120.317117 120.243933 120.170750 120.097567 120.024383 119.951200 119.878017 119.804833 119.731650 119.658467 119.585283 119.512100];
+fault_y{1} = [23.089800 23.078567 23.067333 23.056100 23.044867 23.033633 23.022400 23.011183 22.999967 22.988750 22.977533 22.966317 22.955100];
+dep{1} = [0.000000 2.500000 5.000000 7.500000 10.000000 12.500000 15.000000 17.500000 20.000000 22.500000 25.000000];
+dp{1} = [20.000000 20.000000 20.000000 20.000000 20.000000 20.000000 20.000000 20.000000 20.000000 20.000000];
+% dp{1} = ones(1, 10) * 20.0;
+isSurf{1} = 0; %isSurf = 1 if fault breaks free surface; = 0 otherwise; = NaN if no smoothing
+bss{1} = 1; % bss = 1 if left-lateral; -1 if right-lateral; = NaN if no constraint
+bds{1} = 1; %bds = 1 if reverse; -1 if normal; = NaN if no constraint
+gss{1} = NaN; % gss (geological ss rate) = NaN if no constraint; else then value should be positive
+gds{1} = NaN; % gds (geological ds rate) = NaN if no constraint; else then value should be positive
 
+%{
 fault_x{2}=[121.602550 121.602367 121.602183 121.602000 121.608010 121.614020 121.620030 121.626040 121.632050 121.638060 121.644070 121.650080 121.656090];
 fault_y{2}=[23.967360 23.976907 23.986453 23.996000 24.005910 24.015820 24.025730 24.035640 24.045550 24.055460 24.065370 24.075280 24.085190];
 dep{2}=[0.000000 0.625000 1.250000 1.875000 2.500000 3.125000 3.750000 4.375000 5.000000]; %top depth of fault
@@ -67,6 +73,7 @@ bss{2}=1; % bss = 1 if left-lateral; -1 if right-lateral; = NaN if no constraint
 bds{2}=1; %bds = 1 if reverse; -1 if normal; = NaN if no constraint
 gss{2}=NaN; % gss (geological ss rate) = NaN if no constraint; else then value should be positive
 gds{2}=NaN; % gds (geological ds rate) = NaN if no constraint; else then value should be positive
+%}
 
 %specify parameters
 % gamma = smoothing parameter (increasing gamma decreases roughness) 

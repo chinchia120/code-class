@@ -1,19 +1,30 @@
+%% ========== Setup ========== %%
+% ===== Setup
+% clc; clear; close all;
+close all;
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %specify fault geometry and boundary condition
 
-fault_x{1}=[121.82000 121.59831 121.53000];
-fault_y{1}=[24.22500 23.93789 23.80000];
-dep{1}=[0 15]; %top depth of fault
-dp{1}=[56.8074]; %fault dip
-strike_seg{1}=[18 8];
-dip_seg{1}=[10];
+% fault_x{1}=[121.82000 121.59831 121.53000];
+% fault_y{1}=[24.22500 23.93789 23.80000];
+% dep{1}=[0 15]; %top depth of fault
+% dp{1}=58.8074; %fault dip
+% strike_seg{1}=[18 8];
+% dip_seg{1}=10;
+fault_x{1} = [120.3903 119.9512 119.5121];
+fault_y{1} = [23.0898 23.0224 22.9551];
+dep{1} = [0 25]; % top depth of fault
+dp{1} = 20.0; % fault dip
+strike_seg{1} = [6 6];
+dip_seg{1} = 10;
 
-fault_x{2}=[121.60255 121.60200 121.65609];
-fault_y{2}=[23.96736 23.99600 24.08519];
-dep{2}=[0 5]; %top depth of fault
-dp{2}=[55]; %fault dip
-strike_seg{2}=[3 9];
-dip_seg{2}=[8];
+% fault_x{2}=[121.60255 121.60200 121.65609];
+% fault_y{2}=[23.96736 23.99600 24.08519];
+% dep{2}=[0 5]; %top depth of fault
+% dp{2}=[55]; %fault dip
+% strike_seg{2}=[3 9];
+% dip_seg{2}=[5];
 
 outf=1; % outf = 1 if write output file, outf = 0 if no output file
 
@@ -77,3 +88,6 @@ if outf==1
     fclose(fid);
 end
 
+tmp = pm_pre{1, 1};
+disp([tmp(1, 1:2)])
+disp([tmp(end, 1:2)])
