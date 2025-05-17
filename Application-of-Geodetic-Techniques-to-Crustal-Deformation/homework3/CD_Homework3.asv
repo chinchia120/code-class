@@ -10,6 +10,7 @@ dep{1} = [0 25];            % top depth of fault
 dp{1} = 20.0;               % fault dip
 strike_seg{1} = [6 6];      % strike segments
 dip_seg{1} = 10;            % dip segments
+
 outf = 1;                   % outf = 1 if write output file, outf = 0 if no output file
 
 % ===== Make Fault
@@ -78,8 +79,8 @@ end
 
 % ===== Check Pre-Make Fault
 pre_fault = pm_pre{1, 1};
-fprintf('pre_fault: %f %f\n', pre_fault(1, 1:2));
-fprintf('pre_fault: %f %f\n', pre_fault(end, 1:2));
+disp([pre_fault(1, 1:2)]);
+disp([pre_fault(end, 1:2)]);
 
 % ===== Clear Variables
 clear origin;
@@ -329,5 +330,5 @@ end
 axis equal;
 
 % ===== Check rnorm and mis
-fprintf('rnorm: %f\n', rnorm);
-fprintf('mis: %f\n', mis);
+disp(norm);
+disp(mis);
