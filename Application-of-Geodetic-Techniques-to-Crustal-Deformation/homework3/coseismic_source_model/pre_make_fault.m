@@ -16,7 +16,7 @@ fault_x{1} = [120.3903 119.9512 119.5121];
 fault_y{1} = [23.0898 23.0224 22.9551];
 dep{1} = [0 25]; % top depth of fault
 dp{1} = 20.0; % fault dip
-strike_seg{1} = [6 6];
+strike_seg{1} = [8 6];
 dip_seg{1} = 10;
 
 % fault_x{2}=[121.60255 121.60200 121.65609];

@@ -5,7 +5,6 @@ faulttrace=ll2xy(faulttrace,origin);
 
 nhe=size(fault_x,2)-1;  %number horizontal elements 
 nve=size(dep,2)-1;  %number vertical elements
-
 strike_all=atan2((faulttrace(end,1)-faulttrace(1,1)),(faulttrace(end,2)-faulttrace(1,2)))*180/pi;
 fault_node_x=faulttrace(:,1);
 fault_node_y=faulttrace(:,2);

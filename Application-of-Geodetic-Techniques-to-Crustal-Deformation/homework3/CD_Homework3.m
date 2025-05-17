@@ -1,15 +1,16 @@
 %% ========== Setup ========== %%
 % ===== Setup
-clc; clear; close all;
+clear; close all;
+warning off;
 
 %% ========== Pre-Make Fault ========== %%
 % ===== Fault 1 Parameters
-fault_x{1} = [120.3903 119.9512 119.5121];
-fault_y{1} = [23.0898 23.0224 22.9551];
-dep{1} = [0 25];            % top depth of fault
+fault_x{1} = [120.3 119.9512 119.8];
+fault_y{1} = [23 23 23];
+dep{1} = [0 20];            % top depth of fault
 dp{1} = 20.0;               % fault dip
-strike_seg{1} = [6 6];      % strike segments
-dip_seg{1} = 10;            % dip segments
+strike_seg{1} = [8 5];    % strike segments
+dip_seg{1} = 6;            % dip segments
 outf = 1;                   % outf = 1 if write output file, outf = 0 if no output file
 
 % ===== Make Fault
@@ -50,14 +51,14 @@ for k = 1:size(fault_x,2)
 end
 
 % ===== Plot Fault
-figure;
-for k = 1:size(fault_x,2)
-    plotpatchslip3D_vectors_pre(pm_pre{k}, nve{k});
-    hold on;
-    for k2 = 1:size(SegEnds_pre{k},1)
-        plot([SegEnds_pre{k}(k2,1) SegEnds_pre{k}(k2,3)], [SegEnds_pre{k}(k2,2) SegEnds_pre{k}(k2,4)], 'ko');
-    end
-end
+% figure;
+% for k = 1:size(fault_x,2)
+%     plotpatchslip3D_vectors_pre(pm_pre{k}, nve{k});
+%     hold on;
+%     for k2 = 1:size(SegEnds_pre{k},1)
+%         plot([SegEnds_pre{k}(k2,1) SegEnds_pre{k}(k2,3)], [SegEnds_pre{k}(k2,2) SegEnds_pre{k}(k2,4)], 'ko');
+%     end
+% end
 
 % ===== Write Output File
 if outf == 1
@@ -83,12 +84,14 @@ fprintf('pre_fault: %f %f\n', pre_fault(end, 1:2));
 
 % ===== Clear Variables
 clear origin;
+
 %% ========== Inversion ========== %%
 % ===== Setup
 input_file{1} = 'disp_h_CGPS.dat';  % input file name
 datatype{1} = 1;
 weightdata{1} = 1;
 look{1} = NaN;                      % [flight_direction,looking angle] for InSAR data -- not applicable for other geodetic data
+
 input_file{2} = 'disp_u_CGPS.dat';  % input file name
 datatype{2} = 2;
 weightdata{2} = 1;
@@ -100,9 +103,9 @@ fault_y{1} = n_fault_y{1, 1};
 dep{1} = n_dep{1, 1};
 dp{1} = n_dp{1, 1};
 
-isSurf{1} = 0;      % isSurf = 1 if fault breaks free surface; = 0 otherwise; = NaN if no smoothing
+isSurf{1} = 1;      % isSurf = 1 if fault breaks free surface; = 0 otherwise; = NaN if no smoothing
 bss{1} = 1;         % bss = 1 if left-lateral; -1 if right-lateral; = NaN if no constraint
-bds{1} = 1;         % bds = 1 if reverse; -1 if normal; = NaN if no constraint
+bds{1} = NaN;       % bds = 1 if reverse; -1 if normal; = NaN if no constraint
 gss{1} = NaN;       % gss (geological ss rate) = NaN if no constraint; else then value should be positive
 gds{1} = NaN;       % gds (geological ds rate) = NaN if no constraint; else then value should be positive
 
@@ -114,7 +117,7 @@ for k = 1:size(datatype,2)
     data{k} = load(input_file{k});
 end
 
-origin=[min(data{1}(:,2)) min(data{1}(:,1))];
+origin = [min(data{1}(:,2)) min(data{1}(:,1))];
 for k=1:size(data,2)
     xy{k} = ll2xy([data{k}(:,2) data{k}(:,1)]', origin);
 end
@@ -135,9 +138,9 @@ for k = 1:size(data,2)
     if datatype{k} == 1
         [Gss, Gds] = Get_Gs_horizontal(pm, xy{k});
     elseif datatype{k} == 2
-        [Gss,Gds] = Get_Gs_vertical(pm, xy{k});
+        [Gss, Gds] = Get_Gs_vertical(pm, xy{k});
     elseif datatype{k} == 3
-        [Gss,Gds] = Get_Gs_insar(pm, xy{k}, look{k});
+        [Gss, Gds] = Get_Gs_insar(pm, xy{k}, look{k});
     end
     G = [G; [Gss,Gds]];
 end
@@ -256,6 +259,7 @@ for k1 = 1:size(fault_x,2)              % bounded seg.
         bounds_g_ss = [bounds_g_ss; gss{k1}*ones(size(BG_ss,1),1)];
     end
 end
+
 % dip-slip component for for constraint of geological rate
 BG_ds_all = [];
 bounds_g_ds = [];
@@ -315,7 +319,7 @@ for k = 1:size(data,2)
             hold on;
         end
         quiver3(xy{k}(:,1), xy{k}(:,2), 0*xy{k}(:,1), zeros(size(data{k},1),1),zeros(size(data{k},1),1),data{k}(:,3),'k')
-        quiver3(xy{k}(:,1), xy{k}(:,2), 0*xy{k}(:,1),zeros(size(data{k},1),1),zeros(size(data{k},1),1),dhat_set{k},'g')
+        quiver3(xy{k}(:,1), xy{k}(:,2), 0*xy{k}(:,1), zeros(size(data{k},1),1),zeros(size(data{k},1),1),dhat_set{k},'g')
     elseif datatype{k} == 3
         figure;
         for i = 1:size(fault_x,2)
