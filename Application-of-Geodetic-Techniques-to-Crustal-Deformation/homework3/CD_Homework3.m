@@ -97,15 +97,15 @@ clear origin;
 
 %% ========== Inversion ========== %%
 % ===== Setup
-input_file{1} = 'disp_h_CGPS.dat';  % input file name
+input_file{1} = 'InputFile/disp_h_CGPS.dat';    % input file name
 datatype{1} = 1;
 weightdata{1} = 1;
-look{1} = NaN;                      % [flight_direction,looking angle] for InSAR data -- not applicable for other geodetic data
+look{1} = NaN;                                  % [flight_direction,looking angle] for InSAR data -- not applicable for other geodetic data
 
-input_file{2} = 'disp_u_CGPS.dat';  % input file name
+input_file{2} = 'InputFile/disp_u_CGPS.dat';    % input file name
 datatype{2} = 2;
 weightdata{2} = 1;
-look{2} = NaN;                      % [flight_direction,looking angle] for InSAR data -- not applicable for other geodetic data
+look{2} = NaN;                                  % [flight_direction,looking angle] for InSAR data -- not applicable for other geodetic data
 
 % ===== Fault 1 Parameters
 fault_x{1} = n_fault_x{1, 1};
