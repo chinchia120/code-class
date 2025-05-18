@@ -120,7 +120,7 @@ bds{1} = NaN;       % bds = 1 if reverse; -1 if normal; = NaN if no constraint
 gss{1} = NaN;       % gss (geological ss rate) = NaN if no constraint; else then value should be positive
 gds{1} = NaN;       % gds (geological ds rate) = NaN if no constraint; else then value should be positive
 
-gamma_smooth = 1;   % smoothing parameter (increasing gamma decreases roughness)
+gamma_smooth = 0.9; % smoothing parameter (increasing gamma decreases roughness)
 gout = 1;           % gout = NaN if not generating output files; else if yes
 
 % ===== Load Data
