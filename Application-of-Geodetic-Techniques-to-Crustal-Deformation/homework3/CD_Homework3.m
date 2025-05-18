@@ -3,9 +3,13 @@
 clc; clear; close all;
 warning off;
 
-% ===== Folder
-OutputFolder = sprintf('OutputFigure');
-if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
+% ===== Figure Folder
+OutputFigure = sprintf('OutputFigure');
+if ~exist(OutputFigure, 'dir'); mkdir(OutputFigure); end
+
+% ===== File Folder
+OutputFile = sprintf('OutputFile');
+if ~exist(OutputFile, 'dir'); mkdir(OutputFile); end
 
 %% ========== Pre-Make Fault ========== %%
 % ===== Fault 1 Parameters
@@ -64,11 +68,11 @@ for k = 1:size(fault_x,2)
     end
 end
 
-saveas(gcf, [OutputFolder, sprintf('/Fault_%.1f.png', dp{1})]);
+saveas(gcf, [OutputFigure, sprintf('/Fault_%.1f.png', dp{1})]);
 
 % ===== Write Output File
 if outf == 1
-    fid = fopen('pre_make_fault.out', 'w');
+    fid = fopen([OutputFile, sprintf('/pre_make_fault.out')], 'w');
     for k = 1:size(fault_x,2)
         fprintf(fid, 'fault_x{%d}\r\n', k);
         fprintf(fid, '%f ', n_fault_x{k});
@@ -116,8 +120,8 @@ bds{1} = NaN;       % bds = 1 if reverse; -1 if normal; = NaN if no constraint
 gss{1} = NaN;       % gss (geological ss rate) = NaN if no constraint; else then value should be positive
 gds{1} = NaN;       % gds (geological ds rate) = NaN if no constraint; else then value should be positive
 
-gamma_smooth = 1; % smoothing parameter (increasing gamma decreases roughness)
-gout = NaN; %gout = NaN if not generating output files; else if yes
+gamma_smooth = 1;   % smoothing parameter (increasing gamma decreases roughness)
+gout = 1;           % gout = NaN if not generating output files; else if yes
 
 % ===== Load Data
 for k = 1:size(datatype,2)
@@ -322,7 +326,7 @@ for k = 1:size(data,2)
         quiver(xy{k}(:,1), xy{k}(:,2), dhat_set{k}(1:size(data{k},1)), dhat_set{k}(size(data{k},1)+1:2*size(data{k},1)), 'r');
         axis equal;
         
-        saveas(gcf, [OutputFolder, sprintf('/Fault_%.1f_Horizontal_%.1f.png', dip(1), gamma_smooth)]);
+        saveas(gcf, [OutputFigure, sprintf('/Fault_%.1f_Horizontal_%.1f.png', dip(1), gamma_smooth)]);
     elseif datatype{k} == 2
         figure;
         for i = 1:size(fault_x,2)
@@ -333,10 +337,41 @@ for k = 1:size(data,2)
         quiver3(xy{k}(:,1), xy{k}(:,2), 0*xy{k}(:,1), zeros(size(data{k},1),1),zeros(size(data{k},1),1),dhat_set{k},'g');
         axis equal;
 
-        saveas(gcf, [OutputFolder, sprintf('/Fault_%.1f_Vertical_%.1f.png', dip(1), gamma_smooth)]);
+        saveas(gcf, [OutputFigure, sprintf('/Fault_%.1f_Vertical_%.1f.png', dip(1), gamma_smooth)]);
     end
 end
 
 % ===== Check rnorm and mis
 fprintf('rnorm: %f\n', rnorm);
 fprintf('mis: %f\n', mis);
+
+% ===== Generate Output Files
+if ~isnan(gout)
+    % output observation, calculation, and residual files
+    for k = 1:size(data,2)
+        if datatype{k} == 1
+            fid = fopen([OutputFile, sprintf('/calh_%d.gmt', k)], 'w');
+            fprintf(fid, '%13.9f  %13.10f  %10.6f  %10.6f\r\n', [data{k}(:,1) data{k}(:,2) dhat_set{k}(1:size(data{k},1)) dhat_set{k}(size(data{k},1)+1:2*size(data{k},1))]');
+            fclose(fid);
+        elseif datatype{k} == 2
+            fid = fopen([OutputFile, sprintf('/calu_%d.gmt', k)], 'w');
+            fprintf(fid, '%13.9f  %13.10f  %10.6f\r\n', [data{k}(:,1) data{k}(:,2) dhat_set{k}]');
+            fclose(fid);
+        end
+    end
+
+    % output fault geometry and slip distribution
+    for k = 1:size(fault_x,2)
+        fid = fopen([OutputFile, sprintf('/fault_info_%d.dat', k)], 'w');
+        fprintf(fid, '%8.4f %7.4f\r\n',fliplr(origin));
+        fprintf(fid, '%i\r\n',nhe{k});
+        fprintf(fid, '%i\r\n',nve{k});
+        fclose(fid);
+        
+        fid = fopen([OutputFile, sprintf('/pm_%d.dat', k)], 'w');
+        fprintf(fid, '%10.4f %10.4f %10.4f %10.4f %10.4f %10.4f %10.4f\r\n', pm_pre{k}');
+        fclose(fid);
+        
+        outputpatchslip3D_vectors(pm_pre{k}, s_pre{k}', nve{k}, k, OutputFile);
+    end
+end
