@@ -7,8 +7,7 @@ cosstd = zeros(49, 6);
 
 %% ========== Read Dataset (32_P66134111_filter1) ========== %%
 % ===== Read Folder
-FolderPath = '/Users/chinchia120/Documents/code-class/Application-of-Geodetic-Techniques-to-Crustal-Deformation/dataset/32_P66134111_filter1';
-% FolderPath = uigetdir(pwd, 'Select Folder');
+FolderPath = uigetdir(pwd, 'Select Folder');
 
 % ===== Read Station
 stafile = [FolderPath '/sta.dat'];

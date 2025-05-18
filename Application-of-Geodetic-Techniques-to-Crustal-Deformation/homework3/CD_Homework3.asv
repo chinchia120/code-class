@@ -13,7 +13,7 @@ dep{1} = [0 15];            % top depth of fault
 dp{1} = 68.0;               % fault dip
 strike_seg{1} = [5 8];    % strike segments
 dip_seg{1} = 7;            % dip segments
-outf = 0;                   % outf = 1 if write output file, outf = 0 if no output file
+outf = 1;                   % outf = 1 if write output file, outf = 0 if no output file
 
 % ===== Make Fault
 origin = [min(fault_y{1}(1)) min(fault_x{1}(1))];
@@ -53,14 +53,14 @@ for k = 1:size(fault_x,2)
 end
 
 % ===== Plot Fault
-% figure;
-% for k = 1:size(fault_x,2)
-%     plotpatchslip3D_vectors_pre(pm_pre{k}, nve{k});
-%     hold on;
-%     for k2 = 1:size(SegEnds_pre{k},1)
-%         plot([SegEnds_pre{k}(k2,1) SegEnds_pre{k}(k2,3)], [SegEnds_pre{k}(k2,2) SegEnds_pre{k}(k2,4)], 'ko');
-%     end
-% end
+figure;
+for k = 1:size(fault_x,2)
+    plotpatchslip3D_vectors_pre(pm_pre{k}, nve{k});
+    hold on;
+    for k2 = 1:size(SegEnds_pre{k},1)
+        plot([SegEnds_pre{k}(k2,1) SegEnds_pre{k}(k2,3)], [SegEnds_pre{k}(k2,2) SegEnds_pre{k}(k2,4)], 'ko');
+    end
+end
 
 % ===== Write Output File
 if outf == 1
@@ -112,7 +112,7 @@ bds{1} = NaN;       % bds = 1 if reverse; -1 if normal; = NaN if no constraint
 gss{1} = NaN;       % gss (geological ss rate) = NaN if no constraint; else then value should be positive
 gds{1} = NaN;       % gds (geological ds rate) = NaN if no constraint; else then value should be positive
 
-gamma_smooth = 1; % smoothing parameter (increasing gamma decreases roughness)
+gamma_smooth = 0.0; % smoothing parameter (increasing gamma decreases roughness)
 gout = NaN; %gout = NaN if not generating output files; else if yes
 
 % ===== Load Data
