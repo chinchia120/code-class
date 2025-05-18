@@ -150,8 +150,6 @@ for k = 1:size(data,2)
         [Gss, Gds] = Get_Gs_horizontal(pm, xy{k});
     elseif datatype{k} == 2
         [Gss, Gds] = Get_Gs_vertical(pm, xy{k});
-    elseif datatype{k} == 3
-        [Gss, Gds] = Get_Gs_insar(pm, xy{k}, look{k});
     end
     G = [G; [Gss,Gds]];
 end
