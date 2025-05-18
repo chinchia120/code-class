@@ -1,9 +1,11 @@
 %% ========== Setup ========== %%
 % ===== Setup
-% clc;
-clear;
-close all;
+clc; clear; close all;
 warning off;
+
+% ===== Folder
+OutputFolder = sprintf('OutputFigure');
+if ~exist(OutputFolder, 'dir'); mkdir(OutputFolder); end
 
 %% ========== Pre-Make Fault ========== %%
 % ===== Fault 1 Parameters
@@ -11,9 +13,9 @@ fault_x{1} = [119.8 119.9512 120.3];
 fault_y{1} = [23.05 23.05 23.05];
 dep{1} = [0 15];            % top depth of fault
 dp{1} = 68.0;               % fault dip
-strike_seg{1} = [5 8];    % strike segments
-dip_seg{1} = 7;            % dip segments
-outf = 0;                   % outf = 1 if write output file, outf = 0 if no output file
+strike_seg{1} = [5 8];      % strike segments
+dip_seg{1} = 7;             % dip segments
+outf = 1;                   % outf = 1 if write output file, outf = 0 if no output file
 
 % ===== Make Fault
 origin = [min(fault_y{1}(1)) min(fault_x{1}(1))];
@@ -53,14 +55,16 @@ for k = 1:size(fault_x,2)
 end
 
 % ===== Plot Fault
-% figure;
-% for k = 1:size(fault_x,2)
-%     plotpatchslip3D_vectors_pre(pm_pre{k}, nve{k});
-%     hold on;
-%     for k2 = 1:size(SegEnds_pre{k},1)
-%         plot([SegEnds_pre{k}(k2,1) SegEnds_pre{k}(k2,3)], [SegEnds_pre{k}(k2,2) SegEnds_pre{k}(k2,4)], 'ko');
-%     end
-% end
+figure;
+for k = 1:size(fault_x,2)
+    plotpatchslip3D_vectors_pre(pm_pre{k}, nve{k});
+    hold on;
+    for k2 = 1:size(SegEnds_pre{k},1)
+        plot([SegEnds_pre{k}(k2,1) SegEnds_pre{k}(k2,3)], [SegEnds_pre{k}(k2,2) SegEnds_pre{k}(k2,4)], 'ko');
+    end
+end
+
+saveas(gcf, [OutputFolder, sprintf('/Fault_%.1f.png', dp{1})]);
 
 % ===== Write Output File
 if outf == 1
@@ -173,7 +177,7 @@ for k = 1:size(fault_x,2)
 end
 
 Lapp_ss_all=[];                     % strike-slip component
-for k1=1:size(fault_x,2)            % smoothing seg.
+for k1 = 1:size(fault_x,2)          % smoothing seg.
     if isnan(isSurf{k1})
         continue;
     else
@@ -225,12 +229,12 @@ bounds_ss = zeros(size(B_ss_all,1), 1);
 
 % dip-slip component for fault kinematics
 B_ds_all = [];
-for k1 = 1:size(fault_x,2)          % bounded seg.
+for k1 = 1:size(fault_x,2)              % bounded seg.
     if isnan(bds{k1})
         continue;
     else
         B_ds=[];
-        for k2 = 1:size(fault_x,2)    % non-bounded seg.
+        for k2 = 1:size(fault_x,2)      % non-bounded seg.
             if k1 == k2
                 B_ds = [B_ds, BNi_ds{k1}];
             else
@@ -306,6 +310,7 @@ for k = 1:size(fault_x,2)
     s_pre{k} = [ss_pre{k}; ds_pre{k}];
 end
 
+dip = dp{1};
 for k = 1:size(data,2)
     if datatype{k} == 1
         figure;
@@ -315,25 +320,22 @@ for k = 1:size(data,2)
         end
         quiver(xy{k}(:,1), xy{k}(:,2), data{k}(:,3), data{k}(:,4), 'b');
         quiver(xy{k}(:,1), xy{k}(:,2), dhat_set{k}(1:size(data{k},1)), dhat_set{k}(size(data{k},1)+1:2*size(data{k},1)), 'r');
+        axis equal;
+        
+        saveas(gcf, [OutputFolder, sprintf('/Fault_%.1f_Horizontal_%.1f.png', dip(1), gamma_smooth)]);
     elseif datatype{k} == 2
         figure;
         for i = 1:size(fault_x,2)
             plotpatchslip3D_vectors(pm_pre{i}, s_pre{i}', nve{i});
             hold on;
         end
-        quiver3(xy{k}(:,1), xy{k}(:,2), 0*xy{k}(:,1), zeros(size(data{k},1),1),zeros(size(data{k},1),1),data{k}(:,3),'k')
-        quiver3(xy{k}(:,1), xy{k}(:,2), 0*xy{k}(:,1), zeros(size(data{k},1),1),zeros(size(data{k},1),1),dhat_set{k},'g')
-    elseif datatype{k} == 3
-        figure;
-        for i = 1:size(fault_x,2)
-            plotpatchslip3D_vectors(pm_pre{i}, s_pre{i}', nve{i});
-            hold on;
-        end
-        quiver3(xy{k}(:,1), xy{k}(:,2), 0*xy{k}(:,1), zeros(size(data{k},1),1), zeros(size(data{k},1),1), data{k}(:,3), 'k');
-        quiver3(xy{k}(:,1), xy{k}(:,2), 0*xy{k}(:,1), zeros(size(data{k},1),1), zeros(size(data{k},1),1), dhat_set{k}, 'g');
+        quiver3(xy{k}(:,1), xy{k}(:,2), 0*xy{k}(:,1), zeros(size(data{k},1),1),zeros(size(data{k},1),1),data{k}(:,3),'k');
+        quiver3(xy{k}(:,1), xy{k}(:,2), 0*xy{k}(:,1), zeros(size(data{k},1),1),zeros(size(data{k},1),1),dhat_set{k},'g');
+        axis equal;
+
+        saveas(gcf, [OutputFolder, sprintf('/Fault_%.1f_Vertical_%.1f.png', dip(1), gamma_smooth)]);
     end
 end
-axis equal;
 
 % ===== Check rnorm and mis
 fprintf('rnorm: %f\n', rnorm);
