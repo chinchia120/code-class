@@ -5,7 +5,7 @@ clc; clear; close all;
 % ===== Initial Value
 cosstd = zeros(49, 6);
 
-%% ========== Read Dataset ========== %%
+%% ========== Read Dataset (32_P66134111_filter1) ========== %%
 % ===== Read Folder
 FolderPath = '/Users/chinchia120/Documents/code-class/Application-of-Geodetic-Techniques-to-Crustal-Deformation/dataset/32_P66134111_filter1';
 % FolderPath = uigetdir(pwd, 'Select Folder');
@@ -52,8 +52,8 @@ for i = 1: length(cosstd)
     Lat = stadata{1,1}(i);
     Lon = stadata{1,2}(i);
 
-    fprintf(fidh, '%7.4f\t%6.4f\t%8.4f\t%7.4f\t%6.3f\t%6.3f\r\n', Lat, Lon, cosstd(i,1:2), cosstd(i,4:5));
-    fprintf(fidu, '%7.4f\t%6.4f\t%7.4f\t%6.3f\r\n', Lat, Lon, cosstd(i,3), cosstd(i,6));
+    fprintf(fidh, '%7.4f\t%6.4f\t%10.4f\t%9.4f\t%6.3f\t%6.3f\r\n', Lat, Lon, cosstd(i,1:2), cosstd(i,4:5));
+    fprintf(fidu, '%7.4f\t%6.4f\t%9.4f\t%6.3f\r\n', Lat, Lon, cosstd(i,3), cosstd(i,6));
 end
 fclose(fidh);
 fclose(fidu);
