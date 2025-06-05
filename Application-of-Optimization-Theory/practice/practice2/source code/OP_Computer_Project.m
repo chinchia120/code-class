@@ -20,16 +20,19 @@ max_iter = 100;
 ub = [10, 10];
 lb = [-10, -10];
 
-f = symfun(-cos(x1) * cos(x2) * exp((x1-pi)^2+(x2-pi)^2), [x1 x2]);
-[f_gradient,f_hessian,f_approx,f_gradient_cg] = funcs_2d(f);
+f = symfun(-cos(x1) * cos(x2) * exp((x1-pi).^2+(x2-pi).^2), [x1 x2]);
+[f_gradient, f_hessian, f_approx, f_gradient_cg] = funcs_2d(f);
 
 OutputFile1 = [OutputFile '/Question1.txt'];
+fid = fopen(OutputFile1, 'w');
+fprintf(fid, '%%%% ==================== Question 1 ==================== %%%%\r\n');
+fclose(fid);
 
 % ===== Initial Value 1
 x0 = [5, -5];
 
 % ===== Newton Method
-[point, output, time, iter, loss, points_array, values_array] = newton_method(f, f_gradient,f_hessian, x0, epsilon, max_iter, ub, lb);
+[point, output, time, iter, loss, points_array, values_array] = newton_method(f, f_gradient, f_hessian, x0, epsilon, max_iter, ub, lb);
 WriteOutputFile(point, output, time, iter, loss, points_array, values_array, 'Newton Method', OutputFile1);
 
 clear point output time iter loss points_array values_array;
@@ -41,3 +44,7 @@ WriteOutputFile(point, output, time, iter, loss, points_array, values_array, 'St
 clear point output time iter loss points_array values_array;
 
 % ===== Conjugate Gradient Method
+[point, output, time, iter, loss, points_array, values_array] = nonlinear_CG(f_approx, f, f_gradient, x0, epsilon, max_iter, ub, lb);
+WriteOutputFile(point, output, time, iter, loss, points_array, values_array, 'Conjugate Gradient Method', OutputFile1);
+
+clear point output time iter loss points_array values_array;
