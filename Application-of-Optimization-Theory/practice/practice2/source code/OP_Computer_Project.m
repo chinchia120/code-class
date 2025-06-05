@@ -30,6 +30,7 @@ fid = fopen(OutputFile1, 'w');
 fprintf(fid, '%%%% ==================== Question 1 ==================== %%%%\r\n');
 fclose(fid);
 
+% ===== Optimization
 for idx = 1: size(x0, 1)
     % ===== Newton Method
     [point, output, time, iter, loss, points_array, values_array] = newton_method(f, f_gradient, f_hessian, x0(idx, :), epsilon, max_iter, ub, lb);
