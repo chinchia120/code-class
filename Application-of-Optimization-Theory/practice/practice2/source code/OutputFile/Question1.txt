@@ -1,6 +1,15 @@
-%% ==================== Steepest Descent Method ==================== %%
+%% ==================== Question 1 ==================== %%
+% ========== Newton Method ========== % 
 Initial Value = [  5.0,  -5.0]
 Optimal Point = [-10.0,  10.0]
-Optimal Value = -190162032573293126754044472226032733132528770521965151852091904013486807386931932665893749784576.0000
+Optimal Value = -1.9016e+95
+Iterations    = 29
+CPU Time      = 0.5863 (s)
+
+% ========== Steepest Descent Method ========== % 
+Initial Value = [  5.0,  -5.0]
+Optimal Point = [-10.0,  10.0]
+Optimal Value = -1.9016e+95
 Iterations    = 3
-CPU Time      = 0.2791 (s)
+CPU Time      = 0.2514 (s)
+
