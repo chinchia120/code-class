@@ -1,4 +1,4 @@
-function [] = WriteOutputFile(point, output, time, iter, loss, points_array, values_array, method, outputfile)
+function [] = WriteOutFile(point, output, time, iter, loss, points_array, values_array, method, outputfile)
 %% ========== Open OutputFile ========== %%
 fid = fopen(outputfile, 'a+');
 

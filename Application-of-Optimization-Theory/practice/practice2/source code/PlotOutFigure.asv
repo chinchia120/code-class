@@ -1,0 +1,45 @@
+function PlotOutFigure(f, f_gradient, f_hessian, f_approx, ub, lb, loss, points_array, values_array, method, outname)
+%% ========== Convergence Curve ========== %%
+% ===== Setup
+figure;
+
+% ===== Plot Convergence
+x = linspace(0, length(values_array)-1, length(values_array));
+plot(x, values_array);
+
+% ===== Plot Config
+grid minor;
+title([method 'Convergence Curve']);
+xlabel('Iteration');
+ylabel('Value');
+xlim([x(1) x(end)]);
+
+% ===== Save Plot
+saveas(gcf, [outname '_Convergence.png']);
+
+%% ========== Gradient Curve ========== %%
+% ===== Setup
+figure;
+
+% ===== Plot Gradient
+x = linspace(0, length(loss)-1, length(loss));
+plot(x, loss);
+
+% ===== Plot Config
+grid minor;
+title([method 'Gradient Curve']);
+xlabel('Iteration');
+ylabel('Difference');
+xlim([x(1) x(end)]);
+
+% ===== Save Plot
+saveas(gcf, [outname '_Gradient.png']);
+
+%% ========== Level Set ========== %%
+% ===== Setup
+figure;
+
+% ===== Plot
+x = linspace(ub(1), );
+plot(x, loss);
+end
