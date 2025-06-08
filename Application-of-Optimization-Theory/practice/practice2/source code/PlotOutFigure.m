@@ -3,9 +3,9 @@ function PlotOutFigure(f_plot, ub, lb, loss, points_array, values_array, method,
 % ===== Setup
 figure;
 
-% ===== Plot Convergence
+% ===== Plot Convergence Curve
 x = linspace(0, length(values_array)-1, length(values_array));
-plot(x, values_array);
+plot(x, values_array, 'LineWidth', 2);
 
 % ===== Plot Config
 grid minor;
@@ -21,9 +21,9 @@ saveas(gcf, [outname '_Convergence.png']);
 % ===== Setup
 figure;
 
-% ===== Plot Gradient
-x = linspace(0, length(loss)-1, length(loss));
-plot(x, loss);
+% ===== Plot Gradient Curve
+x = linspace(1, length(loss), length(loss));
+plot(x, loss, 'LineWidth', 2);
 
 % ===== Plot Config
 grid minor;
@@ -35,58 +35,53 @@ xlim([x(1) x(end)]);
 % ===== Save Plot
 saveas(gcf, [outname '_Gradient.png']);
 
-%% ========== Level Set and Path ========== %%
+%% ========== Level Set with Path ========== %%
 % ===== Setup
 figure;
 
 % ===== Plot Level Set
 x = linspace(ub(1), lb(1), 100);
 y = linspace(ub(2), lb(2), 100);
-
 [xx, yy] = meshgrid(x, y);
 xy = f_plot(xx, yy);
-contour(xx, yy, xy);
-
+contour(xx, yy, xy, 'LineWidth', 1.5);
 hold on;
 
 % ===== Plot Path
-plot(points_array(:, 1), points_array(:, 2), '-o', 'Color', 'r');
-
+plot(points_array(:, 1), points_array(:, 2), '-o', 'Color', 'r', 'LineWidth', 2);
 hold off;
 
 % ===== Plot Config
-title([method ' Level Set Path']);
+title([method ' Level Set with Path']);
 xlabel('x1');
 ylabel('x2');
 
 % ===== Save Plot
 saveas(gcf, [outname '_LevelSet.png']);
 
-%% ========== Surface and Path ========== %%
+%% ========== Surface with Path ========== %%
 % ===== Setup
 figure;
 
 % ===== Plot Level Set
 x = linspace(ub(1), lb(1), 100);
 y = linspace(ub(2), lb(2), 100);
-
 [xx, yy] = meshgrid(x, y);
 xy = f_plot(xx, yy);
 surf(xx, yy, xy);
-
 hold on;
 
 % ===== Plot Path
-plot3(points_array(:, 1), points_array(:, 2), values_array, '-o', 'Color', 'r');
-
+plot3(points_array(:, 1), points_array(:, 2), values_array, '-o', 'Color', 'r', 'LineWidth', 2);
 hold off;
 
 % ===== Plot Config
-title([method ' Surface Path']);
+title([method ' Surface with Path']);
 xlabel('x1');
 ylabel('x2');
 zlabel('f(x1, x2)')
 
 % ===== Save Plot
 saveas(gcf, [outname '_Surface.png']);
+
 end

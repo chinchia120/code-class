@@ -4,40 +4,61 @@ Initial Value = [  5.0,  -5.0]
 Optimal Point = [-10.0,  10.0]
 Optimal Value = -1.9016e+95
 Iterations    = 29
-CPU Time      = 0.5876 (s)
+CPU Time      = 0.5691 (s)
 
 % ========== Steepest Descent Method ========== % 
 Initial Value = [  5.0,  -5.0]
 Optimal Point = [-10.0,  10.0]
 Optimal Value = -1.9016e+95
 Iterations    = 3
-CPU Time      = 0.2686 (s)
+CPU Time      = 0.2748 (s)
 
 % ========== Conjugate Gradient Method ========== % 
 Initial Value = [  5.0,  -5.0]
 Optimal Point = [ 10.0, -10.0]
 Optimal Value = -1.9016e+95
 Iterations    = 141
-CPU Time      = 2.7573 (s)
+CPU Time      = 2.9937 (s)
 
 % ========== Newton Method ========== % 
 Initial Value = [ -9.0,  -9.0]
 Optimal Point = [-10.0, -10.0]
 Optimal Value = -7.1479e+149
 Iterations    = 2
-CPU Time      = 0.2834 (s)
+CPU Time      = 0.2697 (s)
 
 % ========== Steepest Descent Method ========== % 
 Initial Value = [ -9.0,  -9.0]
 Optimal Point = [-10.0, -10.0]
 Optimal Value = -7.1479e+149
 Iterations    = 2
-CPU Time      = 0.2498 (s)
+CPU Time      = 0.2699 (s)
 
 % ========== Conjugate Gradient Method ========== % 
 Initial Value = [ -9.0,  -9.0]
 Optimal Point = [-10.0, -10.0]
 Optimal Value = -7.1479e+149
 Iterations    = 43
-CPU Time      = 0.8445 (s)
+CPU Time      = 0.8591 (s)
+
+% ========== Newton Method ========== % 
+Initial Value = [-10.0, -10.0]
+Optimal Point = [-10.0, -10.0]
+Optimal Value = -7.1479e+149
+Iterations    = 2
+CPU Time      = 0.2631 (s)
+
+% ========== Steepest Descent Method ========== % 
+Initial Value = [-10.0, -10.0]
+Optimal Point = [-10.0, -10.0]
+Optimal Value = -7.1479e+149
+Iterations    = 2
+CPU Time      = 0.2644 (s)
+
+% ========== Conjugate Gradient Method ========== % 
+Initial Value = [-10.0, -10.0]
+Optimal Point = [-10.0, -10.0]
+Optimal Value = -7.1479e+149
+Iterations    = 2
+CPU Time      = 0.0600 (s)
 
