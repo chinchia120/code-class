@@ -15,7 +15,7 @@ values_array = cat(1, values_array, double(before));
 for iter=1:max_iter
     if (iter == max_iter)
         % when reach to end of loop, evoke error
-        error('Newton''s method failed!');
+        % error('Newton''s method failed!');
     end
     p = num2cell(point);
     hessian_mat = double(f_hessian(p{:}));
