@@ -1,1 +1,22 @@
 %% ==================== Question 2 ==================== %%
+% ========== Newton Method ========== % 
+Initial Value = [  0.0900,   0.0900]
+Optimal Point = [  0.1462,   0.1462]
+Optimal Value = 1.4595e+00
+Iterations    = 100
+CPU Time      = 3.1381 (s)
+
+% ========== Steepest Descent Method ========== % 
+Initial Value = [  0.0900,   0.0900]
+Optimal Point = [ -0.0001,  -0.0001]
+Optimal Value = 4.0161e-04
+Iterations    = 15
+CPU Time      = 1.5037 (s)
+
+% ========== Conjugate Gradient Method ========== % 
+Initial Value = [  0.0900,   0.0900]
+Optimal Point = [  0.0000,   0.0000]
+Optimal Value = 1.6020e-04
+Iterations    = 8
+CPU Time      = 1.1223 (s)
+
