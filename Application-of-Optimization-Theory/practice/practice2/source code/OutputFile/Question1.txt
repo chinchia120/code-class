@@ -4,61 +4,61 @@ Initial Value = [  5.0000,  -5.0000]
 Optimal Point = [-10.0000,  10.0000]
 Optimal Value = -1.9016e+95
 Iterations    = 29
-CPU Time      = 1.1226 (s)
+CPU Time      = 1.0284 (s)
 
 % ========== Steepest Descent Method ========== % 
 Initial Value = [  5.0000,  -5.0000]
 Optimal Point = [-10.0000,  10.0000]
 Optimal Value = -1.9016e+95
 Iterations    = 3
-CPU Time      = 0.3508 (s)
+CPU Time      = 0.2858 (s)
 
 % ========== Conjugate Gradient Method ========== % 
 Initial Value = [  5.0000,  -5.0000]
-Optimal Point = [ 10.0000, -10.0000]
-Optimal Value = -1.9016e+95
-Iterations    = 141
-CPU Time      = 3.0220 (s)
+Optimal Point = [  8.0432,  -8.4592]
+Optimal Value = -8.1443e+67
+Iterations    = 100
+CPU Time      = 2.0490 (s)
 
 % ========== Newton Method ========== % 
 Initial Value = [ -9.0000,  -9.0000]
 Optimal Point = [-10.0000, -10.0000]
 Optimal Value = -7.1479e+149
 Iterations    = 2
-CPU Time      = 0.2848 (s)
+CPU Time      = 0.2564 (s)
 
 % ========== Steepest Descent Method ========== % 
 Initial Value = [ -9.0000,  -9.0000]
 Optimal Point = [-10.0000, -10.0000]
 Optimal Value = -7.1479e+149
 Iterations    = 2
-CPU Time      = 0.2605 (s)
+CPU Time      = 0.2568 (s)
 
 % ========== Conjugate Gradient Method ========== % 
 Initial Value = [ -9.0000,  -9.0000]
 Optimal Point = [-10.0000, -10.0000]
 Optimal Value = -7.1479e+149
 Iterations    = 43
-CPU Time      = 0.9630 (s)
+CPU Time      = 0.8483 (s)
 
 % ========== Newton Method ========== % 
 Initial Value = [ -9.9999,  -9.9999]
 Optimal Point = [-10.0000, -10.0000]
 Optimal Value = -7.1479e+149
 Iterations    = 2
-CPU Time      = 0.2647 (s)
+CPU Time      = 0.2680 (s)
 
 % ========== Steepest Descent Method ========== % 
 Initial Value = [ -9.9999,  -9.9999]
 Optimal Point = [-10.0000, -10.0000]
 Optimal Value = -7.1479e+149
 Iterations    = 2
-CPU Time      = 0.2623 (s)
+CPU Time      = 0.2592 (s)
 
 % ========== Conjugate Gradient Method ========== % 
 Initial Value = [ -9.9999,  -9.9999]
 Optimal Point = [-10.0000, -10.0000]
 Optimal Value = -7.1479e+149
 Iterations    = 2
-CPU Time      = 0.0607 (s)
+CPU Time      = 0.0819 (s)
 

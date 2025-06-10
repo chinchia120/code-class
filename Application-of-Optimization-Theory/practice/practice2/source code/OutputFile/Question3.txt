@@ -1,43 +1,64 @@
 %% ==================== Question 3 ==================== %%
 % ========== Newton Method ========== % 
 Initial Value = [ -0.5000,   7.5000]
-Optimal Point = [ 10.0000, -10.0000]
-Optimal Value = 1.6418e+00
-Iterations    = 1073
-CPU Time      = 24.0163 (s)
+Optimal Point = [  4.7334,   9.9997]
+Optimal Value = 1.0158e+00
+Iterations    = 100
+CPU Time      = 1.9361 (s)
 
 % ========== Steepest Descent Method ========== % 
 Initial Value = [ -0.5000,   7.5000]
-Optimal Point = [ -0.1250,   8.2624]
-Optimal Value = 1.1971e-01
-Iterations    = 1837
-CPU Time      = 38.6262 (s)
+Optimal Point = [ -0.4732,   7.5509]
+Optimal Value = 4.9215e-01
+Iterations    = 100
+CPU Time      = 1.8819 (s)
 
 % ========== Conjugate Gradient Method ========== % 
 Initial Value = [ -0.5000,   7.5000]
 Optimal Point = [  0.0073,   8.8783]
 Optimal Value = 1.9747e-02
 Iterations    = 4
-CPU Time      = 0.4807 (s)
+CPU Time      = 0.4804 (s)
 
 % ========== Newton Method ========== % 
 Initial Value = [ -8.0000,  -4.5000]
-Optimal Point = [ 10.0000, -10.0000]
-Optimal Value = 1.6418e+00
-Iterations    = 2012
-CPU Time      = 43.9885 (s)
+Optimal Point = [-10.0000,  -1.6545]
+Optimal Value = 1.3531e+00
+Iterations    = 100
+CPU Time      = 1.8564 (s)
 
 % ========== Steepest Descent Method ========== % 
 Initial Value = [ -8.0000,  -4.5000]
 Optimal Point = [ -9.2634,  -4.4918]
 Optimal Value = 4.0075e-02
 Iterations    = 2
-CPU Time      = 0.4047 (s)
+CPU Time      = 0.3952 (s)
 
 % ========== Conjugate Gradient Method ========== % 
 Initial Value = [ -8.0000,  -4.5000]
 Optimal Point = [ -9.4199,  -4.4362]
 Optimal Value = 2.7127e-02
 Iterations    = 4
-CPU Time      = 0.5833 (s)
+CPU Time      = 0.5499 (s)
+
+% ========== Newton Method ========== % 
+Initial Value = [  0.3000,   0.3000]
+Optimal Point = [ -0.0000,  -0.0000]
+Optimal Value = 1.4474e-28
+Iterations    = 3
+CPU Time      = 0.0405 (s)
+
+% ========== Steepest Descent Method ========== % 
+Initial Value = [  0.3000,   0.3000]
+Optimal Point = [  0.2931,   0.2966]
+Optimal Value = 6.3678e-02
+Iterations    = 24
+CPU Time      = 0.4508 (s)
+
+% ========== Conjugate Gradient Method ========== % 
+Initial Value = [  0.3000,   0.3000]
+Optimal Point = [  0.0035,  -0.0038]
+Optimal Value = 9.8096e-06
+Iterations    = 3
+CPU Time      = 0.3811 (s)
 
