@@ -173,7 +173,7 @@ C = repmat(sig, 1, 2*npatches);
 
 % ===== Make Smoothing
 for k = 1:size(fault_x,2)
-    if ~isnan(isSurf{k})            %Lap = Laplacian operator (discrete)
+    if ~isnan(isSurf{k})            % Lap = Laplacian operator (discrete)
         [Lap{k}, Lap_inv] = modelwt(nve{k}, nhe{k}, pm_pre{k}(1,1), pm_pre{k}(1,2), isSurf{k});
     end
 end
