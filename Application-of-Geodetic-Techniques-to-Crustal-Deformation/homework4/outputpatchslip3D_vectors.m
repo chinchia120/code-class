@@ -1,4 +1,4 @@
-function [] = outputpatchslip3D_vectors(pm,slip,nve,nf, OutputFile)
+function [] = outputpatchslip3D_vectors(pm,slip,nve,nf, outname)
 %
 %	 plotpatchslip1(pm,slip,nve)
 %
@@ -75,16 +75,16 @@ xvert=[xvert1';xvert2';xvert3';xvert4'];
 yvert=[yvert1';yvert2';yvert3';yvert4'];
 zvert=[zvert1';zvert2';zvert3';zvert4'];
 
-fid=fopen([OutputFile, sprintf('/gmt_faultplane_x_%d.gmt', nf)],'w');
+fid=fopen([outname, '/gmt_faultplane_x_' int2str(nf) '.gmt'],'w');
 fprintf(fid,'%10.4f %10.4f %10.4f %10.4f\r\n',xvert);
 fclose(fid);
-fid=fopen([OutputFile, sprintf('/gmt_faultplane_y_%d.gmt', nf)],'w');
+fid=fopen([outname, '/gmt_faultplane_y_' int2str(nf) '.gmt'],'w');
 fprintf(fid,'%10.4f %10.4f %10.4f %10.4f\r\n',yvert);
 fclose(fid);
-fid=fopen([OutputFile, sprintf('/gmt_faultplane_z_%d.gmt', nf)],'w');
+fid=fopen([outname, '/gmt_faultplane_z_' int2str(nf) '.gmt'],'w');
 fprintf(fid,'%10.4f %10.4f %10.4f %10.4f\r\n',zvert);
 fclose(fid);
-fid=fopen([OutputFile, sprintf('/gmt_faultslip_%d.gmt', nf)],'w');
+fid=fopen([outname, '/gmt_faultslip_' int2str(nf) '.gmt'],'w');
 fprintf(fid,'%10.4f %10.4f %10.4f\r\n',[ss;ds;ns]);
 fclose(fid);
 
@@ -99,6 +99,6 @@ dipvec=dipvec./repmat(normal,1,3);
 
 slipvec=strikevec.*repmat(ss',1,3)+dipvec.*repmat(ds',1,3);
 
-fid=fopen([OutputFile, sprintf('/gmt_faultslip_vector_%d.gmt', nf)],'w');
+fid=fopen([outname, '/gmt_faultslip_vector_' int2str(nf) '.gmt'],'w');
 fprintf(fid,'%10.4f %10.4f %10.4f %10.4f %10.4f %10.4f\r\n',[centersx centersy -centersz slipvec(:,1) slipvec(:,2) -slipvec(:,3)]');
 fclose(fid);
