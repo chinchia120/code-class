@@ -13,7 +13,7 @@ if ~exist(OutputFile, 'dir'); mkdir(OutputFile); end
 
 %% ========== Pre-Make Fault ========== %%
 % ===== Fault 1 Parameters
-fault_x{1} = [119.8 119.9512 120.3];
+fault_x{1} = [119.4 120.0 120.6];
 fault_y{1} = [23.05 23.05 23.05];
 dep{1} = [0 15];            % top depth of fault
 dp{1} = 68.0;               % fault dip
@@ -120,7 +120,7 @@ bds{1} = NaN;       % bds = 1 if reverse; -1 if normal; = NaN if no constraint
 gss{1} = NaN;       % gss (geological ss rate) = NaN if no constraint; else then value should be positive
 gds{1} = NaN;       % gds (geological ds rate) = NaN if no constraint; else then value should be positive
 
-gamma_smooth = 0.9; % smoothing parameter (increasing gamma decreases roughness)
+gamma_smooth = 0.2; % smoothing parameter (increasing gamma decreases roughness)
 gout = 1;           % gout = NaN if not generating output files; else if yes
 
 % ===== Load Data
