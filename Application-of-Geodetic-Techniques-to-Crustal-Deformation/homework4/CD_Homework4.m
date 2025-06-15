@@ -119,7 +119,7 @@ gss{1} = NaN;           % gss (geological ss rate) = NaN if no constraint; else 
 gds{1} = NaN;           % gds (geological ds rate) = NaN if no constraint; else then value should be positive
 iscreep(1) = NaN;       % iscreep = NaN if not a creeping fault; else it is a creeping fault
 
-gamma_smooth = -3.8;    % smoothing parameter (increasing gamma decreases roughness)
+gamma_smooth = -2.7;    % smoothing parameter (increasing gamma decreases roughness)
 gout = 1;               % gout = NaN if not generating output files; else if yes
 
 % ===== Load Data
