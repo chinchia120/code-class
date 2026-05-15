@@ -3,3 +3,72 @@
 
 # VSCode
 .vscode/
+
+# Images & media
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.tif
+*.webp
+*.ico
+*.svg
+
+# Data & experiment outputs
+*.txt
+*.csv
+*.fig
+*.mat
+*.dat
+*.out
+*.obs
+*.rnx
+*.23o
+*.23n
+*.24o
+*.24n
+*.gmt
+*.PLT
+*.plt
+*.cache
+
+# GNSS / survey data
+*.10O
+*.10o
+*.10n
+*.10N
+*.sp3
+*.cyno
+*.KIN
+*.ION
+*.FRS
+
+# Binaries
+*.jar
+*.dll
+*.exe
+*.pdb
+*.vsidx
+
+# Office & archives
+*.xlsx
+*.xls
+*.zip
+*.tar
+*.gz
+*.7z
+
+# Fonts
+*.otf
+*.ttf
+*.woff
+*.woff2
+
+# Common data directories
+**/Experiment-Data/
+**/OutputFigure/
+**/Dataset*/
+**/Q*_Image/
+**/data-unzip/
